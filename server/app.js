@@ -8,7 +8,7 @@ import connectDB from "./config/db.js";
 //Dot env config
 dotenv.config();
 
-//** MongoDb Connection ***/
+//MongoDb Connection
 connectDB();
 
 //Rest Obj
@@ -18,13 +18,11 @@ const app = express();
 app.use(morgan("dev")); //Call morgan showing in console
 
 //Routes
-app.use("/", (req, res, next) => {
-  res.send("Hello wo!");
-});
 
 //Port
 const PORT = process.env.PORT || 8080;
 
+//Listen
 app.listen(PORT, () => {
   console.log(
     `Node Server Running In ${process.env.DEV_MODE} mode on port ${PORT}`
