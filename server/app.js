@@ -2,12 +2,15 @@ import express from "express";
 import morgan from "morgan";
 import colors from "colors";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 //Dot env config
 dotenv.config();
 
 //Rest Obj
 const app = express();
+
+mongoose.connect(process.env.MONGO_URL);
 
 //Middleware
 app.use(morgan("dev")); //Call morgan showing in console
