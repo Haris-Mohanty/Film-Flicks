@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "It is a movie booking app.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haris-Mohanty/Film-Flicks.git"
+  },
+  "author": "Haris Mohanty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Haris-Mohanty/Film-Flicks/issues"
+  },
+  "homepage": "https://github.com/Haris-Mohanty/Film-Flicks#readme"
+}
