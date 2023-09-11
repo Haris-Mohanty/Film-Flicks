@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Haris-Mohanty/Film-Flicks/issues"
   },
-  "homepage": "https://github.com/Haris-Mohanty/Film-Flicks#readme"
+  "homepage": "https://github.com/Haris-Mohanty/Film-Flicks#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
