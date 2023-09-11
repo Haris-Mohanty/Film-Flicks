@@ -1,7 +1,7 @@
-const express = require("express");
-const morgan = require("morgan");
-const colors = require("colors");
-const dotenv = require("dotenv");
+import express from "express";
+import morgan from "morgan";
+import colors from "colors";
+import dotenv from "dotenv";
 
 //Dot env config
 dotenv.config();
