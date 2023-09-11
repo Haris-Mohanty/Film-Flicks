@@ -3,14 +3,16 @@ import morgan from "morgan";
 import colors from "colors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import connectDB from "./config/db.js";
 
 //Dot env config
 dotenv.config();
 
+//** MongoDb Connection ***/
+connectDB();
+
 //Rest Obj
 const app = express();
-
-mongoose.connect(process.env.MONGO_URL);
 
 //Middleware
 app.use(morgan("dev")); //Call morgan showing in console
