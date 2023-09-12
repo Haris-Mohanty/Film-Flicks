@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/", getAllUsers);
 
 //Add user
-router.post("/", addUser);
+router.post("/signup", addUser);
 
 //EXPORT ROUTER
 export default router;

@@ -16,6 +16,7 @@ connectDB();
 const app = express();
 
 //Middleware
+app.use(express.json());
 app.use(morgan("dev")); //Call morgan showing in console
 
 // Middleware Routes
