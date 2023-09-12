@@ -24,5 +24,14 @@ export const getAllUsers = async (req, res, next) => {
 export const addUser = async (req, res, next) => {
   const { name, email, password } = req.body;
   //Validation
-  if(!name)
+  if (
+    !name &&
+    name.trim() === "" &&
+    !email.trim() === "" &&
+    !password.trim() === ""
+  ) {
+    return res.status(422).json({
+      message: "Please provide all fields!",
+    });
+  }
 };
