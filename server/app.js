@@ -4,7 +4,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import connectDB from "./config/db.js";
-import router from "./routes/userRoutes.js"
+import router from "./routes/userRoutes.js";
 
 //Dot env config
 dotenv.config();
