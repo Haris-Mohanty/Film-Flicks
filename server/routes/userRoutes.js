@@ -8,6 +8,9 @@ const router = express.Router();
 //Get users
 router.get("/allusers", getAllUsers);
 
+//Add user
+router.post("/")
+
 
 
 //EXPORT ROUTER
