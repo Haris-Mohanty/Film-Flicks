@@ -21,6 +21,8 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 //******** ADD USER || SIGN UP ********/
-export const addUser = async (req, res) => {
-  
+export const addUser = async (req, res, next) => {
+  const { name, email, password } = req.body;
+  //Validation
+  if(!name)
 };
