@@ -34,4 +34,21 @@ export const addUser = async (req, res, next) => {
       message: "Please provide all fields!",
     });
   }
+
+  //
+  let user;
+  try {
+    user = new UserModel({ name, email, password });
+    user = user.save();
+  } catch (error) {
+    return next(error);
+  }
+  if (!user) {
+    return res.status(500).json({
+      message: "Unexpected Error Occurred!",
+    });
+  }
+  return res.status(201).json({
+    user,
+  });
 };
