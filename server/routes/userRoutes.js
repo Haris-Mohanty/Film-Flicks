@@ -6,10 +6,10 @@ const router = express.Router();
 
 //***** CREATE ROUTES *****/
 //Get users
-router.get("/allusers", getAllUsers);
+router.get("/", getAllUsers);
 
 //Add user
-router.post("/")
+router.post("/",)
 
 
 

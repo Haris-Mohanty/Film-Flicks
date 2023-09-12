@@ -1,5 +1,6 @@
 import UserModel from "../models/UserModel.js";
 
+//******* GET USER ****/
 export const getAllUsers = async (req, res, next) => {
   let users;
   try {
@@ -17,4 +18,9 @@ export const getAllUsers = async (req, res, next) => {
   return res.status(200).json({
     users,
   });
+};
+
+//******** ADD USER || SIGN UP ********/
+export const addUser = async (req, res) => {
+  
 };
