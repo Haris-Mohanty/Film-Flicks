@@ -6,7 +6,7 @@ export const getAllUsers = async (req, res, next) => {
   try {
     users = await UserModel.find();
   } catch (err) {
-    return next(err);
+    return console.log(error);
   }
 
   //Validation
@@ -39,9 +39,9 @@ export const addUser = async (req, res, next) => {
   let user;
   try {
     user = new UserModel({ name, email, password });
-    user = user.save();
+    user = await user.save();
   } catch (error) {
-    return next(error);
+    return console.log(error);
   }
   if (!user) {
     return res.status(500).json({
@@ -49,6 +49,6 @@ export const addUser = async (req, res, next) => {
     });
   }
   return res.status(201).json({
-    user
+    user,
   });
 };
