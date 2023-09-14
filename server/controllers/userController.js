@@ -1,5 +1,5 @@
 import UserModel from "../models/UserModel.js";
-import bcrypt from 'bcryptjs'
+import bcrypt from "bcryptjs";
 
 //******* GET USER ****/
 export const getAllUsers = async (req, res, next) => {
@@ -35,11 +35,12 @@ export const addUser = async (req, res, next) => {
       message: "Please provide all fields!",
     });
   }
+  const hashPassword = bcrypt.hashSync(password);
 
   //
   let user;
   try {
-    user = new UserModel({ name, email, password });
+    user = new UserModel({ name, email, password: hashPassword });
     user = await user.save();
   } catch (error) {
     return console.log(error);
