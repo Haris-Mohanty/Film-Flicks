@@ -12,7 +12,7 @@ router.get("/", getAllUsers);
 router.post("/signup", addUser);
 
 //Update user
-router.put("/");
+router.put("/:id");
 
 //EXPORT ROUTER
 export default router;
