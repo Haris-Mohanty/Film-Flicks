@@ -36,8 +36,6 @@ export const addUser = async (req, res, next) => {
     });
   }
   const hashPassword = bcrypt.hashSync(password);
-
-  //
   let user;
   try {
     user = new UserModel({ name, email, password: hashPassword });
@@ -54,3 +52,6 @@ export const addUser = async (req, res, next) => {
     user,
   });
 };
+
+//******** UPDATE USER ******/
+export const updateUser = async (req, res, next) => {};
