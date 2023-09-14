@@ -11,5 +11,8 @@ router.get("/", getAllUsers);
 //Add user
 router.post("/signup", addUser);
 
+//Update user
+router.put("/");
+
 //EXPORT ROUTER
 export default router;
