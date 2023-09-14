@@ -70,4 +70,23 @@ export const updateUser = async (req, res, next) => {
       message: "Invalid Inputs!",
     });
   }
+  const hashPassword = bcrypt.hashSync(password);
+  let user;
+  try {
+    user = await UserModel.findByIdAndUpdate(id, {
+      name,
+      email,
+      password: hashPassword,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  if (!user) {
+    return res.status(500).json({
+      message: "something went wrong!!",
+    });
+  }
+  res.status(200).json({
+    message: "Updated Successfully!",
+  });
 };
