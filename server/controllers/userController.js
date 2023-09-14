@@ -54,4 +54,20 @@ export const addUser = async (req, res, next) => {
 };
 
 //******** UPDATE USER ******/
-export const updateUser = async (req, res, next) => {};
+export const updateUser = async (req, res, next) => {
+  const id = req.params.id;
+  const { name, email, password } = req.body;
+  //Validation
+  if (
+    !name &&
+    name.trim() === "" &&
+    !email &&
+    email.trim() === "" &&
+    !password &&
+    password.trim() === ""
+  ) {
+    return res.status(422).json({
+      message: "Invalid Inputs!",
+    });
+  }
+};
