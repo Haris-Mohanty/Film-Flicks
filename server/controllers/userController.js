@@ -25,6 +25,7 @@ export const getAllUsers = async (req, res, next) => {
 export const addUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
+
     //Validation
     if (!name) {
       next("Please provide all fields!");
@@ -35,11 +36,13 @@ export const addUser = async (req, res, next) => {
     if (!password) {
       next("Please provide all fields!");
     }
+
     //Check user(email check)
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
       next("Email Already Exists!");
     }
+    
     //create user
     const user = await UserModel.create({ name, email, password });
     res.status(201).send({
