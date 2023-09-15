@@ -42,7 +42,23 @@ export const addUser = async (req, res, next) => {
     // if (existingUser) {
     //   next("Email Already Exists!");
     // }
-    
+
+    //Hash Password
+
+    //Hash password
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    // req.body.password = hashedPassword;
+
+    //Rest Data
+    // const user = new userModel(req.body);
+    // await user.save();
+    // return res.status(201).send({
+    //   success: true,
+    //   message: "User Registered Successfully!",
+    //   user,
+    // });
+
     //create user
     const user = await UserModel.create({ name, email, password });
     res.status(201).send({
