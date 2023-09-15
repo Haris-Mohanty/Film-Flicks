@@ -27,21 +27,21 @@ export const addUser = async (req, res, next) => {
     const { name, email, password } = req.body;
 
     //Validation
-    if (!name) {
-      next("Please provide all fields!");
-    }
-    if (!email) {
-      next("Please provide all fields!");
-    }
-    if (!password) {
-      next("Please provide all fields!");
-    }
+    // if (!name) {
+    //   next("Please provide all fields!");
+    // }
+    // if (!email) {
+    //   next("Please provide all fields!");
+    // }
+    // if (!password) {
+    //   next("Please provide all fields!");
+    // }
 
     //Check user(email check)
-    const existingUser = await UserModel.findOne({ email });
-    if (existingUser) {
-      next("Email Already Exists!");
-    }
+    // const existingUser = await UserModel.findOne({ email });
+    // if (existingUser) {
+    //   next("Email Already Exists!");
+    // }
     
     //create user
     const user = await UserModel.create({ name, email, password });
