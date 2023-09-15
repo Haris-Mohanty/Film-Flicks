@@ -12,55 +12,55 @@ export const getAllUsers = async (req, res, next) => {
 
   //Validation
   if (!users) {
-    return res.status(500).json({
+    return res.status(500).send({
       message: "Unexpected Error Occured!",
     });
   }
-  return res.status(200).json({
+  return res.status(200).send({
     users,
   });
-};  
+};
 
 //******** ADD USER || SIGN UP ********/
 export const addUser = async (req, res, next) => {
-  try{
-
-  }catch(error){
-    console.log(error)
-    res.status()
-  }
-
-
-
-
-  const { name, email, password } = req.body;
-  //Validation
-  if (
-    !name &&
-    name.trim() === "" &&
-    !email.trim() === "" &&
-    !password.trim() === ""
-  ) {
-    return res.status(422).json({
-      message: "Please provide all fields!",
-    });
-  }
-  const hashPassword = bcrypt.hashSync(password);
-  let user;
   try {
-    user = new UserModel({ name, email, password: hashPassword });
-    user = await user.save();
+    const { name, email, password } = req.body;
+    //Validation
+    if (!name) {
+      return res.status(422).send({
+        message: "Please provide all fields!",
+      });
+    }
+    if (!email) {
+      return res.status(422).send({
+        message: "Please provide all fields!",
+      });
+    }
+    if (!password) {
+      return res.status(422).send({
+        message: "Please provide all fields!",
+      });
+    }
+    //Check user(email check)
+    const existingUser = await UserModel.findOne({ email });
+    if (existingUser) {
+      return res.status(200).send({
+        message: "Email Already Exists!",
+      });
+    }
+    //create user
+    const user = await UserModel.create({ name, email, password });
+    res.status(201).send({
+      message: "User Created Successfully!",
+      user,
+    });
   } catch (error) {
-    return console.log(error);
-  }
-  if (!user) {
-    return res.status(500).json({
-      message: "Unexpected Error Occurred!",
+    console.log(error);
+    res.status(400).send({
+      message: "Error in Add User!",
+      error,
     });
   }
-  return res.status(201).json({
-    user,
-  });
 };
 
 //******** UPDATE USER ******/
@@ -76,7 +76,7 @@ export const updateUser = async (req, res, next) => {
     !password &&
     password.trim() === ""
   ) {
-    return res.status(422).json({
+    return res.status(422).send({
       message: "Invalid Inputs!",
     });
   }
@@ -92,11 +92,11 @@ export const updateUser = async (req, res, next) => {
     console.log(error);
   }
   if (!user) {
-    return res.status(500).json({
+    return res.status(500).send({
       message: "something went wrong!!",
     });
   }
-  res.status(200).json({
+  res.status(200).send({
     message: "Updated Successfully!",
   });
 };

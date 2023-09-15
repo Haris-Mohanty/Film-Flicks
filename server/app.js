@@ -3,9 +3,8 @@ import morgan from "morgan";
 import colors from "colors";
 import cors from "cors";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import connectDB from "./config/db.js";
-import router from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 //Dot env config
 dotenv.config();
@@ -22,7 +21,7 @@ app.use(cors());
 app.use(morgan("dev")); //Call morgan showing in console
 
 // Middleware Routes
-app.use("/api/v1/user", router);
+app.use("/api/v1/user", userRoutes);
 
 //Port
 const PORT = process.env.PORT || 8080;
