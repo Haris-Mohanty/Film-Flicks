@@ -27,40 +27,33 @@ export const addUser = async (req, res, next) => {
     const { name, email, password } = req.body;
 
     //Validation
-    // if (!name) {
-    //   next("Please provide all fields!");
-    // }
-    // if (!email) {
-    //   next("Please provide all fields!");
-    // }
-    // if (!password) {
-    //   next("Please provide all fields!");
-    // }
+    if (!name) {
+      next("Please provide all fields!");
+    }
+    if (!email) {
+      next("Please provide all fields!");
+    }
+    if (!password) {
+      next("Please provide all fields!");
+    }
+    if (password.length < 6) {
+      next("Password length should be greater than 6 character!");
+    }
 
     //Check user(email check)
-    // const existingUser = await UserModel.findOne({ email });
-    // if (existingUser) {
-    //   next("Email Already Exists!");
-    // }
+    const existingUser = await UserModel.findOne({ email });
+    if (existingUser) {
+      next("Email Already Exists!");
+    }
 
     //Hash Password
-
-    //Hash password
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    // req.body.password = hashedPassword;
-
-    //Rest Data
-    // const user = new userModel(req.body);
-    // await user.save();
-    // return res.status(201).send({
-    //   success: true,
-    //   message: "User Registered Successfully!",
-    //   user,
-    // });
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    req.body.password = hashedPassword;
 
     //create user
-    const user = await UserModel.create({ name, email, password });
+    const user = new UserModel(req.body);
+    await user.save();
     res.status(201).send({
       message: "User Created Successfully!",
       user,
