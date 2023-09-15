@@ -27,26 +27,18 @@ export const addUser = async (req, res, next) => {
     const { name, email, password } = req.body;
     //Validation
     if (!name) {
-      return res.status(422).send({
-        message: "Please provide all fields!",
-      });
+      next("Please provide all fields!");
     }
     if (!email) {
-      return res.status(422).send({
-        message: "Please provide all fields!",
-      });
+      next("Please provide all fields!");
     }
     if (!password) {
-      return res.status(422).send({
-        message: "Please provide all fields!",
-      });
+      next("Please provide all fields!");
     }
     //Check user(email check)
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      return res.status(200).send({
-        message: "Email Already Exists!",
-      });
+      next("Email Already Exists!");
     }
     //create user
     const user = await UserModel.create({ name, email, password });
@@ -55,15 +47,9 @@ export const addUser = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).send({
-      message: "Error in Add User!",
-      error,
-    });
+    next(error);
   }
 };
 
 //******** UPDATE USER ******/
-export const updateUser = async (req, res, next) => {
-  
-};
+export const updateUser = async (req, res, next) => {};

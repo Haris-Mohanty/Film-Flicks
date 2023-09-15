@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
+import errorMiddleware from "./middleware/errorMiddleware.js";
 
 //Dot env config
 dotenv.config();
@@ -22,6 +23,9 @@ app.use(morgan("dev")); //Call morgan showing in console
 
 // Middleware Routes
 app.use("/api/v1/user", userRoutes);
+
+//Validation middleware
+app.use(errorMiddleware);
 
 //Port
 const PORT = process.env.PORT || 8080;
