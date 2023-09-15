@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import colors from "colors";
+import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import connectDB from "./config/db.js";
@@ -17,6 +18,7 @@ const app = express();
 
 //Middleware
 app.use(express.json());
+app.use(cors());
 app.use(morgan("dev")); //Call morgan showing in console
 
 // Middleware Routes

@@ -19,10 +19,20 @@ export const getAllUsers = async (req, res, next) => {
   return res.status(200).json({
     users,
   });
-};
+};  
 
 //******** ADD USER || SIGN UP ********/
 export const addUser = async (req, res, next) => {
+  try{
+
+  }catch(error){
+    console.log(error)
+    res.status()
+  }
+
+
+
+
   const { name, email, password } = req.body;
   //Validation
   if (
