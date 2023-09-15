@@ -65,38 +65,5 @@ export const addUser = async (req, res, next) => {
 
 //******** UPDATE USER ******/
 export const updateUser = async (req, res, next) => {
-  const id = req.params.id;
-  const { name, email, password } = req.body;
-  //Validation
-  if (
-    !name &&
-    name.trim() === "" &&
-    !email &&
-    email.trim() === "" &&
-    !password &&
-    password.trim() === ""
-  ) {
-    return res.status(422).send({
-      message: "Invalid Inputs!",
-    });
-  }
-  const hashPassword = bcrypt.hashSync(password);
-  let user;
-  try {
-    user = await UserModel.findByIdAndUpdate(id, {
-      name,
-      email,
-      password: hashPassword,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-  if (!user) {
-    return res.status(500).send({
-      message: "something went wrong!!",
-    });
-  }
-  res.status(200).send({
-    message: "Updated Successfully!",
-  });
+  
 };
