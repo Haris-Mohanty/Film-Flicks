@@ -66,6 +66,8 @@ export const addUser = async (req, res, next) => {
 //******** UPDATE USER ******/
 export const updateUser = async (req, res, next) => {
   try {
+    //Get id
+    const id = req.params.id;
     
   } catch (error) {
     next(error);
