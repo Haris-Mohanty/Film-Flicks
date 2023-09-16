@@ -126,6 +126,10 @@ export const deleteUser = async (req, res, next) => {
         message: "Something went wrong!",
       });
     }
+    return res.status(200).send({
+      message: "User Deleted Successfully!",
+      user,
+    });
   } catch (error) {
     next(error);
   }
