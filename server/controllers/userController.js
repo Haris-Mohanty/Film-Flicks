@@ -102,7 +102,9 @@ export const updateUser = async (req, res, next) => {
       password: hashedPassword,
     });
     if (!user) {
-      
+      return res.status(500).send({
+        message: "Something went wrong!",
+      });
     }
     res.status(200).send({
       message: "Updated Successfully!",
@@ -119,8 +121,10 @@ export const deleteUser = async (req, res, next) => {
     const id = req.params.id;
 
     const user = await UserModel.findByIdAndRemove(id);
-    if(!user){
-      
+    if (!user) {
+      return res.status(500).send({
+        message: "Something went wrong!",
+      });
     }
   } catch (error) {
     next(error);
