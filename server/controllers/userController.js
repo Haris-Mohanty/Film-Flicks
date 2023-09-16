@@ -102,7 +102,7 @@ export const updateUser = async (req, res, next) => {
       password: hashedPassword,
     });
     if (!user) {
-      next("Something went wrong!");
+      
     }
     res.status(200).send({
       message: "Updated Successfully!",
@@ -115,6 +115,13 @@ export const updateUser = async (req, res, next) => {
 //********* DELETE USER ***********/
 export const deleteUser = async (req, res, next) => {
   try {
+    //Get id
+    const id = req.params.id;
+
+    const user = await UserModel.findByIdAndRemove(id);
+    if(!user){
+      
+    }
   } catch (error) {
     next(error);
   }
