@@ -68,7 +68,46 @@ export const updateUser = async (req, res, next) => {
   try {
     //Get id
     const id = req.params.id;
-    
+
+    const { name, email, password } = req.body;
+
+    //Validation
+    if (!name) {
+      next("Please provide all fields!");
+    }
+    if (!email) {
+      next("Please provide all fields!");
+    }
+    if (!password) {
+      next("Please provide all fields!");
+    }
+    if (password.length < 6) {
+      next("Password length should be greater than 6 character!");
+    }
+
+    //Check user(email check)
+    const existingUser = await UserModel.findOne({ email });
+    if (existingUser) {
+      next("Email Already Exists!");
+    }
+
+    //Hash Password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    req.body.password = hashedPassword;
+
+    //update
+    const user = await UserModel.findByIdAndUpdate(id, {
+      name,
+      email,
+      password: hashedPassword,
+    });
+    if (!user) {
+      next("Something went wrong!");
+    }
+    res.status(200).send({
+      message: "Updated Successfully!",
+    });
   } catch (error) {
     next(error);
   }
