@@ -111,3 +111,6 @@ export const updateUser = async (req, res, next) => {
     next(error);
   }
 };
+
+//********* DELETE USER ***********/
+export const deleteUser = async (req, res, next) => {};

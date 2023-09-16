@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addUser,
+  deleteUser,
   getAllUsers,
   updateUser,
 } from "../controllers/userController.js";
@@ -19,7 +20,7 @@ router.post("/signup", addUser);
 router.put("/:id", updateUser);
 
 //Delete User
-router.delete()
+router.delete("/:id", deleteUser);
 
 //EXPORT ROUTER
 export default router;
