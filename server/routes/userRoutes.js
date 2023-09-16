@@ -18,5 +18,8 @@ router.post("/signup", addUser);
 //Update user
 router.put("/:id", updateUser);
 
+//Delete User
+router.delete()
+
 //EXPORT ROUTER
 export default router;

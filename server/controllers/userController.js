@@ -68,7 +68,6 @@ export const updateUser = async (req, res, next) => {
   try {
     //Get id
     const id = req.params.id;
-
     const { name, email, password } = req.body;
 
     //Validation
