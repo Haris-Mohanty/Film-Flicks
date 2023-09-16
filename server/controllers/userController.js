@@ -64,4 +64,10 @@ export const addUser = async (req, res, next) => {
 };
 
 //******** UPDATE USER ******/
-export const updateUser = async (req, res, next) => {};
+export const updateUser = async (req, res, next) => {
+  try {
+    
+  } catch (error) {
+    next(error);
+  }
+};
