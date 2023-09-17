@@ -134,3 +134,6 @@ export const deleteUser = async (req, res, next) => {
     next(error);
   }
 };
+
+//************* LOGIN USER ************/
+export const login = async (req, res, next) => {};
