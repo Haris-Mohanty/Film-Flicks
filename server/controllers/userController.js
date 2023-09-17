@@ -63,7 +63,7 @@ export const addUser = async (req, res, next) => {
   }
 };
 
-//******** UPDATE USER ******/
+//************** UPDATE USER ***************/
 export const updateUser = async (req, res, next) => {
   try {
     //Get id
@@ -114,7 +114,7 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
-//********* DELETE USER ***********/
+//************** DELETE USER *****************/
 export const deleteUser = async (req, res, next) => {
   try {
     //Get id
