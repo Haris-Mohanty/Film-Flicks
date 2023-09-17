@@ -139,22 +139,24 @@ export const deleteUser = async (req, res, next) => {
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    
+
     //Validation
-    if (!name) {
-      next("Please provide all fields!");
-    }
-    if (!email) {
-      next("Please provide all fields!");
-    }
-    if (!password) {
-      next("Please provide all fields!");
+    if (!email || !password) {
+      next("Please Provide All Fields!");
     }
     if (password.length < 6) {
       next("Password length should be greater than 6 character!");
     }
 
-    
+    //Check exist user
+    const existingUser = await UserModel.findOne({ email });
+    if (!existingUser) {
+      return res.status(404).send({
+        message: "Invalid Credentials!",
+      });
+    }
+
+    //
   } catch (error) {
     next(error);
   }
