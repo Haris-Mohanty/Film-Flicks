@@ -156,7 +156,8 @@ export const login = async (req, res, next) => {
       });
     }
 
-    //
+    //Comapre Password
+    const comparePassword=bcrypt.compare()
   } catch (error) {
     next(error);
   }
