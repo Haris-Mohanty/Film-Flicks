@@ -23,7 +23,7 @@ router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
 
 //Login User
-router.post("/")
+router.post("/login");
 
 //EXPORT ROUTER
 export default router;
