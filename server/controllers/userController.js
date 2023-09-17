@@ -136,4 +136,9 @@ export const deleteUser = async (req, res, next) => {
 };
 
 //************* LOGIN USER ************/
-export const login = async (req, res, next) => {};
+export const login = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
