@@ -3,6 +3,7 @@ import {
   addUser,
   deleteUser,
   getAllUsers,
+  login,
   updateUser,
 } from "../controllers/userController.js";
 
@@ -23,7 +24,7 @@ router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
 
 //Login User
-router.post("/login");
+router.post("/login", login);
 
 //EXPORT ROUTER
 export default router;
