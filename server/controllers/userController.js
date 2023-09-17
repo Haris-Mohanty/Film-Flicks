@@ -157,7 +157,12 @@ export const login = async (req, res, next) => {
     }
 
     //Comapre Password
-    const comparePassword=bcrypt.compare()
+    const comparePassword = await bcrypt.compare(password, existingUser.password);
+    if(!comparePassword){
+      return res.status(404).send({
+        message: "Incorrect Password, Please check again!",
+      });
+    }
   } catch (error) {
     next(error);
   }
