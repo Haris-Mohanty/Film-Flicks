@@ -7,5 +7,5 @@ const router = express.Router();
 //Signup Admin
 router.post("/signup", signupAdmin);
 
-
-//
+//Export router
+export default router;
