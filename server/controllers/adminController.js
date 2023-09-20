@@ -1,4 +1,5 @@
 import adminModel from "../models/adminModel.js";
+import bcrypt from 'bcrypt'
 
 //********** SIGNUP ADMIN *************/
 export const signupAdmin = async (req, res, next) => {
@@ -20,6 +21,9 @@ export const signupAdmin = async (req, res, next) => {
         message: "Admin Already Exists!",
       });
     }
+
+    //Hash Password
+    
   } catch (error) {
     next(error);
   }
