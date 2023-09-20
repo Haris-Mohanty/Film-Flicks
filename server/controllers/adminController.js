@@ -4,13 +4,8 @@ export const signupAdmin = async (req, res, next) => {
     const { email, password } = req.body;
 
     //Validation
-    if (!name) {
-      next("Please provide all fields!");
-    }
-    if (!email) {
-      next("Please provide all fields!");
-    }
-    if (!password) {
+
+    if (!email || !password) {
       next("Please provide all fields!");
     }
     if (password.length < 6) {
