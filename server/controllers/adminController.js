@@ -27,7 +27,8 @@ export const signupAdmin = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
 
-    
+    //Create admin
+    const admin = new adminModel(req.body);
   } catch (error) {
     next(error);
   }
