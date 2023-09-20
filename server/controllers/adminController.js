@@ -1,5 +1,5 @@
 import adminModel from "../models/adminModel.js";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 
 //********** SIGNUP ADMIN *************/
 export const signupAdmin = async (req, res, next) => {
@@ -23,6 +23,10 @@ export const signupAdmin = async (req, res, next) => {
     }
 
     //Hash Password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    req.body.password = hashedPassword;
+
     
   } catch (error) {
     next(error);
