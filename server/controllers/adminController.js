@@ -29,6 +29,11 @@ export const signupAdmin = async (req, res, next) => {
 
     //Create admin
     const admin = new adminModel(req.body);
+    await admin.save();
+    res.status(201).send({
+      message: "Admin Created Successfully!",
+      admin,
+    });
   } catch (error) {
     next(error);
   }
