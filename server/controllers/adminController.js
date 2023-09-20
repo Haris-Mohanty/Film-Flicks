@@ -1,3 +1,5 @@
+import adminModel from "../models/adminModel.js";
+
 //********** SIGNUP ADMIN *************/
 export const signupAdmin = async (req, res, next) => {
   try {
@@ -12,7 +14,12 @@ export const signupAdmin = async (req, res, next) => {
     }
 
     //Check Admin(Already exists or not)
-    const existingAdmin=
+    const existingAdmin = await adminModel.findOne({ email });
+    if (existingAdmin) {
+      return res.status(400).send({
+        message: "Admin Already Exists!",
+      });
+    }
   } catch (error) {
     next(error);
   }
