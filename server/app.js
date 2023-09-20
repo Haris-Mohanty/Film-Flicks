@@ -24,6 +24,7 @@ app.use(morgan("dev")); //Call morgan showing in console
 
 // Middleware Routes
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 //Validation middleware
 app.use(errorMiddleware);
