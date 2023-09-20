@@ -8,10 +8,14 @@ export const signupAdmin = async (req, res, next) => {
 
     //Validation
     if (!email || !password) {
-      next("Please provide all fields!");
+      return res.status(400).send({
+        message: "Please provide all fields!",
+      });
     }
     if (password.length < 6) {
-      next("Password length should be greater than 6 character!");
+      return res.status(400).send({
+        message: "Password length should be greater than 6 character!",
+      });
     }
 
     //Check Admin(Already exists or not)
@@ -34,7 +38,6 @@ export const signupAdmin = async (req, res, next) => {
       message: "Admin Created Successfully!",
       admin,
     });
-
   } catch (error) {
     next(error);
   }
