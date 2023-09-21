@@ -69,7 +69,15 @@ export const loginAdmin = async (req, res, next) => {
     }
 
     //Compare Password
-    const comparePassword = await bcrypt.compare()
+    const comparePassword = await bcrypt.compare(
+      password,
+      existingAdmin.password
+    );
+    if (!comparePassword) {
+      return res.status(400).send({
+        message: "Incorrect Password, Please check again!",
+      });
+    }
   } catch (error) {
     next(error);
   }
