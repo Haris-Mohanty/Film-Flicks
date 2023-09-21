@@ -62,9 +62,9 @@ export const loginAdmin = async (req, res, next) => {
 
     //Existing Admin
     const existingAdmin = await adminModel.findOne({ email });
-    if (existingAdmin) {
-      return res.status(400).send({
-        message: "Admin Already Exists!",
+    if (!existingAdmin) {
+      return res.status(404).send({
+        message: "Invalid Credentials!",
       });
     }
 
