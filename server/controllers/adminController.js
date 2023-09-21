@@ -46,6 +46,17 @@ export const signupAdmin = async (req, res, next) => {
 //************ ADMIN LOGIN *********/
 export const loginAdmin = async (req, res, next) => {
   try {
+    const { email, password } = req.body;
+
+     //Validation
+     if (!email || !password) {
+      next("Please Provide All Fields!");
+    }
+    if (password.length < 6) {
+      next("Password length should be greater than 6 character!");
+    }
+
+    
   } catch (error) {
     next(error);
   }
