@@ -42,3 +42,6 @@ export const signupAdmin = async (req, res, next) => {
     next(error);
   }
 };
+
+//************ ADMIN LOGIN *********/
+export const loginAdmin = () => {};
