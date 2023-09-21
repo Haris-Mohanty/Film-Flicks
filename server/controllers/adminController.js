@@ -78,6 +78,12 @@ export const loginAdmin = async (req, res, next) => {
         message: "Incorrect Password, Please check again!",
       });
     }
+
+    //Login Success
+    return res.status(200).send({
+      message: "Admin Login Successfully!",
+      existingAdmin,
+    });
   } catch (error) {
     next(error);
   }
