@@ -48,12 +48,24 @@ export const loginAdmin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-     //Validation
-     if (!email || !password) {
-      next("Please Provide All Fields!");
+    //Validation
+    if (!email || !password) {
+      return res.status(400).send({
+        message: "Please provide all fields!",
+      });
     }
     if (password.length < 6) {
-      next("Password length should be greater than 6 character!");
+      return res.status(400).send({
+        message: "Password length should be greater than 6 character!",
+      });
+    }
+
+    //Existing Admin
+    const existingAdmin = await adminModel.findOne({ email });
+    if (existingAdmin) {
+      return res.status(400).send({
+        message: "Admin Already Exists!",
+      });
     }
 
     
