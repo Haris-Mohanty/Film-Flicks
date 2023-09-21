@@ -68,7 +68,8 @@ export const loginAdmin = async (req, res, next) => {
       });
     }
 
-    
+    //Compare Password
+    const comparePassword = await bcrypt.compare()
   } catch (error) {
     next(error);
   }
