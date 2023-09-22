@@ -80,7 +80,9 @@ export const loginAdmin = async (req, res, next) => {
       });
     }
 
-    const token = jwt.sign()
+    const token = jwt.sign({ id: existingAdmin._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
 
     //Login Success
     return res.status(200).send({
