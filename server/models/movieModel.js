@@ -30,3 +30,5 @@ const movieSchema = new mongoose.Schema({
     required: [true, "Admin Name is Required!"],
   },
 });
+
+export default mongoose.model("Movie", movieSchema);
