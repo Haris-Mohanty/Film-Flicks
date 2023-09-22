@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import movieRoutes from "./routes/movieRoutes.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 
 //Dot env config
@@ -25,6 +26,7 @@ app.use(morgan("dev")); //Call morgan showing in console
 // Middleware Routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/movie", movieRoutes);
 
 //Validation middleware
 app.use(errorMiddleware);
