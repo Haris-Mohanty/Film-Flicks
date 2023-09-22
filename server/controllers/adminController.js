@@ -80,6 +80,8 @@ export const loginAdmin = async (req, res, next) => {
       });
     }
 
+    const token = jwt.sign()
+
     //Login Success
     return res.status(200).send({
       message: "Admin Login Successfully!",
