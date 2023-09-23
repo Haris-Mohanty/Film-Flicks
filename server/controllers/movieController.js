@@ -29,16 +29,13 @@ export const addMovies = async (req, res, next) => {
       }
     });
 
-    //Create new movies
-    const {
-      title,
-      description,
-      releaseDate,
-      posterUrl,
-      featured,
-      bookings,
-      admin,
-    } = req.body;
+    
+    const { title, description, releaseDate, posterUrl, featured } = req.body;
+
+    //Validation
+    if(!title || !description || !releaseDate || !featured) {
+      
+    }
   } catch (err) {
     console.log(err);
   }
