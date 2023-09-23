@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import movieModel from '../models/movieModel.js'
+
 //************* ADD MOVIES  ************/
 export const addMovies = async (req, res, next) => {
   try {
@@ -37,6 +39,10 @@ export const addMovies = async (req, res, next) => {
         message: "Please provide all fields!",
       });
     }
+
+    //Create new movie
+    const movie = new movieModel()
+
   } catch (err) {
     console.log(err);
   }
