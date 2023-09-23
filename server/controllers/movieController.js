@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import movieModel from '../models/movieModel.js'
+import movieModel from "../models/movieModel.js";
 
 //************* ADD MOVIES  ************/
 export const addMovies = async (req, res, next) => {
@@ -41,8 +41,13 @@ export const addMovies = async (req, res, next) => {
     }
 
     //Create new movie
-    const movie = new movieModel()
-
+    const movie = new movieModel({
+      title,
+      description,
+      releaseDate: new Date(`${releaseDate}`),
+      featured,
+      admin: adminId,
+    });
   } catch (err) {
     console.log(err);
   }
