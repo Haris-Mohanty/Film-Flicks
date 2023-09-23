@@ -25,9 +25,6 @@ export const addMovies = async (req, res, next) => {
         });
       } else {
         adminId = decrypted.id;
-        return res.status(200).send({
-          adminId: adminId,
-        });
       }
     });
 
@@ -48,11 +45,12 @@ export const addMovies = async (req, res, next) => {
       actors,
       releaseDate: new Date(`${releaseDate}`),
       featured,
+      posterUrl,
       admin: adminId,
     });
     await movie.save();
 
-    if (movie) {
+    if (!movie) {
       return res.status(500).send({
         message: "Movie created failed!",
       });
