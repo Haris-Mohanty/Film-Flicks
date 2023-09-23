@@ -29,12 +29,13 @@ export const addMovies = async (req, res, next) => {
       }
     });
 
-    
     const { title, description, releaseDate, posterUrl, featured } = req.body;
 
     //Validation
-    if(!title || !description || !releaseDate || !featured) {
-      
+    if (!title || !description || !posterUrl || !featured) {
+      return res.status(422).send({
+        message: "Please provide all fields!",
+      });
     }
   } catch (err) {
     console.log(err);
