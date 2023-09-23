@@ -29,8 +29,16 @@ export const addMovies = async (req, res, next) => {
       }
     });
 
-
     //Create new movies
+    const {
+      title,
+      description,
+      releaseDate,
+      posterUrl,
+      featured,
+      bookings,
+      admin,
+    } = req.body;
   } catch (err) {
     console.log(err);
   }
