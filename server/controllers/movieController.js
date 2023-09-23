@@ -31,10 +31,11 @@ export const addMovies = async (req, res, next) => {
       }
     });
 
-    const { title, description, releaseDate, posterUrl, featured } = req.body;
+    const { title, description, actors, releaseDate, posterUrl, featured } =
+      req.body;
 
     //Validation
-    if (!title || !description || !posterUrl || !featured) {
+    if (!title || !description || !actors || !posterUrl || !featured) {
       return res.status(422).send({
         message: "Please provide all fields!",
       });
@@ -44,9 +45,22 @@ export const addMovies = async (req, res, next) => {
     const movie = new movieModel({
       title,
       description,
+      actors,
       releaseDate: new Date(`${releaseDate}`),
       featured,
       admin: adminId,
+    });
+    await movie.save();
+
+    if (movie) {
+      return res.status(500).send({
+        message: "Movie created failed!",
+      });
+    }
+
+    return res.status(201).send({
+      message: "Movie Added Successfully!",
+      movie,
     });
   } catch (err) {
     console.log(err);
