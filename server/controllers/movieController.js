@@ -76,6 +76,10 @@ export const getMovies = async (req, res, next) => {
         message: "Request Failed!",
       });
     }
+
+    return res.status(200).send({
+      movies,
+    });
   } catch (err) {
     console.log(err);
   }
