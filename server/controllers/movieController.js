@@ -78,6 +78,7 @@ export const getMovies = async (req, res, next) => {
     }
 
     return res.status(200).send({
+      message: "All Movies Fetched Successfully!",
       movies,
     });
   } catch (err) {
