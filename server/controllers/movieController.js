@@ -66,6 +66,10 @@ export const addMovies = async (req, res, next) => {
 };
 
 //*********** GET MOVIES (FIND MOVIES) *************/
-export const getMovies =  () => {
-
+export const getMovies = async (req, res, next) => {
+  try {
+    
+  } catch (err) {
+    console.log(err);
+  }
 };
