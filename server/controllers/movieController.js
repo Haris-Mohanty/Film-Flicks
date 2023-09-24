@@ -68,7 +68,14 @@ export const addMovies = async (req, res, next) => {
 //*********** GET MOVIES (FIND MOVIES) *************/
 export const getMovies = async (req, res, next) => {
   try {
-    
+    let movies = await movieModel.find();
+
+    //Validation
+    if (!movies) {
+      return res.status(500).send({
+        message: "Request Failed!",
+      });
+    }
   } catch (err) {
     console.log(err);
   }
