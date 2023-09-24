@@ -1,5 +1,5 @@
 import express from "express";
-import { addMovies } from "../controllers/movieController.js";
+import { addMovies, getMovies } from "../controllers/movieController.js";
 
 //Router Object
 const router = express.Router();
@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/", addMovies);
 
 //Get all movie(find movie)
-router.get()
+router.get("/", getMovies);
 
 //Export router
 export default router;
