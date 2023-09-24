@@ -64,3 +64,8 @@ export const addMovies = async (req, res, next) => {
     console.log(err);
   }
 };
+
+//*********** GET MOVIES (FIND MOVIES) *************/
+export const getMovies =  () => {
+
+};
