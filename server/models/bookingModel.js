@@ -18,3 +18,6 @@ const bookingSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+//Export
+export default mongoose.model("Booking", bookingSchema);
