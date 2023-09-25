@@ -59,7 +59,10 @@ export const addUser = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    next(error);
+    console.log(error);
+    return res.status(500).send({
+      message: "Error in Add user API!",
+    });
   }
 };
 
@@ -167,14 +170,15 @@ export const login = async (req, res, next) => {
       });
     }
 
-    
-
     //Login success
     return res.status(200).send({
       message: "Login Successfully!",
       existingUser,
     });
   } catch (error) {
-    next(error);
+    console.log(error);
+    return res.status(500).send({
+      message: "Error in login user API!",
+    });
   }
 };

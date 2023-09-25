@@ -62,6 +62,9 @@ export const addMovies = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
+    return res.status(500).send({
+      message: "Error in add movie API!",
+    });
   }
 };
 
@@ -83,6 +86,9 @@ export const getMovies = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
+    return res.status(500).send({
+      message: "Error in Get movie API!",
+    });
   }
 };
 
@@ -105,5 +111,8 @@ export const getMoviesById = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
+    return res.status(500).send({
+      message: "Error in Get movie API!",
+    });
   }
 };
