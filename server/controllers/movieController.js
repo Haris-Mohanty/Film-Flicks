@@ -87,4 +87,23 @@ export const getMovies = async (req, res, next) => {
 };
 
 //*********** GET ALL MOVIES BY ID (FIND MOVIES) *************/
-export const getMoviesById = async (req,res,next) => {};
+export const getMoviesById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    let movie = await movieModel.findById(id);
+    //Validation
+    if (!movie) {
+      return res.status(500).send({
+        message: "Request Failed!",
+      });
+    }
+
+    return res.status(200).send({
+      message: "Movie Fetched Successfully!",
+      movie,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
