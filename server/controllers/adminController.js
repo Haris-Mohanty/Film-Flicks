@@ -93,8 +93,5 @@ export const loginAdmin = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
-    return res.status(500).send({
-      message: "Error in admin login API!",
-    });
   }
 };
