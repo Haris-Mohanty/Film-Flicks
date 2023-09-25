@@ -65,7 +65,7 @@ export const addMovies = async (req, res, next) => {
   }
 };
 
-//*********** GET MOVIES (FIND MOVIES) *************/
+//*********** GET ALL MOVIES (FIND MOVIES) *************/
 export const getMovies = async (req, res, next) => {
   try {
     let movies = await movieModel.find();
@@ -85,3 +85,6 @@ export const getMovies = async (req, res, next) => {
     console.log(err);
   }
 };
+
+//*********** GET ALL MOVIES BY ID (FIND MOVIES) *************/
+export const getMoviesById = async (req,res,next) => {};
