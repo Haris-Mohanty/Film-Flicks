@@ -1,10 +1,16 @@
 import bookingModel from "../models/bookingModel.js";
 
-
 //************ MOVIE BOOKING (NEW BOOKINGS) ********/
 export const newBookings = async (req, res, next) => {
   try {
     const { movie, date, seatNumber, user } = req.body;
+
+    //Validation
+    if (!movie || !date || !seatNumber || !user) {
+      return res.status(400).send({
+        message: "Please provide all fields!",
+      });
+    }
 
     //New booking
     let bookings = new bookingModel({
