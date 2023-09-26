@@ -1,5 +1,7 @@
-import bookingModel from "../models/bookingModel";
+import bookingModel from "../models/bookingModel.js";
 
+
+//************ MOVIE BOOKING (NEW BOOKINGS) ********/
 export const newBookings = async (req, res, next) => {
   try {
     const { movie, date, seatNumber, user } = req.body;
