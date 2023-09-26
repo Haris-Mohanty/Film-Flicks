@@ -82,6 +82,7 @@ export const getMovies = async (req, res, next) => {
 
     return res.status(200).send({
       message: "All Movies Fetched Successfully!",
+      totalMovies: movies.length,
       movies,
     });
   } catch (err) {
@@ -116,5 +117,3 @@ export const getMoviesById = async (req, res, next) => {
     });
   }
 };
-
-
