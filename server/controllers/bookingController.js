@@ -21,6 +21,13 @@ export const newBookings = async (req, res, next) => {
         message: "Movie Not Found!",
       });
     }
+    //Check existing user
+    let existingUser = await UserModel.findById(user);
+    if (!existingUser) {
+      return res.status(404).send({
+        message: "User Not Found!",
+      });
+    }
 
     //New booking
     let bookings = new bookingModel({
