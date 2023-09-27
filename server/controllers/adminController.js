@@ -99,4 +99,23 @@ export const loginAdmin = async (req, res, next) => {
 };
 
 //************* GET ALL ADMIN *****************/
-export const getAllAdmin = () => {};
+export const getAllAdmin = async (req, res, next) => {
+  try {
+    let allAdmin = await adminModel.find();
+    if (!allAdmin) {
+      return res.status(400).send({
+        message: "There is no admin to find!",
+      });
+    }
+
+    return res.status(200).send({
+      message: "All admin fetched successfully!",
+      allAdmin,
+    });
+  } catch (err) {
+    return res.status(500).send({
+      message: "Internal Server Error!",
+      err,
+    });
+  }
+};
