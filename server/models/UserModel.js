@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is Required!"],
       minLength: [6, "Password length should be greater than 6 character!"],
     },
+    bookings: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Booking",
+      },
+    ],
   },
   { timestamps: true }
 );

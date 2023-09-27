@@ -110,6 +110,7 @@ export const getAllAdmin = async (req, res, next) => {
 
     return res.status(200).send({
       message: "All admin fetched successfully!",
+      totalAdmin: allAdmin.length,
       allAdmin,
     });
   } catch (err) {
