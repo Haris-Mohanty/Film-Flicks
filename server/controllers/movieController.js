@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import movieModel from "../models/movieModel.js";
 import mongoose from "mongoose";
+import adminModel from "../models/adminModel.js";
 
 //************* ADD MOVIES  ************/
 export const addMovies = async (req, res, next) => {
@@ -51,8 +52,13 @@ export const addMovies = async (req, res, next) => {
     });
 
     //Create Mongodb session
-    const session = await mongoose.startSession
+    const session = await mongoose.startSession;
 
+    //Get the admin
+    const adminUser = await adminModel.findById(adminId);
+
+    //Use the session for start transactions
+    session.startTransaction()
 
     await movie.save();
 
