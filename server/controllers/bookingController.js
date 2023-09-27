@@ -49,7 +49,12 @@ export const newBookings = async (req, res, next) => {
     existingMovie.bookings.push(booking);
 
     //Save movie
-    await booking.save();
+    await existingUser.save({ session });
+    await existingMovie.save({ session });
+    await booking.save({ session });
+
+    //Commit transaction
+    session.commitTransaction();
 
     res.status(201).send({
       message: "Booking a new Movie Successfully!",
