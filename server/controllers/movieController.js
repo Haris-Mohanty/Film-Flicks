@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import movieModel from "../models/movieModel.js";
+import mongoose from "mongoose";
 
 //************* ADD MOVIES  ************/
 export const addMovies = async (req, res, next) => {
@@ -39,7 +40,7 @@ export const addMovies = async (req, res, next) => {
     }
 
     //Create new movie
-    const movie = new movieModel({
+    let movie = new movieModel({
       title,
       description,
       actors,
@@ -48,6 +49,11 @@ export const addMovies = async (req, res, next) => {
       posterUrl,
       admin: adminId,
     });
+
+    //Create Mongodb session
+    const session = await mongoose.startSession
+
+
     await movie.save();
 
     if (!movie) {

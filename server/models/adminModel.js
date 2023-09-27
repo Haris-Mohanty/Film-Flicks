@@ -19,7 +19,7 @@ const adminSchema = new mongoose.Schema(
         type: mongoose.Types.ObjectId,
         ref: "Movie",
       },
-    ],
+    ], 
   },
   { timestamps: true }
 );
