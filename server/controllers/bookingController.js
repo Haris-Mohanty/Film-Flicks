@@ -1,4 +1,6 @@
 import bookingModel from "../models/bookingModel.js";
+import movieModel from "../models/movieModel.js";
+import UserModel from "../models/UserModel.js";
 
 //************ MOVIE BOOKING (NEW BOOKINGS) ********/
 export const newBookings = async (req, res, next) => {
@@ -9,6 +11,14 @@ export const newBookings = async (req, res, next) => {
     if (!movie || !date || !seatNumber || !user) {
       return res.status(400).send({
         message: "Please provide all fields!",
+      });
+    }
+
+    //Check existing movie
+    let existingMovie = await movieModel.findById(movie);
+    if (!existingMovie) {
+      return res.status(404).send({
+        message: "Movie Not Found!",
       });
     }
 
