@@ -99,3 +99,4 @@ export const loginAdmin = async (req, res, next) => {
 };
 
 //************* GET ALL ADMIN *****************/
+export const getAllAdmin = () => {};
