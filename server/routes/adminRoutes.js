@@ -10,5 +10,8 @@ router.post("/signup", signupAdmin);
 //Login Admin
 router.post("/login", loginAdmin);
 
+//Get all admin
+router.get("/");
+
 //Export router
 export default router;

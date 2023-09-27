@@ -97,3 +97,5 @@ export const loginAdmin = async (req, res, next) => {
     });
   }
 };
+
+//************* GET ALL ADMIN *****************/
