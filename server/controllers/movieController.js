@@ -52,15 +52,21 @@ export const addMovies = async (req, res, next) => {
     });
 
     //Create Mongodb session
-    const session = await mongoose.startSession;
+    const session = await mongoose.startSession();
 
     //Get the admin
     const adminUser = await adminModel.findById(adminId);
 
     //Use the session for start transactions
-    session.startTransaction()
+    session.startTransaction();
 
-    await movie.save();
+    //Add this movie in db(Save)
+    await movie.save({ session });
+    adminUser.addedMovies.push(movie);
+    await adminUser.save({ session });
+
+    //Commit the transaction
+    await session.commitTransaction();
 
     if (!movie) {
       return res.status(500).send({

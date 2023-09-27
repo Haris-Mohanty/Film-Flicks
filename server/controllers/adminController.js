@@ -92,6 +92,8 @@ export const loginAdmin = async (req, res, next) => {
       token,
     });
   } catch (error) {
-    next(error);
+    return res.status(500).send({
+      message: "Internal Server Error!",
+    });
   }
 };
