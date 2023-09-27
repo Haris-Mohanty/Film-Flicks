@@ -1,5 +1,5 @@
 import express from "express";
-import { loginAdmin, signupAdmin } from "../controllers/adminController.js";
+import { getAllAdmin, loginAdmin, signupAdmin } from "../controllers/adminController.js";
 
 //Router Object
 const router = express.Router();
@@ -11,7 +11,7 @@ router.post("/signup", signupAdmin);
 router.post("/login", loginAdmin);
 
 //Get all admin
-router.get("/");
+router.get("/", getAllAdmin);
 
 //Export router
 export default router;
