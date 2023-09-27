@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import bookingModel from "../models/bookingModel.js";
 import movieModel from "../models/movieModel.js";
 import UserModel from "../models/UserModel.js";
@@ -30,17 +31,29 @@ export const newBookings = async (req, res, next) => {
     }
 
     //New booking
-    let bookings = new bookingModel({
+    let booking = new bookingModel({
       movie,
       date: new Date(`${date}`),
       seatNumber,
       user,
     });
 
-    await bookings.save();
+    //Create mongodb session for Transaction (for all collection transaction)
+    const session = await mongoose.startSession();
+
+    //Start Transaction
+    session.startTransaction();
+
+    //Get user and movie then push
+    existingUser.bookings.push(booking);
+    existingMovie.bookings.push(booking);
+
+    //Save movie
+    await booking.save();
+
     res.status(201).send({
       message: "Booking a new Movie Successfully!",
-      bookings,
+      booking,
     });
   } catch (err) {
     console.log(err);
