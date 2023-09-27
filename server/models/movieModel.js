@@ -32,7 +32,8 @@ const movieSchema = new mongoose.Schema({
     },
   ],
   admin: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: "Admin",
     required: [true, "Admin Name is Required!"],
   },
 });
