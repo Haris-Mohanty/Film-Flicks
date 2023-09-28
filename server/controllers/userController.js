@@ -1,5 +1,6 @@
 import UserModel from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
+import bookingModel from "../models/bookingModel.js";
 
 //******* GET USER ****/
 export const getAllUsers = async (req, res, next) => {
@@ -184,4 +185,28 @@ export const login = async (req, res, next) => {
 };
 
 //******************* GET ALL MOVIES BOOKING FROM USER ********************/
-export const getBookingOfUser = async () => {};
+export const getBookingOfUser = async (req, res, next) => {
+  try {
+    //Get id
+    const id = req.params.id;
+
+    let bookings = await bookingModel.find({ user: id });
+
+    //Validation
+    if (!bookings) {
+      return res.status(404).json({
+        message: "Not Found Any Bookings!",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Bookings Fetched Successfully.",
+      bookings,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Error in getting booking api!",
+      error: err.message,
+    });
+  }
+};
