@@ -11,7 +11,7 @@ const router = express.Router();
 router.post("/", newBookings);
 
 //Get Bookings(movie) By Id
-router.get("/getBookings", getBookingsById);
+router.get("/:id", getBookingsById);
 
 //Export Router Obj
 export default router;

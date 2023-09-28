@@ -73,7 +73,19 @@ export const newBookings = async (req, res, next) => {
 export const getBookingsById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    console.log(id)
+
+    const getBooking = await bookingModel.findById(id);
+
+    if (!getBooking) {
+      return res.status(404).send({
+        message: "Not found any booking in this ID!",
+      });
+    }
+
+    return res.status(200).send({
+      message: "Booking Fetched Successfully!",
+      getBooking,
+    });
   } catch (err) {
     return res.status(500).send({
       message: "Error in getting booking Api!",
