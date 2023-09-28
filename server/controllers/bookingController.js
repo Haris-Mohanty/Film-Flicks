@@ -69,3 +69,5 @@ export const newBookings = async (req, res, next) => {
   }
 };
 
+//***************** GET BOOKINGS(MOVIE) BY ID *******************/
+const getBookingsById = async (req, res, next) => {};
