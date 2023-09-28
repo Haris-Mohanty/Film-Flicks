@@ -188,24 +188,25 @@ export const login = async (req, res, next) => {
 export const getBookingOfUser = async (req, res, next) => {
   try {
     //Get id
-    const id = req.params.id;
+    const userId = req.params.id;
 
-    let bookings = await bookingModel.find({ user: id });
+    let bookings = await bookingModel.find({ user: userId });
 
     //Validation
-    if (!bookings) {
+    if (!bookings || bookings.length === 0) {
       return res.status(404).json({
-        message: "Not Found Any Bookings!",
+        message: "No Bookings found for this User!",
       });
     }
 
     return res.status(200).json({
-      message: "Bookings Fetched Successfully.",
+      message: "All Bookings of user Fetched Successfully.",
+      totalBookings: bookings.length,
       bookings,
     });
   } catch (err) {
     return res.status(500).json({
-      message: "Error in getting booking api!",
+      message: "Error in get booking api!",
       error: err.message,
     });
   }
