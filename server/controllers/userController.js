@@ -176,9 +176,12 @@ export const login = async (req, res, next) => {
       existingUser,
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       message: "Error in login user API!",
+      error: error.message,
     });
   }
 };
+
+//******************* GET ALL MOVIES BOOKING FROM USER ********************/
+export const getBookingOfUser = async () => {};

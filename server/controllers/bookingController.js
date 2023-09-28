@@ -104,18 +104,15 @@ export const deleteBooking = async (req, res, next) => {
     const getBooking = await bookingModel
       .findByIdAndRemove(bookingId)
       .populate("user movie");
-    console.log(getBooking);
-
+    
     //Validation
-    if (!bookingId) {
+    if (!getBooking) {
       return res.status(404).json({
         message: `Booking with id ${req.params.id} is not found!`,
       });
     }
 
-    //Delete Booking
-    // await getBookingId.deleteOne(); //Populate used for operation performing in another collection(add the ref name)
-
+    //Session start for transaction in multiple collection
     const session = await mongoose.startSession();
     session.startTransaction();
 
