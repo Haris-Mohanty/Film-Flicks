@@ -93,3 +93,6 @@ export const getBookingsById = async (req, res, next) => {
     });
   }
 };
+
+//**************** DELETE BOOKING BY ID ***************/
+export const deleteBooking = async (req, res, next) => {};
