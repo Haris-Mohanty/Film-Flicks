@@ -1,5 +1,8 @@
 import express from "express";
-import { newBookings } from "../controllers/bookingController.js";
+import {
+  getBookingsById,
+  newBookings,
+} from "../controllers/bookingController.js";
 
 //Router Object
 const router = express.Router();
@@ -8,7 +11,7 @@ const router = express.Router();
 router.post("/", newBookings);
 
 //Get Bookings(movie) By Id
-router.get("/getBookings")
+router.get("/getBookings", getBookingsById);
 
 //Export Router Obj
 export default router;

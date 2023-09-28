@@ -70,4 +70,14 @@ export const newBookings = async (req, res, next) => {
 };
 
 //***************** GET BOOKINGS(MOVIE) BY ID *******************/
-const getBookingsById = async (req, res, next) => {};
+export const getBookingsById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    console.log(id)
+  } catch (err) {
+    return res.status(500).send({
+      message: "Error in getting booking Api!",
+      err,
+    });
+  }
+};
