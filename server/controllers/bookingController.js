@@ -44,7 +44,7 @@ export const newBookings = async (req, res, next) => {
     //Start Transaction
     session.startTransaction();
 
-    //Get user and movie then push
+    //Get user and movie then push in array
     existingUser.bookings.push(booking);
     existingMovie.bookings.push(booking);
 
@@ -68,3 +68,4 @@ export const newBookings = async (req, res, next) => {
     });
   }
 };
+
