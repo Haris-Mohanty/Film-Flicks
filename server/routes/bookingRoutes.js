@@ -7,11 +7,14 @@ import {
 //Router Object
 const router = express.Router();
 
-//Movie Booking (New Bookings)
+//Movie Booking (New Bookings) || Post
 router.post("/", newBookings);
 
-//Get Bookings(movie) By Id
+//Get Bookings(movie) By Id || Get
 router.get("/:id", getBookingsById);
+
+//Delete Bookings || Delete
+router.delete("/:id");
 
 //Export Router Obj
 export default router;
