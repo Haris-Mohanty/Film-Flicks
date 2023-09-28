@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  deleteBooking,
   getBookingsById,
   newBookings,
 } from "../controllers/bookingController.js";
@@ -14,7 +15,7 @@ router.post("/", newBookings);
 router.get("/:id", getBookingsById);
 
 //Delete Bookings || Delete
-router.delete("/:id");
+router.delete("/:id", deleteBooking);
 
 //Export Router Obj
 export default router;

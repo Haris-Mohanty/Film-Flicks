@@ -95,4 +95,15 @@ export const getBookingsById = async (req, res, next) => {
 };
 
 //**************** DELETE BOOKING BY ID ***************/
-export const deleteBooking = async (req, res, next) => {};
+export const deleteBooking = async (req, res, next) => {
+  try {
+    //Get Booking
+    const getBooking = await bookingModel.findById(req.params.id);
+    console.log(getBooking);
+  } catch (err) {
+    return res.status(500).send({
+      message: "Error in Delete Booking API!",
+      err,
+    });
+  }
+};
