@@ -26,5 +26,8 @@ router.delete("/:id", deleteUser);
 //Login User
 router.post("/login", login);
 
+//Get all movie bookings of user
+router.get("/bookings")
+
 //EXPORT ROUTER
 export default router;
