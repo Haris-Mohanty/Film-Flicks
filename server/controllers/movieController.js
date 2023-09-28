@@ -3,13 +3,13 @@ import movieModel from "../models/movieModel.js";
 import mongoose from "mongoose";
 import adminModel from "../models/adminModel.js";
 
-//************* ADD MOVIES  ************/
+//********************** ADD MOVIES  ****************************/
 export const addMovies = async (req, res, next) => {
   try {
     //Get token(bearer token)
     const token = req.headers.authorization.split(" ")[1];
     if (!token && token.trim() === "") {
-      return res.status(404).send({
+      return res.status(404).json({
         message: "Authorization Failed!",
       });
     }
@@ -22,7 +22,7 @@ export const addMovies = async (req, res, next) => {
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decrypted) => {
       if (err) {
-        return res.status(400).send({
+        return res.status(400).json({
           message: `${err.message}`,
         });
       } else {
@@ -35,7 +35,7 @@ export const addMovies = async (req, res, next) => {
 
     //Validation
     if (!title || !description || !actors || !posterUrl || !featured) {
-      return res.status(422).send({
+      return res.status(422).json({
         message: "Please provide all fields!",
       });
     }
@@ -69,44 +69,46 @@ export const addMovies = async (req, res, next) => {
     await session.commitTransaction();
 
     if (!movie) {
-      return res.status(500).send({
+      return res.status(500).json({
         message: "Movie created failed!",
       });
     }
 
-    return res.status(201).send({
+    return res.status(201).json({
       message: "Movie Added Successfully!",
       movie,
     });
   } catch (err) {
     console.log(err);
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in add movie API!",
+      error: err.message,
     });
   }
 };
 
-//*********** GET ALL MOVIES (FIND MOVIES) *************/
+//**************** GET ALL MOVIES (FIND MOVIES) *******************/
 export const getMovies = async (req, res, next) => {
   try {
     let movies = await movieModel.find();
 
     //Validation
     if (!movies) {
-      return res.status(500).send({
+      return res.status(500).json({
         message: "Request Failed!",
       });
     }
 
-    return res.status(200).send({
+    return res.status(200).json({
       message: "All Movies Fetched Successfully!",
       totalMovies: movies.length,
       movies,
     });
   } catch (err) {
     console.log(err);
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in Get movie API!",
+      error: err.message,
     });
   }
 };
@@ -119,19 +121,19 @@ export const getMoviesById = async (req, res, next) => {
     let movie = await movieModel.findById(id);
     //Validation
     if (!movie) {
-      return res.status(500).send({
+      return res.status(500).json({
         message: "Request Failed!",
       });
     }
 
-    return res.status(200).send({
+    return res.status(200).json({
       message: "Movie Fetched Successfully!",
       movie,
     });
   } catch (err) {
-    console.log(err);
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in Get movie API!",
+      error: err.message,
     });
   }
 };

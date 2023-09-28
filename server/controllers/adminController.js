@@ -9,12 +9,12 @@ export const signupAdmin = async (req, res, next) => {
 
     //Validation
     if (!email || !password) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Please provide all fields!",
       });
     }
     if (password.length < 6) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Password length should be greater than 6 character!",
       });
     }
@@ -22,7 +22,7 @@ export const signupAdmin = async (req, res, next) => {
     //Check Admin(Already exists or not)
     const existingAdmin = await adminModel.findOne({ email });
     if (existingAdmin) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Admin Already Exists!",
       });
     }
@@ -35,7 +35,7 @@ export const signupAdmin = async (req, res, next) => {
     //Create admin
     const admin = new adminModel(req.body);
     await admin.save();
-    return res.status(201).send({
+    return res.status(201).json({
       message: "Admin Created Successfully!",
       admin,
     });
@@ -51,12 +51,12 @@ export const loginAdmin = async (req, res, next) => {
 
     //Validation
     if (!email || !password) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Please provide all fields!",
       });
     }
     if (password.length < 6) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Password length should be greater than 6 character!",
       });
     }
@@ -64,7 +64,7 @@ export const loginAdmin = async (req, res, next) => {
     //Existing Admin
     const existingAdmin = await adminModel.findOne({ email });
     if (!existingAdmin) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: "Invalid Credentials!",
       });
     }
@@ -75,7 +75,7 @@ export const loginAdmin = async (req, res, next) => {
       existingAdmin.password
     );
     if (!comparePassword) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Incorrect Password, Please check again!",
       });
     }
@@ -86,14 +86,15 @@ export const loginAdmin = async (req, res, next) => {
     });
 
     //Login Success
-    return res.status(200).send({
+    return res.status(200).json({
       message: "Admin Login Successfully!",
       existingAdmin,
       token,
     });
   } catch (error) {
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Internal Server Error!",
+      error: error.message,
     });
   }
 };
@@ -103,20 +104,20 @@ export const getAllAdmin = async (req, res, next) => {
   try {
     let allAdmin = await adminModel.find();
     if (!allAdmin) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "There is no admin to find!",
       });
     }
 
-    return res.status(200).send({
+    return res.status(200).json({
       message: "All admin fetched successfully!",
       totalAdmin: allAdmin.length,
       allAdmin,
     });
   } catch (err) {
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Internal Server Error!",
-      err,
+      error: err.message,
     });
   }
 };

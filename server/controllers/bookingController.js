@@ -64,7 +64,7 @@ export const newBookings = async (req, res, next) => {
     console.log(err);
     return res.status(500).json({
       message: "Error in movie booking API!",
-      err,
+      error: err.message,
     });
   }
 };
@@ -89,7 +89,7 @@ export const getBookingsById = async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({
       message: "Error in getting booking Api!",
-      err,
+      error: err.message,
     });
   }
 };

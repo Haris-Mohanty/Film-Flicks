@@ -12,11 +12,11 @@ export const getAllUsers = async (req, res, next) => {
 
   //Validation
   if (!users) {
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Unexpected Error Occured!",
     });
   }
-  return res.status(200).send({
+  return res.status(200).json({
     users,
   });
 };
@@ -54,13 +54,13 @@ export const addUser = async (req, res, next) => {
     //create user
     const user = new UserModel(req.body);
     await user.save();
-    res.status(201).send({
+    res.status(201).json({
       message: "User Created Successfully!",
       user,
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in Add user API!",
     });
   }
@@ -105,11 +105,11 @@ export const updateUser = async (req, res, next) => {
       password: hashedPassword,
     });
     if (!user) {
-      return res.status(500).send({
+      return res.status(500).json({
         message: "Something went wrong!",
       });
     }
-    res.status(200).send({
+    res.status(200).json({
       message: "Updated Successfully!",
     });
   } catch (error) {
@@ -125,11 +125,11 @@ export const deleteUser = async (req, res, next) => {
 
     const user = await UserModel.findByIdAndRemove(id);
     if (!user) {
-      return res.status(500).send({
+      return res.status(500).json({
         message: "Something went wrong!",
       });
     }
-    return res.status(200).send({
+    return res.status(200).json({
       message: "User Deleted Successfully!",
       user,
     });
@@ -154,7 +154,7 @@ export const login = async (req, res, next) => {
     //Check exist user
     const existingUser = await UserModel.findOne({ email });
     if (!existingUser) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: "Invalid Credentials!",
       });
     }
@@ -165,19 +165,19 @@ export const login = async (req, res, next) => {
       existingUser.password
     );
     if (!comparePassword) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Incorrect Password, Please check again!",
       });
     }
 
     //Login success
-    return res.status(200).send({
+    return res.status(200).json({
       message: "Login Successfully!",
       existingUser,
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in login user API!",
     });
   }
