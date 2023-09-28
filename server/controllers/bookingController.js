@@ -10,7 +10,7 @@ export const newBookings = async (req, res, next) => {
 
     //Validation
     if (!movie || !date || !seatNumber || !user) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: "Please provide all fields!",
       });
     }
@@ -18,14 +18,14 @@ export const newBookings = async (req, res, next) => {
     //Check existing movie
     let existingMovie = await movieModel.findById(movie);
     if (!existingMovie) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: "Movie Not Found!",
       });
     }
     //Check existing user
     let existingUser = await UserModel.findById(user);
     if (!existingUser) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: "User Not Found!",
       });
     }
@@ -56,13 +56,13 @@ export const newBookings = async (req, res, next) => {
     //Commit transaction
     session.commitTransaction();
 
-    res.status(201).send({
+    res.status(201).json({
       message: "Booking a new Movie Successfully!",
       booking,
     });
   } catch (err) {
     console.log(err);
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in movie booking API!",
       err,
     });
@@ -77,17 +77,17 @@ export const getBookingsById = async (req, res, next) => {
     const getBooking = await bookingModel.findById(id);
 
     if (!getBooking) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: "Not found any booking in this ID!",
       });
     }
 
-    return res.status(200).send({
+    return res.status(200).json({
       message: "Booking Fetched Successfully!",
       getBooking,
     });
   } catch (err) {
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in getting booking Api!",
       err,
     });
@@ -98,12 +98,24 @@ export const getBookingsById = async (req, res, next) => {
 export const deleteBooking = async (req, res, next) => {
   try {
     //Get Booking
-    const getBooking = await bookingModel.findById(req.params.id);
-    console.log(getBooking);
+    const getBookingId = await bookingModel.findById(req.params.id);
+
+    //Validation
+    if (!getBookingId) {
+      return res.status(404).json({
+        message: `Booking with id ${req.params.id} is not found!`,
+      });
+    }
+
+    //Delete Booking
+    await getBookingId.deleteOne();
+    return res.status(200).json({
+      message: "Booking Deleted Successfully.",
+    });
   } catch (err) {
-    return res.status(500).send({
+    return res.status(500).json({
       message: "Error in Delete Booking API!",
-      err,
+      error: err.message,
     });
   }
 };
