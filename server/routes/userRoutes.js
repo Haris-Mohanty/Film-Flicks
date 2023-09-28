@@ -3,6 +3,7 @@ import {
   addUser,
   deleteUser,
   getAllUsers,
+  getBookingOfUser,
   login,
   updateUser,
 } from "../controllers/userController.js";
@@ -27,7 +28,7 @@ router.delete("/:id", deleteUser);
 router.post("/login", login);
 
 //Get all movie bookings of user
-router.get("/bookings")
+router.get("/bookings/:id", getBookingOfUser);
 
 //EXPORT ROUTER
 export default router;
