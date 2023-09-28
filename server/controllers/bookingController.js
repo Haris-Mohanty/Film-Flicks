@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { get } from "mongoose";
 import bookingModel from "../models/bookingModel.js";
 import movieModel from "../models/movieModel.js";
 import UserModel from "../models/UserModel.js";
@@ -61,11 +61,13 @@ export const newBookings = async (req, res, next) => {
       booking,
     });
   } catch (err) {
-    console.log(err);
+    await session.abortTransaction();
     return res.status(500).json({
       message: "Error in movie booking API!",
       error: err.message,
     });
+  } finally {
+    session.endSession();
   }
 };
 
@@ -78,7 +80,7 @@ export const getBookingsById = async (req, res, next) => {
 
     if (!getBooking) {
       return res.status(404).json({
-        message: "Not found any booking in this ID!",
+        message: `Not found any booking in this ${id} ID!`,
       });
     }
 
@@ -97,18 +99,33 @@ export const getBookingsById = async (req, res, next) => {
 //**************** DELETE BOOKING BY ID ***************/
 export const deleteBooking = async (req, res, next) => {
   try {
+    const bookingId = req.params.id;
     //Get Booking
-    const getBookingId = await bookingModel.findById(req.params.id);
+    const getBooking = await bookingModel
+      .findByIdAndRemove(bookingId)
+      .populate("user movie");
+    console.log(getBooking);
 
     //Validation
-    if (!getBookingId) {
+    if (!bookingId) {
       return res.status(404).json({
         message: `Booking with id ${req.params.id} is not found!`,
       });
     }
 
     //Delete Booking
-    await getBookingId.deleteOne();
+    // await getBookingId.deleteOne(); //Populate used for operation performing in another collection(add the ref name)
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
+    await getBooking.user.bookings.pull(getBooking);
+    await getBooking.movie.bookings.pull(getBooking);
+    await getBooking.movie.save({ session });
+    await getBooking.user.save({ session });
+
+    session.commitTransaction();
+
     return res.status(200).json({
       message: "Booking Deleted Successfully.",
     });
