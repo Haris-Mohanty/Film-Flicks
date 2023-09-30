@@ -11,11 +11,9 @@ import {
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import { getAllMovies } from "../api/api";
 
-const movieArray = ["Khsi", "Jawan", "KGF"];
-
 const Header = () => {
   const [value, setValue] = useState(0);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]); //For showing movies list(option)
 
   //************ GET ALL MOVIES TO SHOWING MOVIES IN SEARCH BAR **********/
   useEffect(() => {
@@ -34,7 +32,7 @@ const Header = () => {
           <Box width={"35%"} margin={"auto"}>
             <Autocomplete
               freeSolo
-              options={movieArray.map((option) => option)}
+              options={movies && movies.map((data) => data.title)}
               renderInput={(params) => (
                 <TextField
                   sx={{ input: { color: "white" } }}
