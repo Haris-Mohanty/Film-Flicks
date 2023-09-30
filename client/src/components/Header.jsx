@@ -9,14 +9,20 @@ import {
   Toolbar,
 } from "@mui/material";
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
+import { getAllMovies } from "../api/api";
 
 const movieArray = ["Khsi", "Jawan", "KGF"];
 
 const Header = () => {
   const [value, setValue] = useState(0);
+  const [movies, setMovies] = useState([]);
 
   //************ GET ALL MOVIES TO SHOWING MOVIES IN SEARCH BAR **********/
-  useEffect(()=>{},[])
+  useEffect(() => {
+    getAllMovies()
+      .then((data) => setMovies(data.movies))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
