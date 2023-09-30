@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Autocomplete,
@@ -14,6 +14,9 @@ const movieArray = ["Khsi", "Jawan", "KGF"];
 
 const Header = () => {
   const [value, setValue] = useState(0);
+
+  //************ GET ALL MOVIES TO SHOWING MOVIES IN SEARCH BAR **********/
+  useEffect(()=>{},[])
 
   return (
     <>
