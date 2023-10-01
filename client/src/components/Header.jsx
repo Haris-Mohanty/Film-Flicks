@@ -3,6 +3,7 @@ import {
   AppBar,
   Autocomplete,
   Box,
+  Link,
   Tab,
   Tabs,
   TextField,
@@ -50,9 +51,9 @@ const Header = () => {
               value={value}
               onChange={(e, value) => setValue(value)}
             >
-              <Tab label="Admin" />
-              <Tab label="Auth" />
-              <Tab label="Movie" />
+              <Tab LinkComponent={Link} to="/movie" label="Movie" />
+              <Tab LinkComponent={Link} to="/admin" label="Admin" />
+              <Tab LinkComponent={Link} to="/auth" label="Auth" />
             </Tabs>
           </Box>
         </Toolbar>
