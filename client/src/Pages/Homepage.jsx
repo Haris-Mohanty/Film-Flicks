@@ -1,11 +1,12 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import React from "react";
 
 const Homepage = () => {
   return (
-    <div>
-      <h1>Homepage</h1>
-    </div>
-  )
-}
+    <>
+      <Box width={"100vw"} height={"100vh"} margin={"auto"} marginTop={2}></Box>
+    </>
+  );
+};
 
-export default Homepage
+export default Homepage;

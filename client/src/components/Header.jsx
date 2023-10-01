@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import { getAllMovies } from "../api/api";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [value, setValue] = useState(0);
@@ -25,10 +25,12 @@ const Header = () => {
 
   return (
     <>
-      <AppBar sx={{ bgcolor: "#2b2d42" }}>
+      <AppBar position="sticky" sx={{ bgcolor: "#2b2d42" }}>
         <Toolbar>
-          <Box width={"20%"}>
-            <VideoSettingsIcon />
+          <Box width={"10%"}>
+            <Link to={"/"} >
+              <VideoSettingsIcon sx={{color:"white", fontSize:"2rem"}} />
+            </Link>
           </Box>
           <Box width={"35%"} margin={"auto"}>
             <Autocomplete
