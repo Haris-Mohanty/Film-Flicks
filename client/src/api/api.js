@@ -12,3 +12,4 @@ export const getAllMovies = async () => {
   const data = await response.data;
   return data;
 };
+ 
