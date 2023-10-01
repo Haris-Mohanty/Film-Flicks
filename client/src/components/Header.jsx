@@ -3,7 +3,6 @@ import {
   AppBar,
   Autocomplete,
   Box,
-  Link,
   Tab,
   Tabs,
   TextField,
@@ -11,6 +10,7 @@ import {
 } from "@mui/material";
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import { getAllMovies } from "../api/api";
+import {Link} from 'react-router-dom'
 
 const Header = () => {
   const [value, setValue] = useState(0);
