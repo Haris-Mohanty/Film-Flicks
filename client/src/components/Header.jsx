@@ -51,7 +51,7 @@ const Header = () => {
               value={value}
               onChange={(e, value) => setValue(value)}
             >
-              <Tab LinkComponent={Link} to="/movie" label="Movie" />
+              <Tab LinkComponent={Link} to="/movies" label="Movie" />
               <Tab LinkComponent={Link} to="/admin" label="Admin" />
               <Tab LinkComponent={Link} to="/auth" label="Auth" />
             </Tabs>

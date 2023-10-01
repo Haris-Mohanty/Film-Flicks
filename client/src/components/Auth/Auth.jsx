@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Movie = () => {
+const Auth = () => {
   return (
     <div>
-      <h1>Movies</h1>
+      <h1>Auth</h1>
     </div>
   )
 }
 
-export default Movie
+export default Auth
