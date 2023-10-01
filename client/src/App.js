@@ -7,7 +7,7 @@ function App() {
       <section>
         <Header />
         <Routes>
-          <Route path="/movie" />
+          <Route path="/movie" element={} />
         </Routes>
       </section>
     </>
