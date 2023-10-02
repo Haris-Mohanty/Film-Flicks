@@ -3,19 +3,25 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardMedia,
   Typography,
 } from "@mui/material";
 import React from "react";
 
 const MovieItems = () => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      />
+    <Card
+      sx={{
+        margin:2,
+        width: 250,
+        height: 320,
+        borderRadius: 3,
+        ":hover": {
+          boxShadow:
+            "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
+        },
+      }}
+    >
+      <img src="" height={"50%"} width={"100%"} alt="movies" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Lizard
@@ -26,8 +32,9 @@ const MovieItems = () => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button sx={{ margin: "auto" }} size="small">
+          Share
+        </Button>
       </CardActions>
     </Card>
   );

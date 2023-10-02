@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import MovieItems from "../components/Movies/MovieItems";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   return (
@@ -24,10 +25,16 @@ const Homepage = () => {
           width={"80%"}
           justifyContent={"center"}
           flexWrap={"wrap"}
+          marginLeft={18}
         >
           {[1, 2, 3, 4].map((item) => (
             <MovieItems key={item} />
           ))}
+        </Box>
+        <Box display={"flex"} padding={5} margin={"auto"}>
+          <Button LinkComponent={Link} to="/movies" variant="outlined" sx={{ margin: "auto", color: "#2d2d42" }}>
+            View All Movies
+          </Button>
         </Box>
       </Box>
     </>
