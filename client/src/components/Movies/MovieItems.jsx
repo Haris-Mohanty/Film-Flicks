@@ -7,11 +7,11 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const MovieItems = () => {
+const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
   return (
     <Card
       sx={{
-        margin:2,
+        margin: 2,
         width: 250,
         height: 320,
         borderRadius: 3,
@@ -21,14 +21,13 @@ const MovieItems = () => {
         },
       }}
     >
-      <img src="" height={"50%"} width={"100%"} alt="movies" />
+      <img src={posterUrl} height={"50%"} width={"100%"} alt={title} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {new Date(releaseDate).toLocaleDateString()}
         </Typography>
       </CardContent>
       <CardActions>
