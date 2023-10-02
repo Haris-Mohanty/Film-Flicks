@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import MovieItems from "../components/Movies/MovieItems";
 
 const Homepage = () => {
   return (
@@ -17,6 +18,16 @@ const Homepage = () => {
           <Typography variant="h4" textAlign={"center"} fontWeight={"bold"}>
             Latest Release
           </Typography>
+        </Box>
+        <Box
+          display={"flex"}
+          width={"80%"}
+          justifyContent={"center"}
+          flexWrap={"wrap"}
+        >
+          {[1, 2, 3, 4].map((item) => (
+            <MovieItems key={item} />
+          ))}
         </Box>
       </Box>
     </>
