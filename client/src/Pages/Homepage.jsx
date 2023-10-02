@@ -12,7 +12,7 @@ const Homepage = () => {
       .then((data) => setMovies(data.movies))
       .catch((err) => console.log(err));
   }, []);
-  console.log(movies)
+
   return (
     <>
       <Box width={"100%"} height={"100%"} margin={"auto"} marginTop={2}>
@@ -36,9 +36,16 @@ const Homepage = () => {
           flexWrap={"wrap"}
           marginLeft={18}
         >
-          {[1, 2, 3, 4].map((item) => (
-            <MovieItems key={item} />
-          ))}
+          {movies &&
+            movies.map((movie, index) => (
+              <MovieItems
+                key={index}
+                id={movie.id}
+                title={movie.title}
+                posterUrl={movie.posterUrl}
+                releaseDate={movie.releaseDate}
+              />
+            ))}
         </Box>
         <Box display={"flex"} padding={5} margin={"auto"}>
           <Button
