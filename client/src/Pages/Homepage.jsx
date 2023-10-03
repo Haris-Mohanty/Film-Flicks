@@ -37,7 +37,7 @@ const Homepage = () => {
           marginLeft={18}
         >
           {movies &&
-            movies.map((movie, index) => (
+            movies.slice(0,4).map((movie, index) => (
               <MovieItems
                 key={index}
                 id={movie.id}

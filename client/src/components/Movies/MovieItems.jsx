@@ -12,8 +12,8 @@ const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
     <Card
       sx={{
         margin: 2,
-        width: 250,
-        height: 320,
+        width: 230,
+        height: 390,
         borderRadius: 3,
         ":hover": {
           boxShadow:
@@ -21,18 +21,18 @@ const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
         },
       }}
     >
-      <img src={posterUrl} height={"50%"} width={"100%"} alt={title} />
+      <img src={posterUrl} height={"68%"} width={"100%"} alt={title} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" fontWeight={"bold"}>
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {new Date(releaseDate).toLocaleDateString()}
+        <Typography variant="body2" color="text.secondary" marginBottom={-2}>
+          {new Date(releaseDate).toDateString()}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button sx={{ margin: "auto" }} size="small">
-          Share
+        <Button variant="contained" color="success" sx={{ margin: "auto" }} size="small">
+          Book
         </Button>
       </CardActions>
     </Card>
