@@ -24,12 +24,15 @@ const AuthForm = () => {
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: [e.target.value],
     }));
   };
 
   //************* FORM SUBMIT *************/
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+  };
   return (
     <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>
       <Box sx={{ ml: "auto", padding: 1 }}>
@@ -71,7 +74,7 @@ const AuthForm = () => {
             </>
           )}
           <TextField
-            value={inputs.name}
+            value={inputs.email}
             onChange={handleChange}
             type="email"
             variant="standard"
@@ -81,7 +84,7 @@ const AuthForm = () => {
           />
 
           <TextField
-            value={inputs.name}
+            value={inputs.password}
             onChange={handleChange}
             type="password"
             variant="standard"
