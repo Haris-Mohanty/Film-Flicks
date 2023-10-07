@@ -9,7 +9,7 @@ import {
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import React, { useState } from "react";
 
-const AuthForm = () => {
+const AuthForm = ({ onSubmit }) => {
   //State change for signup and login form
   const [isSignup, setIsSignup] = useState(false);
 
@@ -24,22 +24,25 @@ const AuthForm = () => {
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     }));
   };
 
   //************* FORM SUBMIT *************/
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
+    onSubmit(inputs);
   };
   return (
     <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>
+      {/*********** CLOSE BUTTON *************/}
       <Box sx={{ ml: "auto", padding: 1 }}>
         <IconButton>
           <CloseRoundedIcon />
         </IconButton>
       </Box>
+
+      {/********** FORM HEADER ***********/}
       <Typography
         variant="h4"
         textAlign={"center"}
@@ -49,6 +52,8 @@ const AuthForm = () => {
       >
         {isSignup ? "Signup Form" : "Login Form"}
       </Typography>
+
+      {/************ FORM CREATE *************/}
       <form onSubmit={handleSubmit}>
         <Box
           display={"flex"}
