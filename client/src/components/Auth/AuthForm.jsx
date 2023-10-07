@@ -27,6 +27,9 @@ const AuthForm = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
+  //************* FORM SUBMIT *************/
+  const handleSubmit = (e) => {};
   return (
     <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>
       <Box sx={{ ml: "auto", padding: 1 }}>
@@ -43,7 +46,7 @@ const AuthForm = () => {
       >
         {isSignup ? "Signup Form" : "Login Form"}
       </Typography>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           display={"flex"}
           justifyContent={"center"}
