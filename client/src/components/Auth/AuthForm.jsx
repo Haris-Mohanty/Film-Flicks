@@ -7,11 +7,13 @@ import {
   Typography,
 } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import React from "react";
+import React, { useState } from "react";
 
 const AuthForm = () => {
+  //State change for signup and login form
+  const [isSignup, setIsSignup] = useState(false);
   return (
-    <Dialog PaperProps={{style:{borderRadius:"15px"}}} open={true}>
+    <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>
       <Box sx={{ ml: "auto", padding: 1 }}>
         <IconButton>
           <CloseRoundedIcon />
@@ -42,13 +44,19 @@ const AuthForm = () => {
           margin={"auto"}
           alignItems={"center"}
         >
-          <TextField
-            type="text"
-            variant="standard"
-            placeholder="Enter Name"
-            name="name"
-            margin="normal"
-          />
+          {/************* WHEN SIGN UP IS TRUE (SIGNUP FORM SHOWING) *******************/}
+          {isSignup && (
+            <>
+              {" "}
+              <TextField
+                type="text"
+                variant="standard"
+                placeholder="Enter Name"
+                name="name"
+                margin="normal"
+              />
+            </>
+          )}
           <TextField
             type="email"
             variant="standard"
