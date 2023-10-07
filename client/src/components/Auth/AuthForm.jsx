@@ -85,15 +85,13 @@ const AuthForm = () => {
             Login
           </Button>
           <Button
-            variant="contained"
             sx={{
-              marginTop: 2,
+              marginTop: 1,
               marginBottom: 2,
               borderRadius: 2,
-              bgcolor: "green",
             }}
           >
-            SignUp
+            Switch to {isSignup ? "Login" : "Signup"}
           </Button>
         </Box>
       </form>
