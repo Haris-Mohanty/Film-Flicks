@@ -24,16 +24,9 @@ const AuthForm = () => {
         textAlign={"center"}
         fontWeight={"bold"}
         color={"#2b2d42"}
+        marginBottom={2}
       >
         Login Form
-      </Typography>
-      <Typography
-        variant="h4"
-        textAlign={"center"}
-        fontWeight={"bold"}
-        color={"#2b2d42"}
-      >
-        Signup Form
       </Typography>
       <form>
         <Box
@@ -82,9 +75,10 @@ const AuthForm = () => {
               bgcolor: "#2b2d42",
             }}
           >
-            Login
+            {isSignup ? "Signup" : "Login"}
           </Button>
           <Button
+            onClick={() => setIsSignup(!isSignup)}
             sx={{
               marginTop: 1,
               marginBottom: 2,
