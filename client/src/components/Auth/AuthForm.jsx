@@ -12,6 +12,13 @@ import React, { useState } from "react";
 const AuthForm = () => {
   //State change for signup and login form
   const [isSignup, setIsSignup] = useState(false);
+
+  //************* FORM INPUT DATA(STATE) ****************/
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   return (
     <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>
       <Box sx={{ ml: "auto", padding: 1 }}>
@@ -42,6 +49,8 @@ const AuthForm = () => {
             <>
               {" "}
               <TextField
+                value={inputs.name}
+                onChange={handleChange}
                 type="text"
                 variant="standard"
                 placeholder="Enter Name"
@@ -51,6 +60,8 @@ const AuthForm = () => {
             </>
           )}
           <TextField
+          value={inputs.name}
+          onChange={handleChange}
             type="email"
             variant="standard"
             placeholder="Enter Email"
@@ -59,6 +70,8 @@ const AuthForm = () => {
           />
 
           <TextField
+          value={inputs.name}
+          onChange={handleChange}
             type="password"
             variant="standard"
             placeholder="Enter Password"
@@ -70,9 +83,10 @@ const AuthForm = () => {
             variant="contained"
             sx={{
               marginTop: 2,
-              marginBottom: 2,
+              marginBottom: 1,
               borderRadius: 2,
               bgcolor: "#2b2d42",
+              width: "50%",
             }}
           >
             {isSignup ? "Signup" : "Login"}
@@ -80,12 +94,12 @@ const AuthForm = () => {
           <Button
             onClick={() => setIsSignup(!isSignup)}
             sx={{
-              marginTop: 1,
               marginBottom: 2,
               borderRadius: 2,
+              fontFamily: "san-serif",
             }}
           >
-            Switch to {isSignup ? "Login" : "Signup"}
+            Switch to {isSignup ? "Login" : "Signup"} Form!
           </Button>
         </Box>
       </form>
