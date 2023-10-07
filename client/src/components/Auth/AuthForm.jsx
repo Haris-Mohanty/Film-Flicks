@@ -9,7 +9,7 @@ import {
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import React, { useState } from "react";
 
-const AuthForm = ({ onSubmit }) => {
+const AuthForm = ({ onSubmit, isAdmin }) => {
   //State change for signup and login form
   const [isSignup, setIsSignup] = useState(false);
 
@@ -64,7 +64,7 @@ const AuthForm = ({ onSubmit }) => {
           alignItems={"center"}
         >
           {/************* WHEN SIGN UP IS TRUE (SIGNUP FORM SHOWING) *******************/}
-          {isSignup && (
+          {!isAdmin && isSignup && (
             <>
               {" "}
               <TextField
@@ -102,24 +102,27 @@ const AuthForm = ({ onSubmit }) => {
             variant="contained"
             sx={{
               marginTop: 2,
-              marginBottom: 1,
+              marginBottom: 2,
               borderRadius: 2,
               bgcolor: "#2b2d42",
-              width: "50%",
+              width: "40%",
             }}
           >
             {isSignup ? "Signup" : "Login"}
           </Button>
-          <Button
-            onClick={() => setIsSignup(!isSignup)}
-            sx={{
-              marginBottom: 2,
-              borderRadius: 2,
-              fontFamily: "san-serif",
-            }}
-          >
-            Switch to {isSignup ? "Login" : "Signup"} Form!
-          </Button>
+          {/************* THIS OPTION IS SHOWING ONLY FOR USER (NOT ADMIN) **********/}
+          {!isAdmin && (
+            <Button
+              onClick={() => setIsSignup(!isSignup)}
+              sx={{
+                marginBottom: 2,
+                borderRadius: 2,
+                fontFamily: "san-serif",
+              }}
+            >
+              Switch to {isSignup ? "Login" : "Signup"} Form!
+            </Button>
+          )}
         </Box>
       </form>
     </Dialog>

@@ -7,7 +7,7 @@ const Admin = () => {
   };
   return (
     <>
-      <AuthForm onSubmit={getData} />
+      <AuthForm onSubmit={getData} isAdmin={true} />
     </>
   );
 };

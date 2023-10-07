@@ -3,11 +3,11 @@ import AuthForm from "./AuthForm";
 
 const Auth = () => {
   const getData = (data) => {
-    console.log(data)
+    console.log(data);
   };
   return (
     <>
-      <AuthForm onSubmit={getData} />
+      <AuthForm onSubmit={getData} isAdmin={false} />
     </>
   );
 };
