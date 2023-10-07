@@ -19,6 +19,14 @@ const AuthForm = () => {
     email: "",
     password: "",
   });
+
+  //*********** INPUT VALUE GET (HANDLE CHANGE) *********/
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
   return (
     <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>
       <Box sx={{ ml: "auto", padding: 1 }}>
@@ -60,8 +68,8 @@ const AuthForm = () => {
             </>
           )}
           <TextField
-          value={inputs.name}
-          onChange={handleChange}
+            value={inputs.name}
+            onChange={handleChange}
             type="email"
             variant="standard"
             placeholder="Enter Email"
@@ -70,8 +78,8 @@ const AuthForm = () => {
           />
 
           <TextField
-          value={inputs.name}
-          onChange={handleChange}
+            value={inputs.name}
+            onChange={handleChange}
             type="password"
             variant="standard"
             placeholder="Enter Password"
