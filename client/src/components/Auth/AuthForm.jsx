@@ -1,4 +1,4 @@
-import { Box, Dialog, TextField, Typography } from "@mui/material";
+import { Box, Button, Dialog, TextField, Typography } from "@mui/material";
 import React from "react";
 
 const AuthForm = () => {
@@ -8,25 +8,42 @@ const AuthForm = () => {
         variant="h4"
         textAlign={"center"}
         margin={"25px"}
-        borderBottom={"1px solid #777877"}
+        fontWeight={"bold"}
+        color={"#2b2d42"}
       >
-        Login
+        Login Form
+      </Typography>
+      <Typography
+        variant="h4"
+        textAlign={"center"}
+        margin={"25px"}
+        fontWeight={"bold"}
+        color={"#2b2d42"}
+      >
+        Signup Form
       </Typography>
       <form>
         <Box
           display={"flex"}
           justifyContent={"center"}
           flexDirection={"column"}
-          width={400}
+          width={350}
           margin={"auto"}
           alignItems={"center"}
         >
+          <TextField
+            type="text"
+            variant="standard"
+            placeholder="Enter Name"
+            name="name"
+            margin="normal"
+          />
           <TextField
             type="email"
             variant="standard"
             placeholder="Enter Email"
             name="email"
-            sx={{ marginBottom: "25px", width: "70%" }}
+            margin="normal"
           />
 
           <TextField
@@ -34,8 +51,31 @@ const AuthForm = () => {
             variant="standard"
             placeholder="Enter Password"
             name="password"
-            sx={{ marginBottom: "25px", width: "70%" }}
+            margin="normal"
           />
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              marginTop: 2,
+              marginBottom: 2,
+              borderRadius: 2,
+              bgcolor: "#2b2d42",
+            }}
+          >
+            Login
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              marginTop: 2,
+              marginBottom: 2,
+              borderRadius: 2,
+              bgcolor: "green",
+            }}
+          >
+            SignUp
+          </Button>
         </Box>
       </form>
     </Dialog>
