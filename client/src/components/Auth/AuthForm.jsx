@@ -1,13 +1,25 @@
-import { Box, Button, Dialog, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import React from "react";
 
 const AuthForm = () => {
   return (
-    <Dialog open={true}>
+    <Dialog PaperProps={{style:{borderRadius:"15px"}}} open={true}>
+      <Box sx={{ ml: "auto", padding: 1 }}>
+        <IconButton>
+          <CloseRoundedIcon />
+        </IconButton>
+      </Box>
       <Typography
         variant="h4"
         textAlign={"center"}
-        margin={"25px"}
         fontWeight={"bold"}
         color={"#2b2d42"}
       >
@@ -16,7 +28,6 @@ const AuthForm = () => {
       <Typography
         variant="h4"
         textAlign={"center"}
-        margin={"25px"}
         fontWeight={"bold"}
         color={"#2b2d42"}
       >
@@ -27,7 +38,7 @@ const AuthForm = () => {
           display={"flex"}
           justifyContent={"center"}
           flexDirection={"column"}
-          width={350}
+          width={370}
           margin={"auto"}
           alignItems={"center"}
         >
