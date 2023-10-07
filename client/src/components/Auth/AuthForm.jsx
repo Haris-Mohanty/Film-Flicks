@@ -26,7 +26,7 @@ const AuthForm = () => {
         color={"#2b2d42"}
         marginBottom={2}
       >
-        Login Form
+        {isSignup ? "Signup Form" : "Login Form"}
       </Typography>
       <form>
         <Box
