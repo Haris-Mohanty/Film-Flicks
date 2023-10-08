@@ -33,4 +33,18 @@ export const sendUserAuthReq = async (data, signup) => {
 };
 
 //********** ADMIN AUTHENTICATION (LOGIN) ************/
-export const sendAdminLoginReq = async () => {};
+export const sendAdminLoginReq = async (data) => {
+  const response = await axios
+    .post("/admin/login", {
+      email: data.email,
+      password: data.password,
+    })
+    .catch((err) => console.log(err));
+
+  if (response.status !== 200) {
+    console.log("Unexcepted Error Occured!");
+  }
+
+  const resData = await response.data;
+  return resData;
+};
