@@ -1,13 +1,9 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: process.env.REACT_BASEURL });
-console.log(API);
-console.log(process.env.REACT_BASEURL)
-
 //********* GET ALL MOIES ***********/
 export const getAllMovies = async () => {
   const response = await axios
-    .get("http://localhost:8080/api/v1/movie")
+    .get(`${process.env.REACT_APP_BASE_URL}/movie`)
     .catch((err) => console.log(err));
 
   //Validation
