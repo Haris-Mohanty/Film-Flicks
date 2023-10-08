@@ -29,13 +29,13 @@ export const addUser = async (req, res, next) => {
 
     //Validation
     if (!name) {
-      next("Please provide all fields!");
+      next("Please provide Name!");
     }
     if (!email) {
-      next("Please provide all fields!");
+      next("Please provide Email!");
     }
     if (!password) {
-      next("Please provide all fields!");
+      next("Please provide Password!");
     }
     if (password.length < 6) {
       next("Password length should be greater than 6 character!");
@@ -57,6 +57,7 @@ export const addUser = async (req, res, next) => {
     await user.save();
     res.status(201).json({
       message: "User Created Successfully!",
+      id: user._id,
       user,
     });
   } catch (error) {

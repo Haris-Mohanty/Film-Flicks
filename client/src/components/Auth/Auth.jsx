@@ -1,9 +1,12 @@
 import React from "react";
 import AuthForm from "./AuthForm";
+import { sendUserAuthReq } from "../../api/api";
 
 const Auth = () => {
   const getData = (data) => {
-    console.log(data);
+    sendUserAuthReq(data.inputs, data.signup)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
   return (
     <>

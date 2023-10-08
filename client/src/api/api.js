@@ -3,7 +3,6 @@ import axios from "axios";
 //********* GET ALL MOIES ***********/
 export const getAllMovies = async () => {
   const response = await axios.get("/movie").catch((err) => console.log(err));
-  console.log(response)
 
   //Validation
   if (response.status !== 200) {
