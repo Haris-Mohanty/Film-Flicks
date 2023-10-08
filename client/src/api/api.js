@@ -13,7 +13,7 @@ export const getAllMovies = async () => {
   return data;
 };
 
-//********** AUTHENTICATION (SIGNUP & LOGIN) ************/
+//********** USER AUTHENTICATION (SIGNUP & LOGIN) ************/
 export const sendUserAuthReq = async (data, signup) => {
   const response = await axios
     .post(`/user/${signup ? "signup" : "login"}`, {
@@ -31,3 +31,6 @@ export const sendUserAuthReq = async (data, signup) => {
   const resData = await response.data;
   return resData;
 };
+
+//********** ADMIN AUTHENTICATION (LOGIN) ************/
+export const sendAdminLoginReq = async () => {};

@@ -3,6 +3,8 @@ import AuthForm from "./AuthForm";
 import { sendUserAuthReq } from "../../api/api";
 
 const Auth = () => {
+
+  //*************** USER AUTHENTICATION (SIGNUP & LOGIN) ************/
   const getData = (data) => {
     sendUserAuthReq(data.inputs, data.signup)
       .then((res) => console.log(res))
