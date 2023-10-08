@@ -1,5 +1,9 @@
 import axios from "axios";
 
+const API = axios.create({ baseURL: process.env.REACT_BASEURL });
+console.log(API);
+console.log(process.env.REACT_BASEURL)
+
 //********* GET ALL MOIES ***********/
 export const getAllMovies = async () => {
   const response = await axios
@@ -14,4 +18,8 @@ export const getAllMovies = async () => {
   const data = await response.data;
   return data;
 };
- 
+
+//********** AUTHENTICATION (SIGNUP & LOGIN) ************/
+export const sendUserAuthReq = async (data, signup) => {
+  // axios.post()
+};

@@ -31,7 +31,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
   //************* FORM SUBMIT *************/
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(inputs);
+    onSubmit({ inputs, signup: isAdmin ? false : isSignup });
   };
   return (
     <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>

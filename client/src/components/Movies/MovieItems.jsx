@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import "./movieItems.css";
 
 const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
   return (
@@ -23,7 +24,12 @@ const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
     >
       <img src={posterUrl} height={"68%"} width={"100%"} alt={title} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" fontWeight={"bold"}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          fontWeight={"bold"}
+        >
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary" marginBottom={-2}>
@@ -31,7 +37,12 @@ const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" color="success" sx={{ margin: "auto" }} size="small">
+        <Button
+          variant="contained"
+          color="success"
+          sx={{ margin: "auto" }}
+          size="small"
+        >
           Book
         </Button>
       </CardActions>
