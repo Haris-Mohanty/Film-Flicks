@@ -2,9 +2,8 @@ import axios from "axios";
 
 //********* GET ALL MOIES ***********/
 export const getAllMovies = async () => {
-  const response = await axios
-    .get(`${process.env.REACT_APP_BASE_URL}/movie`)
-    .catch((err) => console.log(err));
+  const response = await axios.get("/movie").catch((err) => console.log(err));
+  console.log(response)
 
   //Validation
   if (response.status !== 200) {
@@ -17,5 +16,19 @@ export const getAllMovies = async () => {
 
 //********** AUTHENTICATION (SIGNUP & LOGIN) ************/
 export const sendUserAuthReq = async (data, signup) => {
-  // axios.post()
+  const response = await axios
+    .post(`/user/${signup ? "signup" : "login"}`, {
+      name: signup ? data.name : "",
+      email: data.email,
+      password: data.password,
+    })
+    .catch((err) => console.log(err));
+
+  //check validation
+  if (response.status !== 200 && response.status !== 201) {
+    return console.log("Unexcepted Error Occured!");
+  }
+
+  const resData = await response.data;
+  return resData;
 };
