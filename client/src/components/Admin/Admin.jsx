@@ -1,9 +1,10 @@
 import React from "react";
 import AuthForm from "../Auth/AuthForm";
+import { sendAdminLoginReq } from "../../api/api";
 
 const Admin = () => {
   const getData = (data) => {
-    console.log(data);
+    sendAdminLoginReq(data.inputs).then((res)=>{console.log(res)})
   };
   return (
     <>
