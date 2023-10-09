@@ -6,11 +6,16 @@ import { adminActions } from "../../store";
 
 const Admin = () => {
   const dispatch = useDispatch();
+  const onresReceived = (data) => {
+    console.log(data);
+    dispatch(adminActions.login());
+    localStorage.setItem("adminId", data.id);
+    localStorage.setItem("token", data.token);
+  };
 
   const getData = (data) => {
     sendAdminLoginReq(data.inputs)
-      .then((res) => console.log(res))
-      .then(() => dispatch(adminActions.login()))
+      .then(onresReceived)
       .catch((err) => console.log(err));
   };
   return (
