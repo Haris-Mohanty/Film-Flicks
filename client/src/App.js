@@ -4,8 +4,11 @@ import Homepage from "./Pages/Homepage";
 import Movie from "./components/Movies/Movie";
 import Admin from "./components/Admin/Admin";
 import Auth from "./components/Auth/Auth";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
+  const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
     <>
       <section>
