@@ -1,8 +1,8 @@
-img {
+.movie-img {
   transition: all 0.4s ease-in-out;
   border-radius: inherit;
   cursor: pointer;
 }
-img:hover {
+.movie-img:hover {
   transform: scale(1.1);
 }

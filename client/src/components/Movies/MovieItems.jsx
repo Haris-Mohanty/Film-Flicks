@@ -22,7 +22,7 @@ const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
         },
       }}
     >
-      <img src={posterUrl} height={"68%"} width={"100%"} alt={title} />
+      <img src={posterUrl} height={"68%"} width={"100%"} alt={title} className="movie-img" />
       <CardContent>
         <Typography
           gutterBottom
