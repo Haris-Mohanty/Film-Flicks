@@ -9,7 +9,9 @@ import { useSelector } from "react-redux";
 function App() {
   const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
   const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  return (
+  console.log("Admin", isAdminLoggedIn);
+  console.log("User", isUserLoggedIn);
+  return ( 
     <>
       <section>
         <Header />
