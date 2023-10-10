@@ -15,13 +15,12 @@ function App() {
   const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
   console.log("Admin", isAdminLoggedIn);
   console.log("User", isUserLoggedIn);
-  
+
   useEffect(() => {
     if (localStorage.getItem("userId")) {
       dispatch(userActions.login());
     } else if (localStorage.getItem("adminId")) {
       dispatch(adminActions.login());
-    } else {
     }
   }, []);
   return (

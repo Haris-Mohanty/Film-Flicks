@@ -11,8 +11,12 @@ import {
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import { getAllMovies } from "../api/api";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
+  const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
   const [value, setValue] = useState(0);
   const [movies, setMovies] = useState([]); //For showing movies list(option)
 
@@ -28,8 +32,8 @@ const Header = () => {
       <AppBar position="sticky" sx={{ bgcolor: "#2b2d42" }}>
         <Toolbar>
           <Box width={"10%"}>
-            <Link to={"/"} >
-              <VideoSettingsIcon sx={{color:"white", fontSize:"2rem"}} />
+            <Link to={"/"}>
+              <VideoSettingsIcon sx={{ color: "white", fontSize: "2rem" }} />
             </Link>
           </Box>
           <Box width={"35%"} margin={"auto"}>
@@ -54,8 +58,12 @@ const Header = () => {
               onChange={(e, value) => setValue(value)}
             >
               <Tab LinkComponent={Link} to="/movies" label="Movie" />
-              <Tab LinkComponent={Link} to="/admin" label="Admin" />
-              <Tab LinkComponent={Link} to="/auth" label="Auth" />
+              {!isAdminLoggedIn && !isUserLoggedIn && (
+                <>
+                  <Tab LinkComponent={Link} to="/admin" label="Admin" />
+                  <Tab LinkComponent={Link} to="/auth" label="Auth" />
+                </>
+              )}
             </Tabs>
           </Box>
         </Toolbar>
