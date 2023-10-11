@@ -12,10 +12,10 @@ import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import { getAllMovies } from "../api/api";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { adminActions, userActions } from "../store";
 
 const Header = () => {
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
   const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -30,10 +30,10 @@ const Header = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  //************* USER LOGOUT **************/
-  const logout = ()=>{
-
-  }
+  //************* USER & ADMIN LOGOUT **************/
+  const logout = (isAdmin) => {
+    dispatch(isAdmin ? adminActions.logout() : userActions.logout());
+  };
 
   return (
     <>
@@ -75,14 +75,24 @@ const Header = () => {
               {isUserLoggedIn && (
                 <>
                   <Tab LinkComponent={Link} to="/user" label="Profile" />
-                  <Tab onClick={} LinkComponent={Link} to="/" label="Logout" />
+                  <Tab
+                    onClick={() => logout(false)}
+                    LinkComponent={Link}
+                    to="/"
+                    label="Logout"
+                  />
                 </>
               )}
               {isAdminLoggedIn && (
                 <>
                   <Tab LinkComponent={Link} to="/add" label="Add Movies" />
                   <Tab LinkComponent={Link} to="/admin" label="Profile" />
-                  <Tab LinkComponent={Link} to="/" label="Logout" />
+                  <Tab
+                    onClick={() => logout(true)}
+                    LinkComponent={Link}
+                    to="/"
+                    label="Logout"
+                  />
                 </>
               )}
             </Tabs>
