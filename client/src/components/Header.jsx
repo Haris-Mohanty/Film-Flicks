@@ -64,6 +64,12 @@ const Header = () => {
                   <Tab LinkComponent={Link} to="/auth" label="Auth" />
                 </>
               )}
+              {isUserLoggedIn && (
+                <>
+                  <Tab LinkComponent={Link} to="/user" label="Profile" />
+                  <Tab LinkComponent={Link} to="/" label="Logout" />
+                </>
+              )}
             </Tabs>
           </Box>
         </Toolbar>
