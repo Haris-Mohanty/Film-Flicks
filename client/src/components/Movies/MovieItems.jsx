@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import "./movieItems.css";
+import { Link } from "react-router-dom";
 
 const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
   return (
@@ -22,7 +23,13 @@ const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
         },
       }}
     >
-      <img src={posterUrl} height={"68%"} width={"100%"} alt={title} className="movie-img" />
+      <img
+        src={posterUrl}
+        height={"68%"}
+        width={"100%"}
+        alt={title}
+        className="movie-img"
+      />
       <CardContent>
         <Typography
           gutterBottom
@@ -38,6 +45,8 @@ const MovieItems = ({ title, releaseDate, posterUrl, id }) => {
       </CardContent>
       <CardActions>
         <Button
+          LinkComponent={Link}
+          to={`/booking/${id}`}
           variant="contained"
           color="success"
           sx={{ margin: "auto" }}
