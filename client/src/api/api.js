@@ -48,3 +48,6 @@ export const sendAdminLoginReq = async (data) => {
   const resData = await response.data;
   return resData;
 };
+
+//*************** GET MOVIE DETAILS BY ID **********************/
+export const getMovieDetails = async (id) => {};
