@@ -37,7 +37,7 @@ const Movie = () => {
           movies.map((movie, index) => (
             <MovieItems
               key={index}
-              id={movie.id}
+              id={movie._id}
               posterUrl={movie.posterUrl}
               releaseDate={movie.releaseDate}
               title={movie.title}
