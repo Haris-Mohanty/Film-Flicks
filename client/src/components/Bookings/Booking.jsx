@@ -33,8 +33,27 @@ const Booking = () => {
               flexDirection={"column"}
               paddingTop={3}
               width={"50%"}
+              marginRight={"auto"}
             >
-              <img src={movie.posterUrl} alt={movie.title} />
+              <img
+                width={"60%"}
+                height={"370px"}
+                src={movie.posterUrl}
+                alt={movie.title}
+              />
+              <Box width={"80%"} marginTop={3} padding={2}>
+                <Typography paddingTop={2}>{movie.description}</Typography>
+                <Typography fontWeight={"bold"} marginTop={1}>
+                  Starrer: {movie.actors.map((actor) => actor + ", ")}
+                </Typography>
+                <Typography fontWeight={"bolder"} marginTop={1}>
+                  Release Date:{" "}
+                  {new Date(movie.releaseDate).toLocaleDateString()}
+                </Typography>
+              </Box>
+            </Box>
+            <Box width={"50%"} paddingTop={3}>
+                
             </Box>
           </Box>
         </Fragment>
