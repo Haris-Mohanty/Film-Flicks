@@ -42,7 +42,7 @@ export const sendAdminLoginReq = async (data) => {
     .catch((err) => console.log(err));
 
   if (response.status !== 200) {
-    console.log("Unexcepted Error Occured!");
+    return console.log("Unexcepted Error Occured!");
   }
 
   const resData = await response.data;
@@ -50,4 +50,15 @@ export const sendAdminLoginReq = async (data) => {
 };
 
 //*************** GET MOVIE DETAILS BY ID **********************/
-export const getMovieDetails = async (id) => {};
+export const getMovieDetails = async (id) => {
+  const response = await axios
+    .get(`/movie/${id}`)
+    .catch((err) => console.log(err));
+
+  if (response.status !== 200) {
+    return console.log("Unexcepted Error Occured!");
+  }
+
+  const resData = await response.data;
+  return resData;
+};
