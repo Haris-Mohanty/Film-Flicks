@@ -68,29 +68,56 @@ const Header = () => {
               <Tab LinkComponent={Link} to="/movies" label="Movie" />
               {!isAdminLoggedIn &&
                 !isUserLoggedIn && [
-                  <Tab LinkComponent={Link} to="/admin" label="Admin" />,
-                  <Tab LinkComponent={Link} to="/auth" label="Auth" />,
+                  <Tab
+                    key="admin"
+                    LinkComponent={Link}
+                    to="/admin"
+                    label="Admin"
+                  />,
+                  <Tab
+                    key="auth"
+                    LinkComponent={Link}
+                    to="/auth"
+                    label="Auth"
+                  />,
                 ]}
               {isUserLoggedIn && [
-                <Tab LinkComponent={Link} to="/user" label="Profile" />,
+                <Tab
+                  key="user-profile"
+                  LinkComponent={Link}
+                  to="/user"
+                  label="Profile"
+                />,
                 <Tab
                   onClick={() => {
                     logout(false);
                     setValue(0); // Set the value (0) to the Movie tab when User logs out
                   }}
+                  key="user-logout"
                   LinkComponent={Link}
                   to="/"
                   label="Logout"
                 />,
               ]}
               {isAdminLoggedIn && [
-                <Tab LinkComponent={Link} to="/add" label="Add Movies" />,
-                <Tab LinkComponent={Link} to="/admin" label="Profile" />,
+                <Tab
+                  key="add-movies"
+                  LinkComponent={Link}
+                  to="/add"
+                  label="Add Movies"
+                />,
+                <Tab
+                  key="admin-profile"
+                  LinkComponent={Link}
+                  to="/profile"
+                  label="Profile"
+                />,
                 <Tab
                   onClick={() => {
                     logout(true);
                     setValue(0); // Set the value (0) to the Movie tab when admin logs out
                   }}
+                  key="admin-logout"
                   LinkComponent={Link}
                   to="/"
                   label="Logout"
