@@ -64,4 +64,21 @@ export const getMovieDetails = async (id) => {
 };
 
 //************** CREATE BOOKING (NEW BOOKING) ***************/
-export const newBooking = async (date) => {};
+export const newBooking = async (data) => {
+  const response = await axios
+    .post("/booking", {
+      movie: data.movie,
+      seatNumber: data.seatNumber,
+      date: data.date,
+      user: localStorage.getItem("userId"),
+    })
+    .catch((err) => console.log(err));
+
+  //check validation
+  if (response.status !== 200 && response.status !== 201) {
+    return console.log("Unexcepted Error Occured!");
+  }
+
+  const resData = await response.data;
+  return resData;
+};
