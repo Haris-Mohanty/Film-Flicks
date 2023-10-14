@@ -24,6 +24,9 @@ const Booking = () => {
     }));
   };
 
+  //BOOKING SUBMIT
+  const handleSubmit = (e) => {};
+
   return (
     <>
       {movie && (
@@ -63,7 +66,7 @@ const Booking = () => {
               </Box>
             </Box>
             <Box width={"50%"} paddingTop={3}>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <Box
                   padding={5}
                   margin={"auto"}
