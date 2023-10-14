@@ -62,3 +62,6 @@ export const getMovieDetails = async (id) => {
   const resData = await response.data;
   return resData;
 };
+
+//************** CREATE BOOKING (NEW BOOKING) ***************/
+export const newBooking = async (date) => {};
