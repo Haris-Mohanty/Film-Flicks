@@ -17,7 +17,12 @@ const Booking = () => {
   }, [id]); //When the id is change, call the useEffect once again
 
   //GETTING BOOKING DETAILS
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <>
@@ -68,6 +73,8 @@ const Booking = () => {
                   <FormLabel>Seat Number:</FormLabel>
                   <TextField
                     name="seatNumber"
+                    value={inputs.seatNumber}
+                    onChange={handleChange}
                     type="number"
                     margin="normal"
                     variant="standard"
@@ -75,6 +82,8 @@ const Booking = () => {
                   <FormLabel>Booking Date:</FormLabel>
                   <TextField
                     name="date"
+                    value={inputs.date}
+                    onChange={handleChange}
                     type="date"
                     margin="normal"
                     variant="standard"
