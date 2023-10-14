@@ -6,6 +6,8 @@ import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
 const Booking = () => {
   const [movie, setMovie] = useState();
 
+  const [inputs, setInputs] = useState({ seatNumber: "", date: "" });
+
   const id = useParams().id;
 
   useEffect(() => {
@@ -13,6 +15,9 @@ const Booking = () => {
       .then((res) => setMovie(res.movie))
       .catch((err) => console.log(err));
   }, [id]); //When the id is change, call the useEffect once again
+
+  //GETTING BOOKING DETAILS
+  const handleChange = (e) => {};
 
   return (
     <>
@@ -74,7 +79,9 @@ const Booking = () => {
                     margin="normal"
                     variant="standard"
                   />
-                  <Button type="submit" sx={{mt:3}}>Book Now</Button>
+                  <Button type="submit" sx={{ mt: 3 }}>
+                    Book Now
+                  </Button>
                 </Box>
               </form>
             </Box>
