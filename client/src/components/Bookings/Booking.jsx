@@ -25,7 +25,10 @@ const Booking = () => {
   };
 
   //BOOKING SUBMIT
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+  };
 
   return (
     <>
@@ -81,6 +84,7 @@ const Booking = () => {
                     type="number"
                     margin="normal"
                     variant="standard"
+                    placeholder="Enter any number between 1-99"
                   />
                   <FormLabel>Booking Date:</FormLabel>
                   <TextField
