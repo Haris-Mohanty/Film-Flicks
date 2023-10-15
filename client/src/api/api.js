@@ -84,4 +84,16 @@ export const newBooking = async (data) => {
 };
 
 //************ GET ALL BOOKING OF USER **************/
-export const getUserBookings = async () => {};
+export const getUserBookings = async () => {
+  const id = localStorage.getItem("userId");
+  const response = await axios
+    .get(`/user/bookings/${id}`)
+    .catch((err) => console.log(err));
+
+  if (response.status !== 200) {
+    return console.log("Unexcepted Error Occured!");
+  }
+
+  const resData = await response.data;
+  return resData;
+};
