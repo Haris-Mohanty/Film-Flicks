@@ -82,3 +82,6 @@ export const newBooking = async (data) => {
   const resData = await response.data;
   return resData;
 };
+
+//************ GET ALL BOOKING OF USER **************/
+export const getUserBookings = async () => {};
