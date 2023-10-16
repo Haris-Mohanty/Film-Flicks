@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserBookings } from "../../api/api";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
@@ -14,7 +15,10 @@ const UserProfile = () => {
 
   return (
     <Box width={"100%"} display={"flex"}>
-      <Box width={"30%"}></Box>
+      <Box flexDirection={"column"} justifyContent={"center"} alignItems={"center"} width={"30%"}>
+        <AccountCircleIcon sx={{fontSize:"10rem"}}/>
+        <Typography padding={}></Typography>
+      </Box>
       <Box width={"70%"}></Box>
     </Box>
   );
