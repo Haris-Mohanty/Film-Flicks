@@ -32,10 +32,10 @@ export const newBookings = async (req, res, next) => {
 
     //New booking
     let booking = new bookingModel({
-      movie,
+      existingMovie,
       date: new Date(`${date}`),
       seatNumber,
-      user,
+      user: existingUser,
     });
 
     //Create mongodb session for Transaction (for all collection transaction)
@@ -61,13 +61,10 @@ export const newBookings = async (req, res, next) => {
       booking,
     });
   } catch (err) {
-    await session.abortTransaction();
     return res.status(500).json({
       message: "Error in movie booking API!",
       error: err.message,
     });
-  } finally {
-    session.endSession();
   }
 };
 
@@ -104,7 +101,7 @@ export const deleteBooking = async (req, res, next) => {
     const getBooking = await bookingModel
       .findByIdAndRemove(bookingId)
       .populate("user movie");
-    
+
     //Validation
     if (!getBooking) {
       return res.status(404).json({
