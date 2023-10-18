@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { getUserBookings } from "../../api/api";
-import { Box, Typography } from "@mui/material";
+import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const UserProfile = () => {
@@ -12,6 +12,7 @@ const UserProfile = () => {
       .then((res) => setBookings(res.bookings))
       .catch((err) => console.log(err));
   }, []);
+  // console.log(bookings[1].title)
 
   return (
     <Box width={"100%"} display={"flex"}>
@@ -25,7 +26,9 @@ const UserProfile = () => {
             width={"30%"}
             padding={3}
           >
-            <AccountCircleIcon sx={{ fontSize: "10rem", textAlign:"center", ml:10 }} />
+            <AccountCircleIcon
+              sx={{ fontSize: "10rem", textAlign: "center", ml: 10 }}
+            />
             <Typography
               padding={1}
               width={"70%"}
@@ -36,6 +39,7 @@ const UserProfile = () => {
               Name: {bookings[2].name}
             </Typography>
             <Typography
+              mt={1}
               padding={1}
               width={"70%"}
               textAlign={"center"}
@@ -45,7 +49,41 @@ const UserProfile = () => {
               Email: {bookings[2].email}
             </Typography>
           </Box>
-          <Box width={"70%"}></Box>
+          <Box width={"70%"} display={"flex"} flexDirection={"column"}>
+            <Typography
+              variant="h3"
+              fontWeight={"bold"}
+              textAlign={"center"}
+              padding={2}
+            >
+              Bookings
+            </Typography>
+            <Box
+              margin={"auto"}
+              display={"flex"}
+              flexDirection={"column"}
+              width={"80%"}
+            >
+              <List>
+                {bookings.map((booking, index) => (
+                  <ListItem
+                    sx={{
+                      bgcolor: "#00d386",
+                      color: "#fff",
+                      textAlign: "center",
+                      margin: 1,
+                    }}
+                  >
+                    <ListItemText
+                      sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                    >
+                      Movie: {booking.title}
+                    </ListItemText>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+          </Box>
         </Fragment>
       )}
     </Box>
