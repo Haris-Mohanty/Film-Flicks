@@ -12,7 +12,6 @@ const UserProfile = () => {
       .then((res) => setBookings(res.bookings))
       .catch((err) => console.log(err));
   }, []);
-  console.log(bookings)
 
   return (
     <Box width={"100%"} display={"flex"}>
@@ -24,16 +23,26 @@ const UserProfile = () => {
             justifyContent={"center"}
             alignItems={"center"}
             width={"30%"}
+            padding={3}
           >
-            <AccountCircleIcon sx={{ fontSize: "10rem" }} />
+            <AccountCircleIcon sx={{ fontSize: "10rem", textAlign:"center", ml:10 }} />
             <Typography
               padding={1}
-              width={"auto"}
+              width={"70%"}
               textAlign={"center"}
               border={"1px solid #ccc"}
               borderRadius={6}
             >
               Name: {bookings[2].name}
+            </Typography>
+            <Typography
+              padding={1}
+              width={"70%"}
+              textAlign={"center"}
+              border={"1px solid #ccc"}
+              borderRadius={6}
+            >
+              Email: {bookings[2].email}
             </Typography>
           </Box>
           <Box width={"70%"}></Box>
