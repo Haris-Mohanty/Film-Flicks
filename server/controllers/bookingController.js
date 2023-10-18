@@ -32,10 +32,10 @@ export const newBookings = async (req, res, next) => {
 
     //New booking
     let booking = new bookingModel({
-      existingMovie,
+      movie,
       date: new Date(`${date}`),
       seatNumber,
-      user: existingUser,
+      user,
     });
 
     //Create mongodb session for Transaction (for all collection transaction)

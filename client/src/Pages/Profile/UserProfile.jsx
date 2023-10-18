@@ -33,7 +33,7 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              Name: {bookings[0].user.name}
+              Name: {bookings[2].name}
             </Typography>
           </Box>
           <Box width={"70%"}></Box>

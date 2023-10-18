@@ -1,6 +1,7 @@
 import UserModel from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
 import bookingModel from "../models/bookingModel.js";
+import movieModel from "../models/movieModel.js";
 
 //******* GET USER ****/
 export const getAllUsers = async (req, res, next) => {
@@ -193,6 +194,8 @@ export const getBookingOfUser = async (req, res, next) => {
     const userId = req.params.id;
 
     let bookings = await bookingModel.find({ user: userId });
+    let movie = await movieModel.findById(bookings[0].movie);
+    let user = await UserModel.findById(bookings[0].user);
 
     //Validation
     if (!bookings || bookings.length === 0) {
@@ -204,7 +207,7 @@ export const getBookingOfUser = async (req, res, next) => {
     return res.status(200).json({
       message: "All Bookings of user Fetched Successfully.",
       totalBookings: bookings.length,
-      bookings,
+      bookings:  [bookings, movie, user],
     });
   } catch (err) {
     return res.status(500).json({
