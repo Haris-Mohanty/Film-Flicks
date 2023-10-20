@@ -12,7 +12,7 @@ const UserProfile = () => {
       .then((res) => setBookings(res.bookings))
       .catch((err) => console.log(err));
   }, []);
-  // console.log(bookings[1].title)
+  console.log(bookings)
 
   return (
     <Box width={"100%"} display={"flex"}>
@@ -36,7 +36,7 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              Name: {bookings[2].name}
+              {bookings[2] && `Name: ${bookings[2].name}`}
             </Typography>
             <Typography
               mt={1}
@@ -46,7 +46,7 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              Email: {bookings[2].email}
+              {bookings[2] && `Email: ${bookings[2].email}`}
             </Typography>
           </Box>
           <Box width={"70%"} display={"flex"} flexDirection={"column"}>
@@ -67,17 +67,17 @@ const UserProfile = () => {
               <List>
                 {bookings.map((booking, index) => (
                   <ListItem
+                    key={index}
                     sx={{
-                      bgcolor: "#00d386",
-                      color: "#fff",
                       textAlign: "center",
                       margin: 1,
+                      border:"2px solid gray"
                     }}
                   >
                     <ListItemText
                       sx={{ margin: 1, width: "auto", textAlign: "left" }}
                     >
-                      Movie: {booking.title}
+                      {booking.title && `Movie: ${booking.title}`}
                     </ListItemText>
                   </ListItem>
                 ))}
