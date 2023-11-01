@@ -45,31 +45,34 @@ const AddMovies = () => {
           <Typography textAlign={"center"} variant="h5" fontFamily={"verdana"}>
             Add New Movie
           </Typography>
-          <FormLabel sx={labelProps}>Title</FormLabel>
+          <FormLabel>Title</FormLabel>
           <TextField
             value={inputs.title}
             onChange={handleChange}
             name="title"
             variant="standard"
             margin="normal"
+            sx={labelProps}
           />
-          <FormLabel sx={labelProps}>Description</FormLabel>
+          <FormLabel>Description</FormLabel>
           <TextField
             value={inputs.description}
             onChange={handleChange}
             name="description"
             variant="standard"
             margin="normal"
+            sx={labelProps}
           />
-          <FormLabel sx={labelProps}>Poster Url</FormLabel>
+          <FormLabel>Poster Url</FormLabel>
           <TextField
             value={inputs.posterUrl}
             onChange={handleChange}
             name="posterUrl"
             variant="standard"
             margin="normal"
+            sx={labelProps}
           />
-          <FormLabel sx={labelProps}>Release Date</FormLabel>
+          <FormLabel>Release Date</FormLabel>
           <TextField
             type="date"
             value={inputs.releaseDate}
@@ -77,10 +80,11 @@ const AddMovies = () => {
             name="releaseDate"
             variant="standard"
             margin="normal"
+            sx={labelProps}
           />
-          <FormLabel sx={labelProps}>Actor</FormLabel>
+          <FormLabel>Actor</FormLabel>
           <Box display={"flex"}>
-            <TextField name="actor" variant="standard" margin="normal" />
+            <TextField name="actor" variant="standard" margin="normal" sx={labelProps} />
             <Button>Add Actor</Button>
           </Box>
           <Box>
@@ -90,7 +94,7 @@ const AddMovies = () => {
               onChange={handleChange}
               sx={{ marginRight: "auto" }}
             />
-            <FormLabel sx={labelProps}>Featured</FormLabel>
+            <FormLabel>Featured</FormLabel>
           </Box>
           <Button
             variant="contained"
