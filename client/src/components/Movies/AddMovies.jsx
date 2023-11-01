@@ -14,9 +14,13 @@ const labelProps = {
 
 const AddMovies = () => {
   const [inputs, setInputs] = useState({
-    title:"",
-    description:""
+    title: "",
+    description: "",
+    posterUrl: "",
+    releaseDate: "",
+    featured: false,
   });
+  
   return (
     <>
       <form>
