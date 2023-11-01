@@ -20,10 +20,20 @@ const AddMovies = () => {
     releaseDate: "",
     featured: false,
   });
-  
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+  };
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           width={"50%"}
           padding={10}
@@ -36,24 +46,55 @@ const AddMovies = () => {
             Add New Movie
           </Typography>
           <FormLabel sx={labelProps}>Title</FormLabel>
-          <TextField name="title" variant="standard" margin="normal" />
+          <TextField
+            value={inputs.title}
+            onChange={handleChange}
+            name="title"
+            variant="standard"
+            margin="normal"
+          />
           <FormLabel sx={labelProps}>Description</FormLabel>
-          <TextField name="description" variant="standard" margin="normal" />
+          <TextField
+            value={inputs.description}
+            onChange={handleChange}
+            name="description"
+            variant="standard"
+            margin="normal"
+          />
           <FormLabel sx={labelProps}>Poster Url</FormLabel>
-          <TextField name="posterUrl" variant="standard" margin="normal" />
+          <TextField
+            value={inputs.posterUrl}
+            onChange={handleChange}
+            name="posterUrl"
+            variant="standard"
+            margin="normal"
+          />
           <FormLabel sx={labelProps}>Release Date</FormLabel>
-          <TextField name="releaseDate" variant="standard" margin="normal" />
+          <TextField
+            type="date"
+            value={inputs.releaseDate}
+            onChange={handleChange}
+            name="releaseDate"
+            variant="standard"
+            margin="normal"
+          />
           <FormLabel sx={labelProps}>Actor</FormLabel>
           <Box display={"flex"}>
             <TextField name="actor" variant="standard" margin="normal" />
             <Button>Add Actor</Button>
           </Box>
           <Box>
-            <Checkbox sx={{ marginRight: "auto" }} />
+            <Checkbox
+              name="featured"
+              checked={!!inputs.featured}
+              onChange={handleChange}
+              sx={{ marginRight: "auto" }}
+            />
             <FormLabel sx={labelProps}>Featured</FormLabel>
           </Box>
           <Button
             variant="contained"
+            type="submit"
             sx={{
               width: "30%",
               margin: "auto",
