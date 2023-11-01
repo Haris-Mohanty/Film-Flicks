@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { adminActions, userActions } from "./store";
 import Booking from "./components/Bookings/Booking";
 import UserProfile from "./Pages/Profile/UserProfile";
+import AddMovies from "./components/Movies/AddMovies";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/user" element={<UserProfile />} />
+          <Route path="/add" element={<AddMovies />} />
           <Route path="/booking/:id" element={<Booking />} />
         </Routes>
       </section>
