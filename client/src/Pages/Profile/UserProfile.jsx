@@ -70,8 +70,7 @@ const UserProfile = () => {
                     key={index}
                     sx={{
                       textAlign: "center",
-                      margin: 1,
-                      border:"2px solid gray"
+                      margin: 2,
                     }}
                   >
                     <ListItemText
