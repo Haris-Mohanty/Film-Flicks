@@ -8,6 +8,10 @@ import {
 } from "@mui/material";
 import React from "react";
 
+const labelProps = {
+  mb: "11px",
+};
+
 const AddMovies = () => {
   return (
     <>
@@ -23,46 +27,36 @@ const AddMovies = () => {
           <Typography textAlign={"center"} variant="h5" fontFamily={"verdana"}>
             Add New Movie
           </Typography>
-          <FormLabel>Title</FormLabel>
-          <TextField
-            name="title"
-            variant="standard"
-            margin="normal"
-            sx={{ marginBottom: "17px" }}
-          />
-          <FormLabel>Description</FormLabel>
-          <TextField
-            name="description"
-            variant="standard"
-            margin="normal"
-            sx={{ marginBottom: "17px" }}
-          />
-          <FormLabel>Poster Url</FormLabel>
-          <TextField
-            name="posterUrl"
-            variant="standard"
-            margin="normal"
-            sx={{ marginBottom: "17px" }}
-          />
-          <FormLabel>Release Date</FormLabel>
-          <TextField
-            name="releaseDate"
-            variant="standard"
-            margin="normal"
-            sx={{ marginBottom: "17px" }}
-          />
-          <FormLabel>Actor</FormLabel>
+          <FormLabel sx={labelProps}>Title</FormLabel>
+          <TextField name="title" variant="standard" margin="normal" />
+          <FormLabel sx={labelProps}>Description</FormLabel>
+          <TextField name="description" variant="standard" margin="normal" />
+          <FormLabel sx={labelProps}>Poster Url</FormLabel>
+          <TextField name="posterUrl" variant="standard" margin="normal" />
+          <FormLabel sx={labelProps}>Release Date</FormLabel>
+          <TextField name="releaseDate" variant="standard" margin="normal" />
+          <FormLabel sx={labelProps}>Actor</FormLabel>
           <Box display={"flex"}>
-            <TextField
-              name="actor"
-              variant="standard"
-              margin="normal"
-              sx={{ marginBottom: "17px" }}
-            />
-            <Button>Add</Button>
+            <TextField name="actor" variant="standard" margin="normal" />
+            <Button>Add Actor</Button>
           </Box>
-          <FormLabel>Featured</FormLabel>
-          <Checkbox checked={false} />
+          <Box>
+            <Checkbox sx={{ marginRight: "auto" }} />
+            <FormLabel sx={labelProps}>Featured</FormLabel>
+          </Box>
+          <Button
+            variant="contained"
+            sx={{
+              width: "30%",
+              margin: "auto",
+              bgcolor: "#2b2d4a",
+              ":hover": {
+                bgcolor: "#121217",
+              },
+            }}
+          >
+            Add New Movie
+          </Button>
         </Box>
       </form>
     </>
