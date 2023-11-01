@@ -6,13 +6,17 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const labelProps = {
   mb: "11px",
 };
 
 const AddMovies = () => {
+  const [inputs, setInputs] = useState({
+    title:"",
+    description:""
+  });
   return (
     <>
       <form>
