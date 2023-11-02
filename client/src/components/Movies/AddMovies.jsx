@@ -84,14 +84,24 @@ const AddMovies = () => {
           />
           <FormLabel>Actor</FormLabel>
           <Box display={"flex"}>
-            <TextField name="actor" variant="standard" margin="normal" sx={labelProps} />
+            <TextField
+              name="actor"
+              variant="standard"
+              margin="normal"
+              sx={labelProps}
+            />
             <Button>Add Actor</Button>
           </Box>
           <Box>
             <Checkbox
               name="featured"
               checked={!!inputs.featured}
-              onChange={handleChange}
+              onClick={(e) =>
+                setInputs((prevState) => ({
+                  ...prevState,
+                  featured: e.target.checked,
+                }))
+              }
               sx={{ marginRight: "auto" }}
             />
             <FormLabel>Featured</FormLabel>
