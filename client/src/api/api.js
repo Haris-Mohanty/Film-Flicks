@@ -97,3 +97,6 @@ export const getUserBookings = async () => {
   const resData = await response.data;
   return resData;
 };
+
+//**************** ADD MOVIE *****************/
+export const addMovie = () => {};
