@@ -20,13 +20,19 @@ const AddMovies = () => {
     releaseDate: "",
     featured: false,
   });
+
+  //********** ADD ACTORS **********/
+  const [actors, setActors] = useState([""]);
+  const [actor, setActor] = useState("");
+
+  //********** INPUT FIELD DATA ***********/
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
-
+  //************** FORM SUBMIT **********/
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
