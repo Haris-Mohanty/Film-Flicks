@@ -22,7 +22,7 @@ const AddMovies = () => {
   });
 
   //********** ADD ACTORS **********/
-  const [actors, setActors] = useState([""]);
+  const [actors, setActors] = useState([]);
   const [actor, setActor] = useState("");
 
   //********** INPUT FIELD DATA ***********/
@@ -36,6 +36,7 @@ const AddMovies = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
+    console.log(actors)
   };
   return (
     <>
@@ -91,12 +92,21 @@ const AddMovies = () => {
           <FormLabel>Actor</FormLabel>
           <Box display={"flex"}>
             <TextField
+              onChange={(e) => setActor(e.target.value)}
+              value={actor}
               name="actor"
               variant="standard"
               margin="normal"
               sx={labelProps}
             />
-            <Button>Add Actor</Button>
+            <Button
+              onClick={() => {
+                setActors([...actors, actor]);
+                setActor("");
+              }}
+            >
+              Add Actor
+            </Button>
           </Box>
           <Box>
             <Checkbox
