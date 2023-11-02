@@ -103,5 +103,16 @@ export const addMovie = async (data) => {
   const response = await axios.post("/movie", {
     title: data.title,
     description: data.description,
+    releaseDate: data.releaseDate,
+    posterUrl: data.posterUrl,
+    featured: data.featured,
+    actors: data.actors,
+    admin: localStorage.getItem("adminId"),
+
+  }, 
+  {
+    headers:{
+      Authorization: `Bea`
+    }
   });
 };
