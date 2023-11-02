@@ -100,19 +100,29 @@ export const getUserBookings = async () => {
 
 //**************** ADD MOVIE *****************/
 export const addMovie = async (data) => {
-  const response = await axios.post("/movie", {
-    title: data.title,
-    description: data.description,
-    releaseDate: data.releaseDate,
-    posterUrl: data.posterUrl,
-    featured: data.featured,
-    actors: data.actors,
-    admin: localStorage.getItem("adminId"),
+  const response = await axios
+    .post(
+      "/movie",
+      {
+        title: data.title,
+        description: data.description,
+        releaseDate: data.releaseDate,
+        posterUrl: data.posterUrl,
+        featured: data.featured,
+        actors: data.actors,
+        admin: localStorage.getItem("adminId"),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+    .catch((err) => console.log(err));
 
-  }, 
-  {
-    headers:{
-      Authorization: `Bea`
-    }
-  });
+  if (response.status !== 201) {
+    return console.log("Unexcepted error occured!");
+  }
+
+  
 };
