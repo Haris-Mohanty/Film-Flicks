@@ -124,5 +124,6 @@ export const addMovie = async (data) => {
     return console.log("Unexcepted error occured!");
   }
 
-  
+  const resData = await response.data;
+  return resData;
 };
