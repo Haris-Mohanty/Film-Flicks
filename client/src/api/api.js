@@ -99,4 +99,9 @@ export const getUserBookings = async () => {
 };
 
 //**************** ADD MOVIE *****************/
-export const addMovie = () => {};
+export const addMovie = async (data) => {
+  const response = await axios.post("/movie", {
+    title: data.title,
+    description: data.description,
+  });
+};
