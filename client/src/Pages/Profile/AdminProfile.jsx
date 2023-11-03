@@ -1,8 +1,15 @@
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { getAdminById } from "../../api/api";
 const AdminProfile = () => {
-  const [bookings, setBookings] = useState();
+  const [admin, setAdmin] = useState();
+
+  useEffect(() => {
+    getAdminById()
+      .then((res) => setAdmin(res.admin))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
