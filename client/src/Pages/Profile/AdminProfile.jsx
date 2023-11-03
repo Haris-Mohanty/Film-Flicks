@@ -1,8 +1,14 @@
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { getUserBookings } from "../../api/api";
 
 const AdminProfile = () => {
+  const [bookings, setBookings] = useState();
+
+  useEffect(() => {
+    getUserBookings().then()
+  }, []);
   return (
     <>
       <Box width={"100%"} display={"flex"}>
