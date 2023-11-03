@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { addMovie } from "../../api/api";
 
 const labelProps = {
   mb: "11px",
@@ -21,22 +22,24 @@ const AddMovies = () => {
     featured: false,
   });
 
-  //********** ADD ACTORS **********/
+  //******************* ADD ACTORS ******************/
   const [actors, setActors] = useState([]);
   const [actor, setActor] = useState("");
 
-  //********** INPUT FIELD DATA ***********/
+  //****************** INPUT FIELD DATA ***************/
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
-  //************** FORM SUBMIT **********/
+  //******************** FORM SUBMIT **********************/
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
-    console.log(actors)
+    console.log(inputs,actors);
+    addMovie({ ...inputs, actor: actors })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
   return (
     <>
