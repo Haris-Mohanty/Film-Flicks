@@ -127,3 +127,6 @@ export const addMovie = async (data) => {
   const resData = await response.data;
   return resData;
 };
+
+//****************** GET ADMIN DETAILS *********************/
+export const getAdminById = async () => {};
