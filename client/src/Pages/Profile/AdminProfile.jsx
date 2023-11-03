@@ -58,18 +58,19 @@ const AdminProfile = () => {
                 <List>
                   {admin.addedMovies.map((movie, index) => (
                     <ListItem
-                      key={index}
                       sx={{
+                        bgcolor: "#00d386",
+                        color: "#fff",
                         textAlign: "center",
-                        margin: 2,
+                        margin: 1,
                       }}
                     >
                       <ListItemText
                         sx={{ margin: 1, width: "auto", textAlign: "left" }}
                       >
-                        {booking.title && `Movie: ${booking.title}`}
+                        Movie: {movie.title}
                       </ListItemText>
-                    </ListItemText>
+                    </ListItem>
                   ))}
                 </List>
               </Box>

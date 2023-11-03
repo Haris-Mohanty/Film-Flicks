@@ -13,5 +13,7 @@ router.post("/login", loginAdmin);
 //Get all admin
 router.get("/", getAllAdmin);
 
+
+
 //Export router
 export default router;
