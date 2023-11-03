@@ -7,7 +7,9 @@ const AdminProfile = () => {
   const [bookings, setBookings] = useState();
 
   useEffect(() => {
-    getUserBookings().then()
+    getUserBookings()
+      .then((res) => setBookings(res.bookings))
+      .catch((err) => console.log(err));
   }, []);
   return (
     <>
