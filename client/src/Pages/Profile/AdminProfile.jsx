@@ -14,7 +14,7 @@ const AdminProfile = () => {
   return (
     <>
       <Box width={"100%"} display={"flex"}>
-        {bookings && bookings.length > 0 && (
+        {admin && admin.length > 0 && (
           <Fragment>
             {" "}
             <Box
@@ -28,15 +28,6 @@ const AdminProfile = () => {
                 sx={{ fontSize: "10rem", textAlign: "center", ml: 10 }}
               />
               <Typography
-                padding={1}
-                width={"70%"}
-                textAlign={"center"}
-                border={"1px solid #ccc"}
-                borderRadius={6}
-              >
-                {bookings[2] && `Name: ${bookings[2].name}`}
-              </Typography>
-              <Typography
                 mt={1}
                 padding={1}
                 width={"70%"}
@@ -44,7 +35,7 @@ const AdminProfile = () => {
                 border={"1px solid #ccc"}
                 borderRadius={6}
               >
-                {bookings[2] && `Email: ${bookings[2].email}`}
+                {admin[2] && `Email: ${admin[2].email}`}
               </Typography>
             </Box>
             <Box width={"70%"} display={"flex"} flexDirection={"column"}>
@@ -63,7 +54,7 @@ const AdminProfile = () => {
                 width={"80%"}
               >
                 <List>
-                  {bookings.map((booking, index) => (
+                  {admin.map((booking, index) => (
                     <ListItem
                       key={index}
                       sx={{
