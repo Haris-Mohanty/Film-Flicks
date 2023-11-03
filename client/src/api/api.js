@@ -129,4 +129,8 @@ export const addMovie = async (data) => {
 };
 
 //****************** GET ADMIN DETAILS *********************/
-export const getAdminById = async () => {};
+export const getAdminById = async () => {
+  const adminId = localStorage.getItem("adminId");
+
+  
+};
