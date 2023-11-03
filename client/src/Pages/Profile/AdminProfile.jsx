@@ -14,9 +14,9 @@ const AdminProfile = () => {
   return (
     <>
       <Box width={"100%"} display={"flex"}>
-        {admin && admin.length > 0 && (
-          <Fragment>
-            {" "}
+        <Fragment>
+          {" "}
+          {admin && (
             <Box
               flexDirection={"column"}
               justifyContent={"center"}
@@ -35,9 +35,11 @@ const AdminProfile = () => {
                 border={"1px solid #ccc"}
                 borderRadius={6}
               >
-                {admin[2] && `Email: ${admin[2].email}`}
+                {admin && `Email: ${admin.email}`}
               </Typography>
             </Box>
+          )}
+          {admin && admin.addedMovies.length > 0 && (
             <Box width={"70%"} display={"flex"} flexDirection={"column"}>
               <Typography
                 variant="h3"
@@ -45,7 +47,7 @@ const AdminProfile = () => {
                 textAlign={"center"}
                 padding={2}
               >
-                Bookings
+                Added Movies
               </Typography>
               <Box
                 margin={"auto"}
@@ -54,7 +56,7 @@ const AdminProfile = () => {
                 width={"80%"}
               >
                 <List>
-                  {admin.map((booking, index) => (
+                  {admin.addedMovies.map((movie, index) => (
                     <ListItem
                       key={index}
                       sx={{
@@ -67,13 +69,13 @@ const AdminProfile = () => {
                       >
                         {booking.title && `Movie: ${booking.title}`}
                       </ListItemText>
-                    </ListItem>
+                    </ListItemText>
                   ))}
                 </List>
               </Box>
             </Box>
-          </Fragment>
-        )}
+          )}
+        </Fragment>
       </Box>
     </>
   );
