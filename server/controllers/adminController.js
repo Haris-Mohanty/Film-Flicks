@@ -125,5 +125,23 @@ export const getAllAdmin = async (req, res, next) => {
 
 //************** GET ADMIN BY ID *****************/
 export const getAdminById = async (req, res, next) => {
-  
+  try {
+    const id = req.params.id;
+    let getAdmin = await adminModel.findById(id);
+
+    if (!getAdmin) {
+      return res.status(400).json({
+        message: `There is no admin found by ${id} this id!`,
+      });
+    }
+
+    return res.status(200).json({
+      getAdmin,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Internal Server Error!",
+      error: err.message,
+    });
+  }
 };
