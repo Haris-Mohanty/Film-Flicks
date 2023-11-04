@@ -7,7 +7,7 @@ const AdminProfile = () => {
 
   useEffect(() => {
     getAdminById()
-      .then((res) => setAdmin(res.admin))
+      .then((res) => setAdmin(res.getAdmin))
       .catch((err) => console.log(err));
   }, []);
 
@@ -58,6 +58,7 @@ const AdminProfile = () => {
                 <List>
                   {admin.addedMovies.map((movie, index) => (
                     <ListItem
+                      key={index}
                       sx={{
                         bgcolor: "#00d386",
                         color: "#fff",
