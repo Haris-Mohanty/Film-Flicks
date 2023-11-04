@@ -3,13 +3,15 @@ import AuthForm from "./AuthForm";
 import { sendUserAuthReq } from "../../api/api";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onresReceived = (data) => {
-    console.log(data);
     dispatch(userActions.login());
     localStorage.setItem("userId", data.id);
+    navigate("/");
   };
 
   //*************** USER AUTHENTICATION (SIGNUP & LOGIN) ************/
