@@ -100,7 +100,7 @@ export const loginAdmin = async (req, res, next) => {
   }
 };
 
-//************* GET ALL ADMIN *****************/
+//**************** GET ADMIN ***********************/
 export const getAllAdmin = async (req, res, next) => {
   try {
     let allAdmin = await adminModel.find();
@@ -121,4 +121,9 @@ export const getAllAdmin = async (req, res, next) => {
       error: err.message,
     });
   }
+};
+
+//************** GET ADMIN BY ID *****************/
+export const getAdminById = async (req, res, next) => {
+  
 };
