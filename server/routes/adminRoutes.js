@@ -1,5 +1,10 @@
 import express from "express";
-import { getAllAdmin, loginAdmin, signupAdmin } from "../controllers/adminController.js";
+import {
+  getAllAdmin,
+  loginAdmin,
+  signupAdmin,
+  getAdminById,
+} from "../controllers/adminController.js";
 
 //Router Object
 const router = express.Router();
@@ -14,9 +19,7 @@ router.post("/login", loginAdmin);
 router.get("/", getAllAdmin);
 
 //Get admin by id
-router.get("")
-
-
+router.get("/:id", getAdminById);
 
 //Export router
 export default router;
