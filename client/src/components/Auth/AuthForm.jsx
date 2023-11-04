@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AuthForm = ({ onSubmit, isAdmin }) => {
   //State change for signup and login form
@@ -37,7 +38,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
     <Dialog PaperProps={{ style: { borderRadius: "15px" } }} open={true}>
       {/*********** CLOSE BUTTON *************/}
       <Box sx={{ ml: "auto", padding: 1 }}>
-        <IconButton>
+        <IconButton LinkComponent={Link} to={"/"}>
           <CloseRoundedIcon />
         </IconButton>
       </Box>
