@@ -13,6 +13,9 @@ router.post("/login", loginAdmin);
 //Get all admin
 router.get("/", getAllAdmin);
 
+//Get admin by id
+router.get("")
+
 
 
 //Export router
