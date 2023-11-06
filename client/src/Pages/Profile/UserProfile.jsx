@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { getUserBookings } from "../../api/api";
+import { deleteBooking, getUserBookings } from "../../api/api";
 import {
   Box,
   IconButton,
@@ -22,7 +22,11 @@ const UserProfile = () => {
   }, []);
   console.log(bookings);
 
-  const handleDelete = () => {};
+  const handleDelete = (id) => {
+    deleteBooking(id)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Box width={"100%"} display={"flex"}>
@@ -78,6 +82,7 @@ const UserProfile = () => {
               <List>
                 {bookings.map((booking, index) => (
                   <ListItem
+                    key={index}
                     sx={{
                       backgroundColor: "#003d86",
                       color: "#fff",
@@ -102,7 +107,7 @@ const UserProfile = () => {
                     >
                       Booking Date: {new Date(booking.createdAt).toDateString()}
                     </ListItemText>
-                    <IconButton onClick={handleDelete} color="error">
+                    <IconButton onClick={() => handleDelete(booking._id)} color="error">
                       <DeleteIcon />
                     </IconButton>
                   </ListItem>
