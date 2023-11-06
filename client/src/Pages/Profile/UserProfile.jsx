@@ -1,8 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { getUserBookings } from "../../api/api";
-import { Box, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
@@ -74,7 +81,7 @@ const UserProfile = () => {
                       color: "#fff",
                       textAlign: "center",
                       margin: 1,
-                      borderRadius:2,
+                      borderRadius: 2,
                       boxShadow: "rgba(0, 0, 0, 0.54) 1.95px 1.95px 2.6px",
                     }}
                   >

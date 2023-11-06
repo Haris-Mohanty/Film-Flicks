@@ -98,6 +98,9 @@ export const getUserBookings = async () => {
   return resData;
 };
 
+//**************** DELETE BOOKINGS OF USER **************/
+export const deleteBooking = async () => {};
+
 //**************** ADD MOVIE *****************/
 export const addMovie = async (data) => {
   const response = await axios
