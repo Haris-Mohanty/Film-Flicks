@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { getUserBookings } from "../../api/api";
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
@@ -54,7 +55,7 @@ const UserProfile = () => {
               variant="h3"
               fontFamily={"verdana"}
               textAlign={"center"}
-              padding={2}
+              padding={4}
               fontWeight={"bold"}
             >
               Bookings
@@ -63,7 +64,7 @@ const UserProfile = () => {
               margin={"auto"}
               display={"flex"}
               flexDirection={"center"}
-              width={"80%"}
+              width={"70%"}
             >
               <List>
                 {bookings.map((booking, index) => (
@@ -74,13 +75,23 @@ const UserProfile = () => {
                       textAlign: "center",
                       margin: 1,
                       borderRadius:2,
-                      boxShadow: "rgba(0, 0, 0, 0.54) 1.95px 1.95px 2.6px"
+                      boxShadow: "rgba(0, 0, 0, 0.54) 1.95px 1.95px 2.6px",
                     }}
                   >
                     <ListItemText
                       sx={{ margin: 1, width: "auto", textAlign: "left" }}
                     >
                       Movie: {booking.movie.title}
+                    </ListItemText>
+                    <ListItemText
+                      sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                    >
+                      Seat Number: {booking.seatNumber}
+                    </ListItemText>
+                    <ListItemText
+                      sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                    >
+                      Booking Date: {new Date(booking.createdAt).toDateString()}
                     </ListItemText>
                   </ListItem>
                 ))}
