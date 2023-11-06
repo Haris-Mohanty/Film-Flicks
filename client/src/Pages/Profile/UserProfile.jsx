@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
@@ -24,12 +26,13 @@ const UserProfile = () => {
 
   const handleDelete = (id) => {
     deleteBooking(id)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => toast.success("Booking deleted successfully"))
+      .catch((err) => toast.error("Failed to delete booking"));
   };
 
   return (
     <Box width={"100%"} display={"flex"}>
+      <ToastContainer />
       {bookings && bookings.length > 0 && (
         <Fragment>
           <Box
@@ -107,7 +110,10 @@ const UserProfile = () => {
                     >
                       Booking Date: {new Date(booking.createdAt).toDateString()}
                     </ListItemText>
-                    <IconButton onClick={() => handleDelete(booking._id)} color="error">
+                    <IconButton
+                      onClick={() => handleDelete(booking._id)}
+                      color="error"
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </ListItem>
