@@ -15,10 +15,10 @@ import AdminProfile from "./Pages/Profile/AdminProfile";
 function App() {
   const dispatch = useDispatch();
 
-  const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
-  const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  console.log("Admin", isAdminLoggedIn);
-  console.log("User", isUserLoggedIn);
+  // const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
+  // const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  // console.log("Admin", isAdminLoggedIn);
+  // console.log("User", isUserLoggedIn);
 
   useEffect(() => {
     if (localStorage.getItem("userId")) {

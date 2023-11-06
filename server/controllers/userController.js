@@ -193,9 +193,11 @@ export const getBookingOfUser = async (req, res, next) => {
     //Get id
     const userId = req.params.id;
 
-    let bookings = await bookingModel.find({ user: userId });
-    let movie = await movieModel.findById(bookings[0].movie);
-    let user = await UserModel.findById(bookings[0].user);
+    let bookings = await bookingModel
+      .find({ user: userId })
+      .populate(["movie", "user"]);
+    // let movie = await movieModel.findById(bookings[0].movie);
+    // let user = await UserModel.findById(bookings[0].user);
 
     //Validation
     if (!bookings || bookings.length === 0) {
@@ -207,7 +209,7 @@ export const getBookingOfUser = async (req, res, next) => {
     return res.status(200).json({
       message: "All Bookings of user Fetched Successfully.",
       totalBookings: bookings.length,
-      bookings:  [bookings, movie, user],
+      bookings,
     });
   } catch (err) {
     return res.status(500).json({

@@ -127,7 +127,7 @@ export const getAllAdmin = async (req, res, next) => {
 export const getAdminById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    let getAdmin = await adminModel.findById(id).populate("addedMovies")
+    let getAdmin = await adminModel.findById(id).populate("addedMovies");
 
     //Validation check
     if (!getAdmin) {
