@@ -49,8 +49,17 @@ const UserProfile = () => {
             </Typography>
           </Box>
 
-          <Box width={"70%"}>
-            
+          <Box width={"70%"} display={"flex"} flexDirection={"column"}>
+            <Typography
+              variant="h3"
+              fontFamily={"verdana"}
+              textAlign={"center"}
+              padding={2}
+              fontWeight={"bold"}
+            >
+              Bookings
+            </Typography>
+            <Box margin={"auto"} display={"flex"} flexDirection={"center"}></Box>
           </Box>
         </Fragment>
       )}
