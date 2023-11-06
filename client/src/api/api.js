@@ -99,7 +99,18 @@ export const getUserBookings = async () => {
 };
 
 //**************** DELETE BOOKINGS OF USER **************/
-export const deleteBooking = async () => {};
+export const deleteBooking = async (id) => {
+  const res = await axios
+    .delete(`/booking/${id}`)
+    .catch((err) => console.log(err));
+
+  if (res.status !== 200) {
+    return console.log("Unexcepted Error Occured!");
+  }
+
+  const resData = await res.data;
+  return resData;
+};
 
 //**************** ADD MOVIE *****************/
 export const addMovie = async (data) => {
