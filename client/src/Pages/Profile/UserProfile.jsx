@@ -59,7 +59,33 @@ const UserProfile = () => {
             >
               Bookings
             </Typography>
-            <Box margin={"auto"} display={"flex"} flexDirection={"center"}></Box>
+            <Box
+              margin={"auto"}
+              display={"flex"}
+              flexDirection={"center"}
+              width={"80%"}
+            >
+              <List>
+                {bookings.map((booking, index) => (
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#003d86",
+                      color: "#fff",
+                      textAlign: "center",
+                      margin: 1,
+                      borderRadius:2,
+                      boxShadow: "rgba(0, 0, 0, 0.54) 1.95px 1.95px 2.6px"
+                    }}
+                  >
+                    <ListItemText
+                      sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                    >
+                      Movie: {booking.movie.title}
+                    </ListItemText>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
           </Box>
         </Fragment>
       )}
