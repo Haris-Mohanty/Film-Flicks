@@ -22,6 +22,8 @@ const UserProfile = () => {
   }, []);
   console.log(bookings);
 
+  const handleDelete = () => {};
+
   return (
     <Box width={"100%"} display={"flex"}>
       {bookings && bookings.length > 0 && (
@@ -100,8 +102,8 @@ const UserProfile = () => {
                     >
                       Booking Date: {new Date(booking.createdAt).toDateString()}
                     </ListItemText>
-                    <IconButton color="error">
-                      <DeleteIcon color="red" />
+                    <IconButton onClick={handleDelete} color="error">
+                      <DeleteIcon />
                     </IconButton>
                   </ListItem>
                 ))}
