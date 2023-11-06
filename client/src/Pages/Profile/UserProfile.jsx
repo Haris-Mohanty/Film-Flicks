@@ -16,16 +16,44 @@ const UserProfile = () => {
 
   return (
     <Box width={"100%"} display={"flex"}>
-      <Box
-        width={"30%"}
-        flexDirection={"column"}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        
-      </Box>
+      {bookings && bookings.length > 0 && (
+        <Fragment>
+          <Box
+            width={"30%"}
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            padding={3}
+          >
+            <AccountCircleIcon
+              sx={{ fontSize: "10rem", textAlign: "center", ml: 8 }}
+            />
+            <Typography
+              padding={1}
+              width={"70%"}
+              textAlign={"center"}
+              border={"1px solid #ccc"}
+              borderRadius={6}
+            >
+              Name: {bookings[0].user.name}
+            </Typography>
+            <Typography
+              mt={1}
+              padding={1}
+              width={"70%"}
+              textAlign={"center"}
+              border={"1px solid #ccc"}
+              borderRadius={6}
+            >
+              email: {bookings[0].user.email}
+            </Typography>
+          </Box>
 
-      <Box width={"70%"}></Box>
+          <Box width={"70%"}>
+            
+          </Box>
+        </Fragment>
+      )}
     </Box>
   );
 };
