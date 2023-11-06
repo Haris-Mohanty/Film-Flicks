@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { getUserBookings } from "../../api/api";
-import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -93,6 +93,9 @@ const UserProfile = () => {
                     >
                       Booking Date: {new Date(booking.createdAt).toDateString()}
                     </ListItemText>
+                    <IconButton color="error">
+                      <DeleteIcon color="red" />
+                    </IconButton>
                   </ListItem>
                 ))}
               </List>
