@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import bookingModel from "../models/bookingModel.js";
 import movieModel from "../models/movieModel.js";
 
-//******* GET USER ****/
+//******************* GET USER ********************/
 export const getAllUsers = async (req, res, next) => {
   let users;
   try {
@@ -22,6 +22,9 @@ export const getAllUsers = async (req, res, next) => {
     users,
   });
 };
+
+//******************* GET USER BY ID ********************/
+const getUserById = async (req, res, next) => {};
 
 //******** ADD USER || SIGN UP ********/
 export const addUser = async (req, res, next) => {
