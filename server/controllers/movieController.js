@@ -113,7 +113,27 @@ export const getMovies = async (req, res, next) => {
   }
 };
 //************** DELETE MOVIE BY ID ***************/
-export const deleteMovie = async (req, res, next) => {};
+export const deleteMovie = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const movie = await movieModel.findByIdAndRemove(id);
+
+    if (!movie) {
+      return res.status(500).json({
+        message: "Something went wrong!",
+      });
+    }
+    return res.status(200).json({
+      movie,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Error in Delete movie API!",
+      error: err.message,
+    });
+  }
+};
 
 //*********** GET ALL MOVIES BY ID (FIND MOVIES) *************/
 export const getMoviesById = async (req, res, next) => {
