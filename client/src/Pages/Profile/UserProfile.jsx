@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { deleteBooking, getUserBookings } from "../../api/api";
+import { deleteBooking, getUserBookings, getUserByID } from "../../api/api";
 import {
   Box,
   IconButton,
@@ -23,6 +23,10 @@ const UserProfile = () => {
     getUserBookings()
       .then((res) => setBookings(res.bookings))
       .catch((err) => console.log(err));
+
+    getUserByID()
+      .then((res) => setUser(res.getUser))
+      .catch((err) => console.log(err));
   }, []);
 
   const handleDelete = (id) => {
@@ -40,8 +44,9 @@ const UserProfile = () => {
   return (
     <Box width={"100%"} display={"flex"}>
       <ToastContainer />
-      {bookings && bookings.length > 0 && (
-        <Fragment>
+
+      <Fragment>
+        {user && (
           <Box
             width={"30%"}
             flexDirection={"column"}
@@ -59,7 +64,7 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              Name: {bookings[0].user.name}
+              Name: {user.name}
             </Typography>
             <Typography
               mt={1}
@@ -69,10 +74,12 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              email: {bookings[0].user.email}
+              email: {user.email}
             </Typography>
           </Box>
+        )}
 
+        {bookings && bookings.length > 0 && (
           <Box width={"70%"} display={"flex"} flexDirection={"column"}>
             <Typography
               variant="h3"
@@ -128,8 +135,8 @@ const UserProfile = () => {
               </List>
             </Box>
           </Box>
-        </Fragment>
-      )}
+        )}
+      </Fragment>
     </Box>
   );
 };

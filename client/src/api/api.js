@@ -113,11 +113,11 @@ export const deleteBooking = async (id) => {
 };
 
 //***************** GET USER BY ID *********************/
-export const getUser = async () => {
+export const getUserByID = async () => {
   const id = localStorage.getItem("userId");
   const res = await axios.get(`/user/${id}`).catch((err) => console.log(err));
 
-  if (res !== 200) {
+  if (res.status !== 200) {
     return console.log("Unexcepted Error Occured!");
   }
 
