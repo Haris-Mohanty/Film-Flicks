@@ -125,6 +125,20 @@ export const getUserByID = async () => {
   return resData;
 };
 
+//***************** GET USER BY ID *********************/
+export const deleteUser = async (id) => {
+  const res = await axios
+    .delete(`/user/${id}`)
+    .catch((err) => console.log(err));
+
+  if (res.status !== 200) {
+    return console.log("Unexcepted Error Occured!");
+  }
+
+  const resData = await res.data;
+  return resData;
+};
+
 //**************** ADD MOVIE *****************/
 export const addMovie = async (data) => {
   const response = await axios

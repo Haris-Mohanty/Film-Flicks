@@ -1,5 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { deleteBooking, getUserBookings, getUserByID } from "../../api/api";
+import {
+  deleteBooking,
+  deleteUser,
+  getUserBookings,
+  getUserByID,
+} from "../../api/api";
 import {
   Box,
   IconButton,
@@ -12,8 +17,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
   const [bookings, setBookings] = useState();
 
   const [user, setUser] = useState();
@@ -29,6 +36,7 @@ const UserProfile = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  //****************** DELETE USER BOOKING  **********************/
   const handleDelete = (id) => {
     deleteBooking(id)
       .then((res) => {
@@ -39,6 +47,19 @@ const UserProfile = () => {
         );
       })
       .catch((err) => toast.error("Failed to delete booking"));
+  };
+
+  //****************** DELETE USER **********************/
+  const handleDeleteUser = (id) => {
+    deleteUser(id)
+      .then((res) => {
+        toast.success("User Deleted Successfully!");
+        localStorage.removeItem("userId");
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      })
+      .catch((err) => toast.err("Failed to Delete User!"));
   };
 
   return (
@@ -76,14 +97,12 @@ const UserProfile = () => {
             >
               Email: {user.email}
             </Typography>
-            <Typography
-              mt={1}
-              width={"70%"}
-              textAlign={"center"}
-              color={"red"}
-            >
+            <Typography mt={1} width={"70%"} textAlign={"center"} color={"red"}>
               Delete User
-              <IconButton color="error">
+              <IconButton
+                color="error"
+                onClick={() => handleDeleteUser(user._id)}
+              >
                 <DeleteIcon />
               </IconButton>
             </Typography>
