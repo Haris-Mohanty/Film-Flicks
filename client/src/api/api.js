@@ -112,6 +112,11 @@ export const deleteBooking = async (id) => {
   return resData;
 };
 
+//***************** GET USER BY ID *********************/
+export const getUser = async () => {
+  
+};
+
 //**************** ADD MOVIE *****************/
 export const addMovie = async (data) => {
   const response = await axios
