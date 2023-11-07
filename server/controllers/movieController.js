@@ -112,6 +112,8 @@ export const getMovies = async (req, res, next) => {
     });
   }
 };
+//************** DELETE MOVIE BY ID ***************/
+export const deleteMovie = async (req, res, next) => {};
 
 //*********** GET ALL MOVIES BY ID (FIND MOVIES) *************/
 export const getMoviesById = async (req, res, next) => {
