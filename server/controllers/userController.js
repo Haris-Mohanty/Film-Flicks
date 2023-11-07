@@ -24,9 +24,31 @@ export const getAllUsers = async (req, res, next) => {
 };
 
 //******************* GET USER BY ID ********************/
-const getUserById = async (req, res, next) => {};
+export const getUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const getUser = await UserModel.findById(id);
 
-//******** ADD USER || SIGN UP ********/
+    //Validation
+    if (!getUser) {
+      return res.status(400).json({
+        message: `There is no user found by ${id} this id!`,
+      });
+    }
+
+    //Res success
+    return res.status(200).json({
+      getUser,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Internal Server Error!",
+      error: err.message,
+    });
+  }
+};
+
+//****************** ADD USER || SIGN UP *******************/
 export const addUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
@@ -65,9 +87,9 @@ export const addUser = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       message: "Error in Add user API!",
+      error: error.message,
     });
   }
 };
