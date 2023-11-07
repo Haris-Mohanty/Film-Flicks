@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails, newBooking } from "../../api/api";
 import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Booking = () => {
   const [movie, setMovie] = useState();
@@ -28,14 +30,15 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     newBooking({ ...inputs, movie: movie._id })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => toast.success("The movie booked successfully!"))
+      .catch((err) => toast.error("Failed in booking movie!"));
   };
 
   return (
     <>
       {movie && (
         <Fragment>
+          <ToastContainer />
           <Typography
             padding={3}
             fontFamily={"fantasy"}

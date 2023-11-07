@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { addMovie } from "../../api/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const labelProps = {
   mb: "11px",
@@ -38,11 +40,12 @@ const AddMovies = () => {
     e.preventDefault();
     console.log(inputs, actors);
     addMovie({ ...inputs, actors })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => toast.success("Movie added Successfully!"))
+      .catch((err) => toast.error("Failed to add Movie!"));
   };
   return (
     <>
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <Box
           width={"50%"}

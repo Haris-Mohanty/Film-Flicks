@@ -16,17 +16,24 @@ import "react-toastify/dist/ReactToastify.css";
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
 
+  const [user, setUser] = useState();
+
   //*********** GET ALL BOOKING OF USER ***********/
   useEffect(() => {
     getUserBookings()
       .then((res) => setBookings(res.bookings))
       .catch((err) => console.log(err));
   }, []);
-  console.log(bookings);
 
   const handleDelete = (id) => {
     deleteBooking(id)
-      .then((res) => toast.success("Booking deleted successfully"))
+      .then((res) => {
+        toast.success("Booking deleted successfully");
+        // After a successful delete, filter out the deleted booking from the state
+        setBookings((prevBookings) =>
+          prevBookings.filter((booking) => booking._id !== id)
+        );
+      })
       .catch((err) => toast.error("Failed to delete booking"));
   };
 
@@ -71,7 +78,7 @@ const UserProfile = () => {
               variant="h3"
               fontFamily={"verdana"}
               textAlign={"center"}
-              padding={4}
+              padding={3}
               fontWeight={"bold"}
             >
               Bookings

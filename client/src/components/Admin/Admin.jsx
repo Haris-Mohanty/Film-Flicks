@@ -9,7 +9,6 @@ const Admin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onresReceived = (data) => {
-    console.log(data);
     dispatch(adminActions.login());
     localStorage.setItem("adminId", data.id);
     localStorage.setItem("token", data.token);
