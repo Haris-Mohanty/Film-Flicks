@@ -15,6 +15,9 @@ const router = express.Router();
 //Get users
 router.get("/", getAllUsers);
 
+//Get user by id
+router.get()
+
 //Add user
 router.post("/signup", addUser);
 
