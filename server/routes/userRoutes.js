@@ -6,6 +6,7 @@ import {
   getBookingOfUser,
   login,
   updateUser,
+  getUserById,
 } from "../controllers/userController.js";
 
 //ROUTER OBJECT
@@ -16,7 +17,7 @@ const router = express.Router();
 router.get("/", getAllUsers);
 
 //Get user by id
-router.get()
+router.get("/:id", getUserById);
 
 //Add user
 router.post("/signup", addUser);
