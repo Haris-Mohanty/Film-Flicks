@@ -74,7 +74,18 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              email: {user.email}
+              Email: {user.email}
+            </Typography>
+            <Typography
+              mt={1}
+              width={"70%"}
+              textAlign={"center"}
+              color={"red"}
+            >
+              Delete User
+              <IconButton color="error">
+                <DeleteIcon />
+              </IconButton>
             </Typography>
           </Box>
         )}
