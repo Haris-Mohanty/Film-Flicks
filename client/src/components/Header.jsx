@@ -7,6 +7,9 @@ import {
   Tabs,
   TextField,
   Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import { getAllMovies } from "../api/api";
@@ -17,6 +20,9 @@ import { adminActions, userActions } from "../store";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
   const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
