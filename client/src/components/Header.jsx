@@ -10,11 +10,12 @@ import {
 } from "@mui/material";
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import { getAllMovies } from "../api/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { adminActions, userActions } from "../store";
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
@@ -38,7 +39,12 @@ const Header = () => {
     dispatch(isAdmin ? adminActions.logout() : userActions.logout());
   };
 
-  const handleChange =()=>{}
+  const handleChange = (e, val) => {
+    const movie = movies.find((m) => m.title === val);
+    if (isUserLoggedIn) {
+      navigate(`/booking/${movie._id}`);
+    }
+  };
 
   return (
     <>
@@ -51,7 +57,7 @@ const Header = () => {
           </Box>
           <Box width={"35%"} margin={"auto"}>
             <Autocomplete
-            onChange={handleChange}
+              onChange={handleChange}
               freeSolo
               options={movies && movies.map((data) => data.title)}
               renderInput={(params) => (
