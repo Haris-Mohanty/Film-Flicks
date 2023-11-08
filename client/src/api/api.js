@@ -190,4 +190,11 @@ export const deleteMovie = async (id) => {
   const res = await axios
     .delete(`/movie/${id}`)
     .catch((err) => console.log(err));
+
+  if (res.status !== 200) {
+    return console.log("Unexcepted error occured!");
+  }
+
+  const resData = await res.data;
+  return resData;
 };
