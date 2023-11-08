@@ -8,8 +8,10 @@ import {
 } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { getAdminById } from "../../api/api";
+import { deleteMovie, getAdminById } from "../../api/api";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminProfile = () => {
   const [admin, setAdmin] = useState();
@@ -20,11 +22,26 @@ const AdminProfile = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleDelete = (id) => {};
+  //*************** DELETE MOVIE ************/
+  const handleDelete = (id) => {
+    deleteMovie(id)
+      .then((res) => {
+        toast.success("Movie Deleted Successfully!");
+        //Update the admin state by removing the deleted movie
+        setAdmin((prevAdmin) => {
+          const updatedMovies = prevAdmin.addedMovies.filter(
+            (movie) => movie._id !== id
+          );
+          return { ...prevAdmin, addedMovies: updatedMovies };
+        });
+      })
+      .catch((err) => toast.error("Failed to delete booking"));
+  };
 
   return (
     <>
       <Box width={"100%"} display={"flex"}>
+        <ToastContainer />
         <Fragment>
           {" "}
           {admin && (
