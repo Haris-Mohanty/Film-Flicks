@@ -1,7 +1,9 @@
-import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { getAdminById } from "../../api/api";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 const AdminProfile = () => {
   const [admin, setAdmin] = useState();
 
@@ -64,6 +66,8 @@ const AdminProfile = () => {
                         color: "#fff",
                         textAlign: "center",
                         margin: 1,
+                        borderRadius: 2,
+                      boxShadow: "rgba(0, 0, 0, 0.54) 1.95px 1.95px 2.6px",
                       }}
                     >
                       <ListItemText
@@ -71,6 +75,12 @@ const AdminProfile = () => {
                       >
                         Movie: {movie.title}
                       </ListItemText>
+                      <ListItemText sx={{ margin: 1, width: "auto", textAlign: "left" }}>
+                        Release Date: {new Date(movie.releaseDate).toDateString()}
+                      </ListItemText>
+                      <IconButton color="error">
+                        <DeleteIcon/>
+                      </IconButton>
                     </ListItem>
                   ))}
                 </List>
