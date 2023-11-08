@@ -67,7 +67,7 @@ const AdminProfile = () => {
                         textAlign: "center",
                         margin: 1,
                         borderRadius: 2,
-                      boxShadow: "rgba(0, 0, 0, 0.54) 1.95px 1.95px 2.6px",
+                      boxShadow: "rgba(0, 0, 0, 0.40) 1.95px 1.95px 2.6px",
                       }}
                     >
                       <ListItemText

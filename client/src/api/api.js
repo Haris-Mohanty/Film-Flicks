@@ -184,3 +184,10 @@ export const getAdminById = async () => {
   const resData = await res.data;
   return resData;
 };
+
+//************** DELETE MOVIE **************/
+export const deleteMovie = async (id) => {
+  const res = await axios
+    .delete(`/movie/${id}`)
+    .catch((err) => console.log(err));
+};
