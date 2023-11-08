@@ -1,4 +1,11 @@
-import { Box, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { getAdminById } from "../../api/api";
@@ -12,6 +19,8 @@ const AdminProfile = () => {
       .then((res) => setAdmin(res.getAdmin))
       .catch((err) => console.log(err));
   }, []);
+
+  const handleDelete = (id) => {};
 
   return (
     <>
@@ -60,14 +69,14 @@ const AdminProfile = () => {
                 <List>
                   {admin.addedMovies.map((movie, index) => (
                     <ListItem
-                      key={index }
+                      key={index}
                       sx={{
                         bgcolor: "#00d386",
                         color: "#fff",
                         textAlign: "center",
                         margin: 1,
                         borderRadius: 2,
-                      boxShadow: "rgba(0, 0, 0, 0.40) 1.95px 1.95px 2.6px",
+                        boxShadow: "rgba(0, 0, 0, 0.40) 1.95px 1.95px 2.6px",
                       }}
                     >
                       <ListItemText
@@ -75,11 +84,17 @@ const AdminProfile = () => {
                       >
                         Movie: {movie.title}
                       </ListItemText>
-                      <ListItemText sx={{ margin: 1, width: "auto", textAlign: "left" }}>
-                        Release Date: {new Date(movie.releaseDate).toDateString()}
+                      <ListItemText
+                        sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                      >
+                        Release Date:{" "}
+                        {new Date(movie.releaseDate).toDateString()}
                       </ListItemText>
-                      <IconButton color="error">
-                        <DeleteIcon/>
+                      <IconButton
+                        color="error"
+                        onClick={() => handleDelete(movie._id)}
+                      >
+                        <DeleteIcon />
                       </IconButton>
                     </ListItem>
                   ))}
