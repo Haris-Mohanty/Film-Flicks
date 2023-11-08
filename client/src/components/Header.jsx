@@ -23,6 +23,9 @@ const Header = () => {
   const [value, setValue] = useState(0);
   const [movies, setMovies] = useState([]); //For showing movies list(option)
 
+  //Search
+  const [selectedMovie, setSelectedMovie] = useState();
+
   //************ GET ALL MOVIES TO SHOWING MOVIES IN SEARCH BAR **********/
   useEffect(() => {
     getAllMovies()
@@ -35,6 +38,8 @@ const Header = () => {
     dispatch(isAdmin ? adminActions.logout() : userActions.logout());
   };
 
+  const handleChange =()=>{}
+
   return (
     <>
       <AppBar position="sticky" sx={{ bgcolor: "#2b2d42" }}>
@@ -46,6 +51,7 @@ const Header = () => {
           </Box>
           <Box width={"35%"} margin={"auto"}>
             <Autocomplete
+            onChange={handleChange}
               freeSolo
               options={movies && movies.map((data) => data.title)}
               renderInput={(params) => (
