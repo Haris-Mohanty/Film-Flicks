@@ -24,9 +24,6 @@ const Header = () => {
   const [value, setValue] = useState(0);
   const [movies, setMovies] = useState([]); //For showing movies list(option)
 
-  //Search
-  const [selectedMovie, setSelectedMovie] = useState();
-
   //************ GET ALL MOVIES TO SHOWING MOVIES IN SEARCH BAR **********/
   useEffect(() => {
     getAllMovies()

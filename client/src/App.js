@@ -15,10 +15,8 @@ import AdminProfile from "./Pages/Profile/AdminProfile";
 function App() {
   const dispatch = useDispatch();
 
-  // const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
-  // const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  // console.log("Admin", isAdminLoggedIn);
-  // console.log("User", isUserLoggedIn);
+  const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
+  const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   useEffect(() => {
     if (localStorage.getItem("userId")) {
@@ -26,7 +24,7 @@ function App() {
     } else if (localStorage.getItem("adminId")) {
       dispatch(adminActions.login());
     }
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <section>
@@ -34,12 +32,27 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/movies" element={<Movie />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/user" element={<UserProfile />} />
-          <Route path="/profile" element={<AdminProfile />} />
-          <Route path="/add" element={<AddMovies />} />
-          <Route path="/booking/:id" element={<Booking />} />
+          {!isUserLoggedIn && !isAdminLoggedIn && (
+            <>
+              {" "}
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/auth" element={<Auth />} />
+            </>
+          )}
+          {isUserLoggedIn && !isAdminLoggedIn && (
+            <>
+              {" "}
+              <Route path="/user" element={<UserProfile />} />
+              <Route path="/booking/:id" element={<Booking />} />
+            </>
+          )}
+          {isAdminLoggedIn && !isUserLoggedIn && (
+            <>
+              {" "}
+              <Route path="/profile" element={<AdminProfile />} />
+              <Route path="/add" element={<AddMovies />} />
+            </>
+          )}
         </Routes>
       </section>
     </>
