@@ -5,6 +5,8 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -15,6 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AdminProfile = () => {
   const [admin, setAdmin] = useState();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     getAdminById()
@@ -40,25 +44,28 @@ const AdminProfile = () => {
 
   return (
     <>
-      <Box width={"100%"} display={"flex"}>
+      <Box
+        width={"100%"}
+        display={"flex"}
+        flexDirection={isSmallScreen ? "column" : "row"}
+      >
         <ToastContainer />
         <Fragment>
           {" "}
           {admin && (
             <Box
-              flexDirection={"column"}
-              justifyContent={"center"}
+              display={"flex"}
+              flexDirection={isSmallScreen ? "row" : "column"}
               alignItems={"center"}
-              width={"30%"}
-              padding={3}
+              padding={2}
+              width={isSmallScreen ? "100%" : "30%"}
+              mt={isSmallScreen ? 1:6}
             >
-              <AccountCircleIcon
-                sx={{ fontSize: "10rem", textAlign: "center", ml: 10 }}
-              />
+              <AccountCircleIcon sx={{ fontSize: "10rem" }} />
               <Typography
                 mt={1}
                 padding={1}
-                width={"70%"}
+                width={isSmallScreen ? "100%" : "70%"}
                 textAlign={"center"}
                 border={"1px solid #ccc"}
                 borderRadius={6}
@@ -68,7 +75,7 @@ const AdminProfile = () => {
             </Box>
           )}
           {admin && admin.addedMovies.length > 0 && (
-            <Box width={"70%"} display={"flex"} flexDirection={"column"}>
+            <Box width={isSmallScreen ? "100%" : "70%"}>
               <Typography
                 variant="h3"
                 fontWeight={"bold"}
@@ -77,46 +84,35 @@ const AdminProfile = () => {
               >
                 Added Movies
               </Typography>
-              <Box
-                margin={"auto"}
-                display={"flex"}
-                flexDirection={"column"}
-                width={"80%"}
-              >
-                <List>
-                  {admin.addedMovies.map((movie, index) => (
-                    <ListItem
-                      key={index}
-                      sx={{
-                        bgcolor: "#00d386",
-                        color: "#fff",
-                        textAlign: "center",
-                        margin: 1,
-                        borderRadius: 2,
-                        boxShadow: "rgba(0, 0, 0, 0.40) 1.95px 1.95px 2.6px",
-                      }}
+
+              <List>
+                {admin.addedMovies.map((movie, index) => (
+                  <ListItem
+                    key={index}
+                    sx={{
+                      bgcolor: "#00d386",
+                      color: "#fff",
+                      textAlign: "center",
+                      margin: 1,
+                      ml: isSmallScreen ? "17px" : "110px",
+                      borderRadius: 2,
+                      boxShadow: "rgba(0, 0, 0, 0.40) 1.95px 1.95px 2.6px",
+                      width: isSmallScreen ? "100%" : "75%",
+                    }}
+                  >
+                    <ListItemText>Movie: {movie.title}</ListItemText>
+                    <ListItemText>
+                      Release Date: {new Date(movie.releaseDate).toDateString()}
+                    </ListItemText>
+                    <IconButton
+                      color="error"
+                      onClick={() => handleDelete(movie._id)}
                     >
-                      <ListItemText
-                        sx={{ margin: 1, width: "auto", textAlign: "left" }}
-                      >
-                        Movie: {movie.title}
-                      </ListItemText>
-                      <ListItemText
-                        sx={{ margin: 1, width: "auto", textAlign: "left" }}
-                      >
-                        Release Date:{" "}
-                        {new Date(movie.releaseDate).toDateString()}
-                      </ListItemText>
-                      <IconButton
-                        color="error"
-                        onClick={() => handleDelete(movie._id)}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItem>
-                  ))}
-                </List>
-              </Box>
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItem>
+                ))}
+              </List>
             </Box>
           )}
         </Fragment>
