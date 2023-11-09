@@ -1,4 +1,10 @@
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MovieItems from "../components/Movies/MovieItems";
 import { Link } from "react-router-dom";
@@ -6,6 +12,9 @@ import { getAllMovies } from "../api/api";
 
 const Homepage = () => {
   const [movies, setMovies] = useState([]);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     getAllMovies()
@@ -34,18 +43,20 @@ const Homepage = () => {
           width={"80%"}
           justifyContent={"center"}
           flexWrap={"wrap"}
-          marginLeft={18}
+          marginLeft={isSmallScreen ? 5 : 80}
         >
           {movies &&
-            movies.slice(0,4).map((movie, index) => (
-              <MovieItems
-                key={index}
-                id={movie.id}
-                title={movie.title}
-                posterUrl={movie.posterUrl}
-                releaseDate={movie.releaseDate}
-              />
-            ))}
+            movies
+              .slice(0, 4)
+              .map((movie, index) => (
+                <MovieItems
+                  key={index}
+                  id={movie.id}
+                  title={movie.title}
+                  posterUrl={movie.posterUrl}
+                  releaseDate={movie.releaseDate}
+                />
+              ))}
         </Box>
         <Box display={"flex"} padding={5} margin={"auto"}>
           <Button

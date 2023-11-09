@@ -12,6 +12,8 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -24,6 +26,9 @@ const UserProfile = () => {
   const [bookings, setBookings] = useState();
 
   const [user, setUser] = useState();
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   //*********** GET ALL BOOKING OF USER ***********/
   useEffect(() => {

@@ -1,9 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getAllMovies } from "../../api/api";
 import MovieItems from "./MovieItems";
 
 const Movie = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [movies, setMovies] = useState([]);
   //Show all Movies
   useEffect(() => {
@@ -18,8 +21,8 @@ const Movie = () => {
         margin={"auto"}
         variant="h4"
         padding={2}
-        width={"40%"}
-        bgcolor={"#783eb3"}
+        width={isSmallScreen ? "70%" : "40%"}
+        bgcolor={"#009688"}
         color={"#fff"}
         fontWeight={"bold"}
         textAlign={"center"}
