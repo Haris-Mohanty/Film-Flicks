@@ -43,7 +43,7 @@ const Homepage = () => {
           width={"80%"}
           justifyContent={"center"}
           flexWrap={"wrap"}
-          marginLeft={isSmallScreen ? 5 : 80}
+          marginLeft={isSmallScreen ? 5 : 20}
         >
           {movies &&
             movies

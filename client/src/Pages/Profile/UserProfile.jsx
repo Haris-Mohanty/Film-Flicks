@@ -68,20 +68,24 @@ const UserProfile = () => {
   };
 
   return (
-    <Box width={"100%"} display={"flex"}>
+    <Box
+      width={"100%"}
+      display={"flex"}
+      flexDirection={isSmallScreen ? "column" : "row"}
+    >
       <ToastContainer />
 
       <Fragment>
         {user && (
           <Box
-            width={"30%"}
+            width={isSmallScreen ? "80%" : "30%"}
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems={"center"}
             padding={3}
           >
             <AccountCircleIcon
-              sx={{ fontSize: "10rem", textAlign: "center", ml: 8 }}
+              sx={{ fontSize: "10rem", textAlign: "center", ml: 9 }}
             />
             <Typography
               padding={1}
@@ -89,6 +93,7 @@ const UserProfile = () => {
               textAlign={"center"}
               border={"1px solid #ccc"}
               borderRadius={6}
+              ml={isSmallScreen ? 6 : 0}
             >
               Name: {user.name}
             </Typography>
@@ -99,10 +104,17 @@ const UserProfile = () => {
               textAlign={"center"}
               border={"1px solid #ccc"}
               borderRadius={6}
+              ml={isSmallScreen ? 6 : 0}
             >
               Email: {user.email}
             </Typography>
-            <Typography mt={1} width={"70%"} textAlign={"center"} color={"red"}>
+            <Typography
+              mt={1}
+              width={"70%"}
+              textAlign={"center"}
+              color={"red"}
+              ml={isSmallScreen ? 6 : 0}
+            >
               Delete User
               <IconButton
                 color="error"
@@ -115,12 +127,16 @@ const UserProfile = () => {
         )}
 
         {bookings && bookings.length > 0 && (
-          <Box width={"70%"} display={"flex"} flexDirection={"column"}>
+          <Box
+            width={isSmallScreen ? "95%" : "70%"}
+            display={"flex"}
+            flexDirection={"column"}
+          >
             <Typography
-              variant="h3"
+              variant={isSmallScreen ? "h4" : "h2"}
               fontFamily={"verdana"}
               textAlign={"center"}
-              padding={3}
+              padding={isSmallScreen ? 1 : 3}
               fontWeight={"bold"}
             >
               Bookings
@@ -128,8 +144,8 @@ const UserProfile = () => {
             <Box
               margin={"auto"}
               display={"flex"}
-              flexDirection={"center"}
-              width={"70%"}
+              flexDirection={"column"}
+              width={isSmallScreen ? "100%" : "70%"}
             >
               <List>
                 {bookings.map((booking, index) => (
