@@ -57,7 +57,6 @@ const AdminProfile = () => {
               display={"flex"}
               flexDirection={isSmallScreen ? "row" : "column"}
               alignItems={"center"}
-              padding={2}
               width={isSmallScreen ? "100%" : "30%"}
               mt={isSmallScreen ? 1:6}
             >
@@ -65,7 +64,7 @@ const AdminProfile = () => {
               <Typography
                 mt={1}
                 padding={1}
-                width={isSmallScreen ? "100%" : "70%"}
+                width={isSmallScreen ? "60%" : "70%"}
                 textAlign={"center"}
                 border={"1px solid #ccc"}
                 borderRadius={6}
@@ -94,10 +93,10 @@ const AdminProfile = () => {
                       color: "#fff",
                       textAlign: "center",
                       margin: 1,
-                      ml: isSmallScreen ? "17px" : "110px",
+                      ml: isSmallScreen ? "5px" : "110px",
                       borderRadius: 2,
                       boxShadow: "rgba(0, 0, 0, 0.40) 1.95px 1.95px 2.6px",
-                      width: isSmallScreen ? "100%" : "75%",
+                      width: isSmallScreen ? "95%" : "75%",
                     }}
                   >
                     <ListItemText>Movie: {movie.title}</ListItemText>
