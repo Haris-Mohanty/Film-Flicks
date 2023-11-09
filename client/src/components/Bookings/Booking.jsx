@@ -1,7 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails, newBooking } from "../../api/api";
-import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormLabel,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,6 +19,9 @@ const Booking = () => {
   const [inputs, setInputs] = useState({ seatNumber: "", date: "" });
 
   const id = useParams().id;
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     getMovieDetails(id)
@@ -40,71 +51,90 @@ const Booking = () => {
         <Fragment>
           <ToastContainer />
           <Typography
-            padding={3}
+            padding={2}
             fontFamily={"fantasy"}
-            variant="h4"
+            variant={isSmallScreen ? "h5" : "h4"}
             textAlign={"center"}
+            letterSpacing={1.7}
+            color={"#0074e4"}
           >
             Book tickets of the Movie: {movie.title}
           </Typography>
-          <Box display={"flex"} justifyContent={"center"}>
-            <Box
-              display={"flex"}
-              justifyContent={"column"}
-              flexDirection={"column"}
-              paddingTop={3}
-              width={"50%"}
-              marginRight={"auto"}
-            >
-              <img
-                width={"60%"}
-                height={"370px"}
-                src={movie.posterUrl}
-                alt={movie.title}
-              />
-              <Box width={"80%"} marginTop={2} padding={2}>
-                <Typography paddingTop={1}>{movie.description}</Typography>
-                <Typography fontWeight={"bold"} marginTop={1}>
-                  Starrer: {movie.actors.map((actor) => actor + ", ")}
-                </Typography>
-                <Typography fontWeight={"bolder"} marginTop={1}>
-                  Release Date:{" "}
-                  {new Date(movie.releaseDate).toLocaleDateString()}
-                </Typography>
+
+          <Box
+            width={"100%"}
+            display={"flex"}
+            flexDirection={isSmallScreen ? "column" : "row"}
+          >
+            <Box width={isSmallScreen ? "100%" : "55%"}>
+              <Box
+                display={"flex"}
+                justifyContent={"center"}
+                flexDirection={"column"}
+                paddingTop={2}
+                width={isSmallScreen ? "100%" : "80%"}
+                marginRight={"auto"}
+                ml={4}
+                color={'#009688'}
+              >
+                <Box ml={7}>
+                  <img
+                    width={"60%"}
+                    height={isSmallScreen?"300px" :"380px"}
+                    src={movie.posterUrl}
+                    alt={movie.title}
+                  />
+                </Box>
+                <Box width={isSmallScreen?"90%" :"80%"} marginTop={1}>
+                  <Typography paddingTop={1}>{movie.description}</Typography>
+                  <Typography fontWeight={"bold"} mt={1} color={"#00bf63"}>
+                    Starrer: {movie.actors.map((actor) => actor + ", ")}
+                  </Typography>
+                  <Typography fontWeight={"bolder"} mt={1} color={"#00bf63"}>
+                    Release Date:{" "}
+                    {new Date(movie.releaseDate).toLocaleDateString()}
+                  </Typography>
+                </Box>
               </Box>
             </Box>
-            <Box width={"50%"} paddingTop={3}>
-              <form onSubmit={handleSubmit}>
-                <Box
-                  padding={5}
-                  margin={"auto"}
-                  display={"flex"}
-                  flexDirection={"column"}
-                >
-                  <FormLabel>Seat Number:</FormLabel>
-                  <TextField
-                    name="seatNumber"
-                    value={inputs.seatNumber}
-                    onChange={handleChange}
-                    type="number"
-                    margin="normal"
-                    variant="standard"
-                    placeholder="Enter any number between 1-99"
-                  />
-                  <FormLabel>Booking Date:</FormLabel>
-                  <TextField
-                    name="date"
-                    value={inputs.date}
-                    onChange={handleChange}
-                    type="date"
-                    margin="normal"
-                    variant="standard"
-                  />
-                  <Button type="submit" sx={{ mt: 3 }}>
-                    Book Now
-                  </Button>
-                </Box>
-              </form>
+
+            <Box
+              width={isSmallScreen ? "100%" : "45%"}
+              mt={isSmallScreen ? 1 : 5}
+            >
+              <Box width={isSmallScreen?"90%" :"75%"}>
+                <form onSubmit={handleSubmit}>
+                  <Box
+                    padding={5}
+                    margin={"auto"}
+                    display={"flex"}
+                    flexDirection={"column"}
+                  >
+                    <FormLabel>Seat Number:</FormLabel>
+                    <TextField
+                      name="seatNumber"
+                      value={inputs.seatNumber}
+                      onChange={handleChange}
+                      type="number"
+                      margin="normal"
+                      variant="standard"
+                      placeholder="Enter any number between 1-99"
+                    />
+                    <FormLabel>Booking Date:</FormLabel>
+                    <TextField
+                      name="date"
+                      value={inputs.date}
+                      onChange={handleChange}
+                      type="date"
+                      margin="normal"
+                      variant="standard"
+                    />
+                    <Button type="submit" sx={{ mt: 3 }}>
+                      Book Now
+                    </Button>
+                  </Box>
+                </form>
+              </Box>
             </Box>
           </Box>
         </Fragment>
