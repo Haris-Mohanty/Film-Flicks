@@ -54,23 +54,24 @@ export const addUser = async (req, res, next) => {
     const { name, email, password } = req.body;
 
     //Validation
-    if (!name) {
-      next("Please provide Name!");
+    if (!name || !email || !password) {
+      return res.status(422).json({
+        message: "Please provide all fields!",
+      });
     }
-    if (!email) {
-      next("Please provide Email!");
-    }
-    if (!password) {
-      next("Please provide Password!");
-    }
+
     if (password.length < 6) {
-      next("Password length should be greater than 6 character!");
+      return res.status(400).json({
+        message: "Password length should be greater than 6 character!",
+      });
     }
 
     //Check user(email check)
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      next("Email Already Exists!");
+      return res.status(400).json({
+        message: "Email already exists!",
+      });
     }
 
     //Hash Password
@@ -173,10 +174,14 @@ export const login = async (req, res, next) => {
 
     //Validation
     if (!email || !password) {
-      next("Please Provide All Fields!");
+      return res.status(422).json({
+        message: "Please Provide All Fields!",
+      });
     }
     if (password.length < 6) {
-      next("Password length should be greater than 6 character!");
+      return res.status(422).json({
+        message: "Password length should be greater than 6 character!",
+      });
     }
 
     //Check exist user

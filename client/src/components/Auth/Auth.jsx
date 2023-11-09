@@ -4,6 +4,8 @@ import { sendUserAuthReq } from "../../api/api";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -18,10 +20,11 @@ const Auth = () => {
   const getData = (data) => {
     sendUserAuthReq(data.inputs, data.signup)
       .then(onresReceived)
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Failed to load, try again!"));
   };
   return (
     <>
+      <ToastContainer />
       <AuthForm onSubmit={getData} isAdmin={false} />
     </>
   );
