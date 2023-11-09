@@ -15,23 +15,24 @@ export const getAllMovies = async () => {
 
 //********** USER AUTHENTICATION (SIGNUP & LOGIN) ************/
 export const sendUserAuthReq = async (data, signup) => {
-  const response = await axios
-    .post(`/user/${signup ? "signup" : "login"}`, {
+  try {
+    const response = await axios.post(`/user/${signup ? "signup" : "login"}`, {
       name: signup ? data.name : "",
       email: data.email,
       password: data.password,
-    })
-    .catch((err) => console.log(err));
+    });
 
-  //check validation
-  if (response.status !== 200 && response.status !== 201) {
-    return console.log("Unexcepted Error Occured!");
+    if (response.status === 200 || response.status === 201) {
+      const resData = await response.data;
+      return resData;
+    } else {
+      // If the response status is not success (200 or 201), throw an error
+      throw new Error("Unexpected Error Occurred!");
+    }
+  } catch (err) {
+    throw err;
   }
-
-  const resData = await response.data;
-  return resData;
 };
-
 //********** ADMIN AUTHENTICATION (LOGIN) ************/
 export const sendAdminLoginReq = async (data) => {
   const response = await axios

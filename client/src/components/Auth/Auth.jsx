@@ -20,7 +20,7 @@ const Auth = () => {
   const getData = (data) => {
     sendUserAuthReq(data.inputs, data.signup)
       .then(onresReceived)
-      .catch((err) => toast.error("Failed to load, try again!"));
+      .catch((err) => toast.error(err.response.data.message));
   };
   return (
     <>
