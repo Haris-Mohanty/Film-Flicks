@@ -5,6 +5,8 @@ import {
   IconButton,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import React, { useState } from "react";
@@ -13,6 +15,9 @@ import { Link } from "react-router-dom";
 const AuthForm = ({ onSubmit, isAdmin }) => {
   //State change for signup and login form
   const [isSignup, setIsSignup] = useState(false);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   //************* FORM INPUT DATA(STATE) ****************/
   const [inputs, setInputs] = useState({
@@ -62,7 +67,8 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
           flexDirection={"column"}
           width={370}
           margin={"auto"}
-          alignItems={"center"}
+          alignItems={isSmallScreen ? "start" : "center"}
+          ml={isSmallScreen ? 8 : 1}
         >
           {/************* WHEN SIGN UP IS TRUE (SIGNUP FORM SHOWING) *******************/}
           {!isAdmin && isSignup && (
@@ -104,6 +110,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
             sx={{
               marginTop: 2,
               marginBottom: 2,
+              marginLeft: isSmallScreen ? 3 : 1,
               borderRadius: 2,
               bgcolor: "#2b2d42",
               width: "40%",

@@ -5,6 +5,8 @@ import {
   FormLabel,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import React, { useState } from "react";
 import { addMovie } from "../../api/api";
@@ -23,6 +25,9 @@ const AddMovies = () => {
     releaseDate: "",
     featured: false,
   });
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   //******************* ADD ACTORS ******************/
   const [actors, setActors] = useState([]);
@@ -48,14 +53,20 @@ const AddMovies = () => {
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         <Box
-          width={"50%"}
-          padding={10}
+          width={isSmallScreen ? "80%" : "50%"}
+          padding={5}
           margin={"auto"}
           display={"flex"}
+          mt={isSmallScreen ? 0 : 2}
           flexDirection={"column"}
           boxShadow={"10px 10px 20px #ccc"}
         >
-          <Typography textAlign={"center"} variant="h5" fontFamily={"verdana"}>
+          <Typography
+            textAlign={"center"}
+            variant="h5"
+            fontFamily={"verdana"}
+            mb={isSmallScreen ? 2 : 1}
+          >
             Add New Movie
           </Typography>
           <FormLabel>Title</FormLabel>
@@ -132,8 +143,9 @@ const AddMovies = () => {
             variant="contained"
             type="submit"
             sx={{
-              width: "30%",
+              width: isSmallScreen ? "65%" : "30%",
               margin: "auto",
+              mt:1,
               bgcolor: "#2b2d4a",
               ":hover": {
                 bgcolor: "#121217",
