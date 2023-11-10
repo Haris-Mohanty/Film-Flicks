@@ -26,7 +26,7 @@ const Booking = () => {
   useEffect(() => {
     getMovieDetails(id)
       .then((res) => setMovie(res.movie))
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(err.response.data.message));
   }, [id]); //When the id is change, call the useEffect once again
 
   //GETTING BOOKING DETAILS
@@ -42,7 +42,7 @@ const Booking = () => {
     e.preventDefault();
     newBooking({ ...inputs, movie: movie._id })
       .then((res) => toast.success("The movie booked successfully!"))
-      .catch((err) => toast.error("Failed in booking movie!"));
+      .catch((err) => toast.error(err.response.data.message));
   };
 
   return (
@@ -75,17 +75,17 @@ const Booking = () => {
                 width={isSmallScreen ? "100%" : "80%"}
                 marginRight={"auto"}
                 ml={4}
-                color={'#009688'}
+                color={"#009688"}
               >
                 <Box ml={7}>
                   <img
                     width={"60%"}
-                    height={isSmallScreen?"300px" :"380px"}
+                    height={isSmallScreen ? "300px" : "380px"}
                     src={movie.posterUrl}
                     alt={movie.title}
                   />
                 </Box>
-                <Box width={isSmallScreen?"90%" :"80%"} marginTop={1}>
+                <Box width={isSmallScreen ? "90%" : "80%"} marginTop={1}>
                   <Typography paddingTop={1}>{movie.description}</Typography>
                   <Typography fontWeight={"bold"} mt={1} color={"#00bf63"}>
                     Starrer: {movie.actors.map((actor) => actor + ", ")}
@@ -102,7 +102,7 @@ const Booking = () => {
               width={isSmallScreen ? "100%" : "45%"}
               mt={isSmallScreen ? 1 : 5}
             >
-              <Box width={isSmallScreen?"90%" :"75%"}>
+              <Box width={isSmallScreen ? "90%" : "75%"}>
                 <form onSubmit={handleSubmit}>
                   <Box
                     padding={5}

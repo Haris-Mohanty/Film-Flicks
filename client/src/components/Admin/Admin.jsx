@@ -20,7 +20,7 @@ const Admin = () => {
   const getData = (data) => {
     sendAdminLoginReq(data.inputs)
       .then(onresReceived)
-      .catch((err) => toast.error("Failed to load, try again!"));
+      .catch((err) => toast.error(err.response.data.message));
   };
   return (
     <>

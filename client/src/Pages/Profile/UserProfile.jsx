@@ -30,11 +30,11 @@ const UserProfile = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  //*********** GET ALL BOOKING OF USER ***********/
+  //************* GET ALL BOOKING OF USER ***************/
   useEffect(() => {
     getUserBookings()
       .then((res) => setBookings(res.bookings))
-      .catch((err) => console.log(err));
+      .catch((err) => toast.warning(err.response.data.message));
 
     getUserByID()
       .then((res) => setUser(res.getUser))

@@ -2,15 +2,20 @@ import axios from "axios";
 
 //********* GET ALL MOIES ***********/
 export const getAllMovies = async () => {
-  const response = await axios.get("/movie").catch((err) => console.log(err));
+  try {
+    const response = await axios.get("/movie");
 
-  //Validation
-  if (response.status !== 200) {
-    return console.log("No Data");
+    // Check if the response status is 200
+    if (response.status === 200) {
+      const data = response.data;
+      return data;
+    } else {
+      // If the response status is not 200, throw an error
+      throw new Error(`Unexpected status: ${response.status}`);
+    }
+  } catch (error) {
+    throw error;
   }
-
-  const data = await response.data;
-  return data;
 };
 
 //********** USER AUTHENTICATION (SIGNUP & LOGIN) ************/
@@ -35,68 +40,76 @@ export const sendUserAuthReq = async (data, signup) => {
 };
 //********** ADMIN AUTHENTICATION (LOGIN) ************/
 export const sendAdminLoginReq = async (data) => {
-  const response = await axios
-    .post("/admin/login", {
+  try {
+    const response = await axios.post("/admin/login", {
       email: data.email,
       password: data.password,
-    })
-    .catch((err) => console.log(err));
+    });
 
-  if (response.status !== 200) {
-    return console.log("Unexcepted Error Occured!");
+    if (response.status === 200) {
+      const resData = response.data;
+      return resData;
+    } else {
+      throw new Error("Unexpected Error Occurred!");
+    }
+  } catch (error) {
+    throw error;
   }
-
-  const resData = await response.data;
-  return resData;
 };
 
 //*************** GET MOVIE DETAILS BY ID **********************/
 export const getMovieDetails = async (id) => {
-  const response = await axios
-    .get(`/movie/${id}`)
-    .catch((err) => console.log(err));
+  try {
+    const response = await axios.get(`/movie/${id}`);
 
-  if (response.status !== 200) {
-    return console.log("Unexcepted Error Occured!");
+    if (response.status === 200) {
+      const resData = await response.data;
+      return resData;
+    } else {
+      throw new Error("Unexcepted Error Occured!");
+    }
+  } catch (err) {
+    throw err;
   }
-
-  const resData = await response.data;
-  return resData;
 };
 
 //************** CREATE BOOKING (NEW BOOKING) ***************/
 export const newBooking = async (data) => {
-  const response = await axios
-    .post("/booking", {
+  try {
+    const response = await axios.post("/booking", {
       movie: data.movie,
       seatNumber: data.seatNumber,
       date: data.date,
       user: localStorage.getItem("userId"),
-    })
-    .catch((err) => console.log(err));
+    });
 
-  //check validation
-  if (response.status !== 200 && response.status !== 201) {
-    return console.log("Unexcepted Error Occured!");
+    //check validation
+    if (response.status === 201) {
+      const resData = await response.data;
+      return resData;
+    } else {
+      throw new Error("Unexcepted Error Occured!");
+    }
+  } catch (err) {
+    throw err;
   }
-
-  const resData = await response.data;
-  return resData;
 };
 
 //************ GET ALL BOOKING OF USER **************/
 export const getUserBookings = async () => {
-  const id = localStorage.getItem("userId");
-  const response = await axios
-    .get(`/user/bookings/${id}`)
-    .catch((err) => console.log(err));
+  try {
+    const id = localStorage.getItem("userId");
+    const response = await axios.get(`/user/bookings/${id}`);
 
-  if (response.status !== 200) {
-    return console.log("Unexcepted Error Occured!");
+    if (response.status === 200) {
+      const resData = await response.data;
+      return resData;
+    } else {
+      throw new Error("Unexcepted Error Occured!");
+    }
+  } catch (err) {
+    throw err;
   }
-
-  const resData = await response.data;
-  return resData;
 };
 
 //**************** DELETE BOOKINGS OF USER **************/
