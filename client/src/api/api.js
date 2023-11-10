@@ -155,8 +155,8 @@ export const deleteUser = async (id) => {
 
 //**************** ADD MOVIE *****************/
 export const addMovie = async (data) => {
-  const response = await axios
-    .post(
+  try {
+    const response = await axios.post(
       "/movie",
       {
         title: data.title,
@@ -172,15 +172,17 @@ export const addMovie = async (data) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
-    )
-    .catch((err) => console.log(err));
+    );
 
-  if (response.status !== 201) {
-    return console.log("Unexcepted error occured!");
+    if (response.status === 201) {
+      const resData = await response.data;
+      return resData;
+    } else {
+      throw new Error("Unexcepted error occured!");
+    }
+  } catch (err) {
+    throw err;
   }
-
-  const resData = await response.data;
-  return resData;
 };
 
 //****************** GET ADMIN DETAILS *********************/

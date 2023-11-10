@@ -43,10 +43,9 @@ const AddMovies = () => {
   //******************** FORM SUBMIT **********************/
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs, actors);
     addMovie({ ...inputs, actors })
       .then((res) => toast.success("Movie added Successfully!"))
-      .catch((err) => toast.error("Failed to add Movie!"));
+      .catch((err) => toast.error(err.response.data.message));
   };
   return (
     <>
@@ -145,7 +144,7 @@ const AddMovies = () => {
             sx={{
               width: isSmallScreen ? "65%" : "30%",
               margin: "auto",
-              mt:1,
+              mt: 1,
               bgcolor: "#2b2d4a",
               ":hover": {
                 bgcolor: "#121217",
