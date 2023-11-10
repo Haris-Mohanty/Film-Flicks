@@ -173,7 +173,7 @@ const UserProfile = () => {
                     <ListItemText
                       sx={{ margin: 1, width: "auto", textAlign: "left" }}
                     >
-                      Booking Date: {new Date(booking.createdAt).toDateString()}
+                      Booking Date: {new Date(booking.date).toDateString()}
                     </ListItemText>
                     <IconButton
                       onClick={() => handleDelete(booking._id)}

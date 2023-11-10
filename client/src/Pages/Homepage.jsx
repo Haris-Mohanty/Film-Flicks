@@ -24,12 +24,7 @@ const Homepage = () => {
 
   return (
     <>
-      <Box
-        width={"100%"}
-        height={"100%"}
-        margin={"auto"}
-        marginTop={2}
-      >
+      <Box width={"100%"} height={"100%"} margin={"auto"} marginTop={2}>
         <Box
           margin={"auto"}
           width={isSmallScreen ? "100%" : "90%"}
